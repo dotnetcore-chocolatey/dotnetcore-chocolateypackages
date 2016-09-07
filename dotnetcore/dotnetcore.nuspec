@@ -13,12 +13,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
 
-This package provides the complete environment for running .NET Core console and ASP.NET Core applications.</description>
-    <summary>This package provides the complete environment for running .NET Core console and ASP.NET Core applications.</summary>
-    <tags>Microsoft .NET Core Runtime Redistributable ASP.NET Module ANCM</tags>
+This package is required to run console applications with the .NET Core runtime (it is effectively an alias for the [dotnetcore-runtime](https://chocolatey.org/packages/dotnetcore-runtime) package). For running ASP.NET Core applications on IIS or IIS Express, install the [dotnetcore-windowshosting](https://chocolatey.org/packages/dotnetcore-windowshosting) package. For developing .NET Core applications, install the [dotnetcore-sdk](https://chocolatey.org/packages/dotnetcore-sdk) package.</description>
+    <summary>This package is required to run console applications with the .NET Core runtime.</summary>
+    <tags>Microsoft .NET Core Runtime Redistributable</tags>
     <dependencies>
       <dependency id="dotnetcore-runtime" version="1.0.0" />
-      <dependency id="dotnetcore-windowshosting" version="1.0.0" />
     </dependencies>
   </metadata>
 </package>
