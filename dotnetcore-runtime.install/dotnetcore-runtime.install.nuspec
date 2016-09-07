@@ -26,6 +26,12 @@ The package supports the following parameters (--package-parameters, --params):
 Quiet - suppress display of native installer progress window (may be needed on Server Core)
 Example: cinst -y --params="Quiet" dotnetcore-runtime.install
 </description>
+    <releaseNotes>
+##### Software
+https://github.com/dotnet/core/tree/master/release-notes
+##### Package
+1.0.0: Initial package release.
+    </releaseNotes>
     <dependencies>
       <dependency id="vcredist2015" version="14.0.23506.0" />
       <dependency id="chocolatey-uninstall.extension" version="1.1.0" />
