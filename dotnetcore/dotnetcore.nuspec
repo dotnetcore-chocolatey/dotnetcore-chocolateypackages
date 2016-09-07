@@ -5,7 +5,7 @@
     <version>1.0.0</version>
     <title>Microsoft .NET Core</title>
     <authors>Microsoft</authors>
-    <owners>Jakub Bereżański</owners>
+    <owners>qbik,Jakub Bereżański</owners>
     <licenseUrl>https://cdn.rawgit.com/dotnet/core/290743955c7dec3315e72da5dcd589b2bd177e71/LICENSE</licenseUrl>
     <copyright>.NET Foundation and Contributors</copyright>
     <projectUrl>https://dot.net/core</projectUrl>
