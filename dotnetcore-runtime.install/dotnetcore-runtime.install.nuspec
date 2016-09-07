@@ -3,14 +3,16 @@
   <metadata>
     <id>dotnetcore-runtime.install</id>
     <version>1.0.0</version>
+    <owners>Jakub Bereżański</owners>
     <title>Microsoft .NET Core Runtime (Install)</title>
     <authors>Microsoft</authors>
-    <owners>Jakub Bereżański</owners>
-    <licenseUrl>https://cdn.rawgit.com/dotnet/core/290743955c7dec3315e72da5dcd589b2bd177e71/LICENSE</licenseUrl>
-    <copyright>.NET Foundation and Contributors</copyright>
     <projectUrl>https://dot.net/core</projectUrl>
     <iconUrl>https://cdn.rawgit.com/jberezanski/ChocolateyPackages/52f38af477ca7a425469b8e61b0f044da45aead5/icons/dotnetcore.png</iconUrl>
+    <copyright>.NET Foundation and Contributors</copyright>
+    <licenseUrl>https://cdn.rawgit.com/dotnet/core/290743955c7dec3315e72da5dcd589b2bd177e71/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>Microsoft .NET Core Runtime Redistributable admin</tags>
+    <summary>This package is required to run console applications with the .NET Core runtime.</summary>
     <description>.NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
 
 This package is required to run console applications with the .NET Core runtime. The .NET Core Runtime is installed machine-wide, using a native installer.
@@ -21,8 +23,6 @@ The package supports the following parameters (--package-parameters, --params):
 Quiet - suppress display of native installer progress window (may be needed on Server Core)
 Example: cinst -y --params="Quiet" dotnetcore-runtime.install
 </description>
-    <summary>This package is required to run console applications with the .NET Core runtime.</summary>
-    <tags>Microsoft .NET Core Runtime Redistributable admin</tags>
     <dependencies>
       <dependency id="vcredist2015" version="14.0.23506.0" />
       <dependency id="chocolatey-uninstall.extension" version="1.1.0" />
