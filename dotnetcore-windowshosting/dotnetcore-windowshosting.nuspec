@@ -29,7 +29,7 @@ Example: cinst -y --params="Quiet IgnoreMissingIIS" dotnetcore-windowshosting
 </description>
     <releaseNotes>
 ##### Software
-https://github.com/dotnet/core/tree/master/release-notes
+[.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
 ##### Package
 1.0.0: Initial package release.
     </releaseNotes>
