@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore</id>
-    <version>1.0.1</version>
+    <version>1.0.1.20160916</version>
     <packageSourceUrl>https://github.com/jberezanski/dotnetcore-chocolateypackages/tree/master/dotnetcore</packageSourceUrl>
     <owners>qbik,Jakub Bereżański</owners>
     <title>Microsoft .NET Core</title>
@@ -23,7 +23,7 @@ This package is required to run console applications with the .NET Core runtime 
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
 ##### Package
-1.0.1: Initial package release for software version 1.0.1.
+1.0.1.20160916: Initial package release for software version 1.0.1. The package fix version notation had to be used because 1.0.1 was already taken by an obsolete, unlisted version of this package.
     </releaseNotes>
     <dependencies>
       <dependency id="dotnetcore-runtime" version="1.0.1" />
