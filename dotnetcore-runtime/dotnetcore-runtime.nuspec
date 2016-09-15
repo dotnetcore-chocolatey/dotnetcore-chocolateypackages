@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-runtime</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packageSourceUrl>https://github.com/jberezanski/dotnetcore-chocolateypackages/tree/master/dotnetcore-runtime</packageSourceUrl>
     <owners>riezebosch,Jakub Bereżański</owners>
     <title>Microsoft .NET Core Runtime</title>
@@ -23,10 +23,10 @@ This package is required to run console applications with the .NET Core runtime.
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
 ##### Package
-1.0.0: Initial package release.
+1.0.1: Initial package release for software version 1.0.1.
     </releaseNotes>
     <dependencies>
-      <dependency id="dotnetcore-runtime.install" version="1.0.0" />
+      <dependency id="dotnetcore-runtime.install" version="1.0.1" />
     </dependencies>
   </metadata>
 </package>
