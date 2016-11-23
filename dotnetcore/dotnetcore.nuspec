@@ -1,8 +1,8 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore</id>
-    <version>1.0.1.20160916</version>
+    <version>1.1.0</version>
     <packageSourceUrl>https://github.com/jberezanski/dotnetcore-chocolateypackages/tree/master/dotnetcore</packageSourceUrl>
     <owners>qbik,Jakub Bereżański</owners>
     <title>Microsoft .NET Core</title>
@@ -16,17 +16,19 @@
     <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
     <tags>Microsoft .NET Core Runtime Redistributable</tags>
     <summary>This package is required to run console applications with the .NET Core runtime.</summary>
-    <description>.NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
-
-This package is required to run console applications with the .NET Core runtime (it is effectively an alias for the [dotnetcore-runtime](https://chocolatey.org/packages/dotnetcore-runtime) package). For running ASP.NET Core applications on IIS or IIS Express, install the [dotnetcore-windowshosting](https://chocolatey.org/packages/dotnetcore-windowshosting) package. For developing .NET Core applications, install the [dotnetcore-sdk](https://chocolatey.org/packages/dotnetcore-sdk) package.</description>
+    <description>
+      .NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
+      This package is required to run console applications with the .NET Core runtime (it is effectively an alias for the [dotnetcore-runtime](https://chocolatey.org/packages/dotnetcore-runtime) package). For running ASP.NET Core applications on IIS or IIS Express, install the [dotnetcore-windowshosting](https://chocolatey.org/packages/dotnetcore-windowshosting) package. For developing .NET Core applications, install the [dotnetcore-sdk](https://chocolatey.org/packages/dotnetcore-sdk) package.
+    </description>
     <releaseNotes>
-##### Software
-[.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
-##### Package
-1.0.1.20160916: Initial package release for software version 1.0.1. The package fix version notation had to be used because 1.0.1 was already taken by an obsolete, unlisted version of this package.
+      ##### Software
+      [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
+      ##### Package
+      1.1.0: Update to software version 1.1.0.
+      1.0.1.20160916: Initial package release for software version 1.0.1. The package fix version notation had to be used because 1.0.1 was already taken by an obsolete, unlisted version of this package.
     </releaseNotes>
     <dependencies>
-      <dependency id="dotnetcore-runtime" version="1.0.1" />
+      <dependency id="dotnetcore-runtime" version="1.1.0" />
     </dependencies>
   </metadata>
 </package>

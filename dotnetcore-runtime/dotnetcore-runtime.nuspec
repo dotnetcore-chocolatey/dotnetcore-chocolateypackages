@@ -1,8 +1,8 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-runtime</id>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <packageSourceUrl>https://github.com/jberezanski/dotnetcore-chocolateypackages/tree/master/dotnetcore-runtime</packageSourceUrl>
     <owners>riezebosch,Jakub Bereżański</owners>
     <title>Microsoft .NET Core Runtime</title>
@@ -16,17 +16,19 @@
     <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
     <tags>Microsoft .NET Core Runtime Redistributable</tags>
     <summary>This package is required to run console applications with the .NET Core runtime.</summary>
-    <description>.NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
-
-This package is required to run console applications with the .NET Core runtime.</description>
+    <description>
+      .NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
+      This package is required to run console applications with the .NET Core runtime.
+    </description>
     <releaseNotes>
-##### Software
-[.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
-##### Package
-1.0.1: Initial package release for software version 1.0.1.
+      ##### Software
+      [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
+      ##### Package
+      1.1.0: Update to software version 1.1.0.
+      1.0.1: Initial package release for software version 1.0.1.
     </releaseNotes>
     <dependencies>
-      <dependency id="dotnetcore-runtime.install" version="1.0.1" />
+      <dependency id="dotnetcore-runtime.install" version="1.1.0" />
     </dependencies>
   </metadata>
 </package>
