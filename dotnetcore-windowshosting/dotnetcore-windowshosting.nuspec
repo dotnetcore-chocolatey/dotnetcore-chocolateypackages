@@ -31,7 +31,7 @@ Example: cinst -y --params="Quiet IgnoreMissingIIS" dotnetcore-windowshosting
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
 ##### Package
-1.1.1: Initial package release for software version 1.1.1; using chocolatey-core.extension instead of obsolete chocolatey-uninstall.extension.
+1.1.1: Initial package release for software version 1.1.1.
     </releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
