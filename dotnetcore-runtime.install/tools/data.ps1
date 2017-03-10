@@ -1,13 +1,13 @@
 @{
     PackageName = 'dotnetcore-runtime.install'
-    Version = '1.1.0'
-    Url = 'https://download.microsoft.com/download/1/4/1/141760B3-805B-4583-B17C-8C5BC5A876AB/Installers/dotnet-win-x86.1.1.0.exe'
-    Checksum = '6F3CE7234A427DFB6280D2C725329F3217B8439DF48CE83C6780E9EFB30AA7F5'
+    Version = '1.1.1'
+    Url = 'https://download.microsoft.com/download/8/F/9/8F9659B9-E628-4D1A-B6BF-C3004C8C954B/dotnet-1.1.1-sdk-win-x86.exe'
+    Checksum = 'A174F4CD787732845D4A09FC715DEEAEB7B8D58D8EE0E8F044A3E012BE7C448E'
     ChecksumType = 'sha256'
-    Url64 = 'https://download.microsoft.com/download/1/4/1/141760B3-805B-4583-B17C-8C5BC5A876AB/Installers/dotnet-win-x64.1.1.0.exe'
-    Checksum64 = '7D56D0D7BC363F129D8552271583BEE503FD5455EB0ABC8741107282E899ABC2'
+    Url64 = 'https://download.microsoft.com/download/8/F/9/8F9659B9-E628-4D1A-B6BF-C3004C8C954B/dotnet-1.1.1-sdk-win-x64.exe'
+    Checksum64 = '8F252094A8A572A10AB75E923EE5905748990D2CE4DE3E5F065356D509DFEF43'
     ChecksumType64 = 'sha256'
-    ApplicationName = 'Microsoft .NET Core 1.1.0 - Runtime (*)'
-    UninstallerName = 'dotnet-win-*.1.1.0.exe'
+    ApplicationName = 'Microsoft .NET Core 1.1.1 - Runtime (*)'
+    UninstallerName = 'dotnet-win-*.1.1.1.exe'
     AdditionalInstallerArguments = $null
 }
