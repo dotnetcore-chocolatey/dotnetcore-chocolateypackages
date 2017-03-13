@@ -9,5 +9,5 @@
     ChecksumType64 = 'sha256'
     ApplicationName = 'Microsoft .NET Core 1.0.4 & 1.1.1 - Windows Server Hosting'
     UninstallerName = 'DotNetCore.1.0.4_1.1.1-WindowsHosting.exe'
-    AdditionalInstallerArguments = 'OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0'
+    AdditionalArgumentsToInstaller = 'OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0'
 }

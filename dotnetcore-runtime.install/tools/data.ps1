@@ -9,5 +9,5 @@
     ChecksumType64 = 'sha256'
     ApplicationName = 'Microsoft .NET Core 1.1.1 - Runtime (*)'
     UninstallerName = 'dotnet-win-*.1.1.1.exe'
-    AdditionalInstallerArguments = $null
+    AdditionalArgumentsToInstaller = $null
 }

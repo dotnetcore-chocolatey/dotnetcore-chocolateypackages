@@ -10,7 +10,7 @@ function Uninstall-ApplicationPackage
       [string] $PackageName,
       [string] $ApplicationName,
       [string] $UninstallerName,
-      [string] $UninstallerArguments,
+      [string] $ArgumentsToUninstaller,
       [int[]] $ValidExitCodes
     )
 
@@ -48,7 +48,7 @@ function Uninstall-ApplicationPackage
     $arguments = @{
         PackageName = $PackageName
         FileType = 'exe'
-        SilentArgs = $UninstallerArguments
+        SilentArgs = $ArgumentsToUninstaller
         ValidExitCodes = $ValidExitCodes
         File = $uninstallerPath
     }
@@ -83,7 +83,7 @@ $arguments = @{
     PackageName = $data.PackageName
     ApplicationName = $data.ApplicationName
     UninstallerName = $data.UninstallerName
-    UninstallerArguments = "/uninstall /$passiveOrQuiet /norestart /log ""${Env:TEMP}\$($data.PackageName)_uninstall.log"""
+    ArgumentsToUninstaller = "/uninstall /$passiveOrQuiet /norestart /log ""${Env:TEMP}\$($data.PackageName)_uninstall.log"""
     ValidExitCodes = @(
         0, # success
         3010 # success, restart required

@@ -27,7 +27,7 @@ function Get-PassiveOrQuietArgument
 $passiveOrQuiet = Get-PassiveOrQuietArgument -Scenario 'installation'
 $arguments = @{
     packageName = $data.PackageName
-    silentArgs = "$($data.AdditionalInstallerArguments) /install /$passiveOrQuiet /norestart /log ""${Env:TEMP}\$($data.PackageName).log"""
+    silentArgs = "$($data.AdditionalArgumentsToInstaller) /install /$passiveOrQuiet /norestart /log ""${Env:TEMP}\$($data.PackageName).log"""
     validExitCodes = @(
         0, # success
         3010 # success, restart required
