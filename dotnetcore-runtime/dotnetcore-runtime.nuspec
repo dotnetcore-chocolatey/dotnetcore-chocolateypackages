@@ -17,8 +17,9 @@
     <tags>Microsoft .NET Core Runtime Redistributable</tags>
     <summary>This package is required to run console applications with the .NET Core runtime.</summary>
     <description>
-      .NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
-      This package is required to run console applications with the .NET Core runtime.
+.NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
+
+This package is required to run console applications with the .NET Core runtime.
     </description>
     <releaseNotes>
 ##### Software

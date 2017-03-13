@@ -17,8 +17,9 @@
     <tags>Microsoft .NET Core Runtime Redistributable</tags>
     <summary>This package is required to run console applications with the .NET Core runtime.</summary>
     <description>
-      .NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
-      This package is required to run console applications with the .NET Core runtime (it is effectively an alias for the [dotnetcore-runtime](https://chocolatey.org/packages/dotnetcore-runtime) package). For running ASP.NET Core applications on IIS or IIS Express, install the [dotnetcore-windowshosting](https://chocolatey.org/packages/dotnetcore-windowshosting) package. For developing .NET Core applications, install the [dotnetcore-sdk](https://chocolatey.org/packages/dotnetcore-sdk) package.
+.NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
+
+This package is required to run console applications with the .NET Core runtime (it is effectively an alias for the [dotnetcore-runtime](https://chocolatey.org/packages/dotnetcore-runtime) package). For running ASP.NET Core applications on IIS or IIS Express, install the [dotnetcore-windowshosting](https://chocolatey.org/packages/dotnetcore-windowshosting) package. For developing .NET Core applications, install the [dotnetcore-sdk](https://chocolatey.org/packages/dotnetcore-sdk) package.
     </description>
     <releaseNotes>
 ##### Software
