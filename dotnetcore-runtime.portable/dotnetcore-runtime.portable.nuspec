@@ -4,7 +4,7 @@
     <id>dotnetcore-runtime.portable</id>
     <version>1.1.2</version>
     <packageSourceUrl>https://github.com/jberezanski/dotnetcore-chocolateypackages/tree/master/dotnetcore-runtime.portable</packageSourceUrl>
-    <owners>Jakub Bereżański</owners>
+    <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET Core Runtime (Portable)</title>
     <authors>Microsoft</authors>
     <projectUrl>https://dot.net/core</projectUrl>
@@ -14,7 +14,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <docsUrl>https://docs.microsoft.com/dotnet</docsUrl>
     <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
-    <tags>Microsoft .NET Core Runtime Redistributable</tags>
+    <tags>microsoft .net core runtime redistributable</tags>
     <summary>This package is required to run console applications with the .NET Core runtime.</summary>
     <description>
 .NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
