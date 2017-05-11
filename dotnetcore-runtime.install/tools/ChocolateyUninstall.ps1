@@ -31,8 +31,13 @@ function Uninstall-ApplicationPackage
         throw "More than one Uninstall key found for $ApplicationName! $informMaintainer"
     }
 
-    Write-Debug "Using Uninstall key: $($uninstallKey.PSPath)"
-    $uninstallString = $uninstallKey | Get-ItemProperty -Name UninstallString | Select-Object -ExpandProperty UninstallString
+    $uninstallKey = $uninstallKey | Select-Object -First 1
+    # in PS 2.0, casting to [array] done inside Get-UninstallRegistryKey strips the PS* properties
+    if ($uninstallKey.PSObject.Properties['PSPath'] -ne $null)
+    {
+        Write-Debug "Using Uninstall key: $($uninstallKey.PSPath)"
+    }
+    $uninstallString = $uninstallKey.UninstallString
     Write-Debug "UninstallString: $uninstallString"
     if (-not ($uninstallString -match '^\s*(\"[^\"]+\")|([^\s]+)'))
     {
