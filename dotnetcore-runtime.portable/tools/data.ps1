@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnetcore-runtime.portable'
-    Version = '2.0.0-Preview1'
-    Url = 'https://download.microsoft.com/download/0/9/0/09060200-E749-4025-A51A-83391C611C86/dotnet-win-x86.2.0.0-preview1-002111-00.zip'
-    Checksum = '87753581e7d2ddb91ffadb4603cc2c35fd6fb279f7743f8ab1a61916d3be3fe5'
+    Version = '2.0.0'
+    Url = 'https://download.microsoft.com/download/1/B/4/1B4DE605-8378-47A5-B01B-2C79D6C55519/dotnet-sdk-2.0.0-win-x86.zip'
+    Checksum = '5EAA475A12843CFFF9A97F4B7D3B205EB169FD372DDFC9DDDE92225E9E4C1C7C'
     ChecksumType = 'sha256'
-    Url64 = 'https://download.microsoft.com/download/0/9/0/09060200-E749-4025-A51A-83391C611C86/dotnet-win-x64.2.0.0-preview1-002111-00.zip'
-    Checksum64 = 'df73f34c35a0ed5286e2dc0f5db545502d917221aacf04cdeab266eb013936e1'
+    Url64 = 'https://download.microsoft.com/download/1/B/4/1B4DE605-8378-47A5-B01B-2C79D6C55519/dotnet-sdk-2.0.0-win-x64.zip'
+    Checksum64 = '541D4DD17023AFF14A0AEB6505B200CCABFFFFC34AB2F629CAEB994CEDF8AFD9'
     ChecksumType64 = 'sha256'
 }
