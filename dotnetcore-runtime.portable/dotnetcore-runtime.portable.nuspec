@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-runtime.portable</id>
-    <version>1.1.2</version>
+    <version>1.1.4</version>
     <packageSourceUrl>https://github.com/jberezanski/dotnetcore-chocolateypackages/tree/master/dotnetcore-runtime.portable</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET Core Runtime (Portable)</title>
@@ -33,7 +33,7 @@ Example: cinst -y --params="ShimDotnetExe" dotnetcore-runtime.portable
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
 ##### Package
-1.1.2: Initial package release for .NET Core 1.1.2.
+1.1.4: Initial package release for .NET Core 1.1.4.
     </releaseNotes>
     <dependencies>
       <dependency id="vcredist2015" version="14.0.24215.20170201" />
