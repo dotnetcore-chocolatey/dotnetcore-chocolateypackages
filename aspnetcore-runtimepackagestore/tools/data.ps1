@@ -1,13 +1,13 @@
 @{
     PackageName = 'aspnetcore-runtimepackagestore'
-    Version = '2.0.0'
-    Url = 'https://download.microsoft.com/download/B/1/D/B1D7D5BF-3920-47AA-94BD-7A6E48822F18/AspNetCore.2.0.0.RuntimePackageStore_x86.exe'
-    Checksum = '870039083CB569AB010567E6280BE61A2F3C707A92BA158A359683E1D9523151'
+    Version = '2.0.3'
+    Url = 'https://download.microsoft.com/download/5/C/1/5C190037-632B-443D-842D-39085F02E1E8/AspNetCore.2.0.3.RuntimePackageStore_x86.exe'
+    Checksum = '1264EC2162F434633163C2CB1F085F02F0AD8FB9B4EDECCB1898155F796EB25F'
     ChecksumType = 'sha256'
-    Url64 = 'https://download.microsoft.com/download/B/1/D/B1D7D5BF-3920-47AA-94BD-7A6E48822F18/AspNetCore.2.0.0.RuntimePackageStore_x64.exe'
-    Checksum64 = '49E649828C64E37D684A9AC8160AD4A8B2983A9EFF841CD8FAC25E09EA13619B'
+    Url64 = 'https://download.microsoft.com/download/5/C/1/5C190037-632B-443D-842D-39085F02E1E8/AspNetCore.2.0.3.RuntimePackageStore_x64.exe'
+    Checksum64 = '793E26D9280FD6C6F36BD6B3F4DBD1255A3601C02D5AC3FE5AC4D384A45A0311'
     ChecksumType64 = 'sha256'
-    ApplicationName = 'Microsoft ASP.NET Core 2.0.0 - Runtime Package Store'
-    UninstallerName = 'AspNetCore.2.0.0.RuntimePackageStore_*.exe'
+    ApplicationName = 'Microsoft ASP.NET Core 2.0.3 - Runtime Package Store'
+    UninstallerName = 'AspNetCore.2.0.3.RuntimePackageStore_*.exe'
     AdditionalArgumentsToInstaller = $null
 }
