@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>aspnetcore-runtimepackagestore</id>
-    <version>2.0.3</version>
+    <version>2.0.5</version>
     <packageSourceUrl>https://github.com/jberezanski/dotnetcore-chocolateypackages/tree/master/aspnetcore-runtimepackagestore</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft ASP.NET Core Package Store</title>
@@ -33,7 +33,7 @@ Example: cinst -y --params="Quiet" aspnetcore-runtimepackagestore
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
 ##### Package
-2.0.3: Initial package release for software version 2.0.3.
+Initial package release for software version 2.0.5.
     </releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
