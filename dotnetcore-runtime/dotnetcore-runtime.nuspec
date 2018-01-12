@@ -28,7 +28,7 @@ This package is required to run console applications with the .NET Core runtime.
 Initial package release for software version 2.0.5.
     </releaseNotes>
     <dependencies>
-      <dependency id="dotnetcore-runtime.install" version="2.0.5" />
+      <dependency id="dotnetcore-runtime.install" version="[2.0.5]" />
     </dependencies>
   </metadata>
 </package>
