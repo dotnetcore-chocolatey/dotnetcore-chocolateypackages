@@ -4,11 +4,11 @@ $releases = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/
 
 function global:au_SearchReplace {
     @{
-        "tools\chocolateyInstall.ps1" = @{
-            "(^[$]url\s*=\s*)('.*')"      = "`$1'$($Latest.URL32)'"           #1
-            "(^[$]checksum\s*=\s*)('.*')" = "`$1'$($Latest.Checksum32)'"      #2
-            "(^[$]url64\s*=\s*)('.*')"      = "`$1'$($Latest.URL64)'"           #1
-            "(^[$]checksum64\s*=\s*)('.*')" = "`$1'$($Latest.Checksum64)'"      #2
+        "tools\data.ps1" = @{
+            "(^\s*Url\s*=\s*)('.*')"      = "`$1'$($Latest.URL32)'"           #1
+            "(^\s*Checksum\s*=\s*)('.*')" = "`$1'$($Latest.Checksum32)'"      #2
+            "(^\s*Url64\s*=\s*)('.*')"      = "`$1'$($Latest.URL64)'"           #1
+            "(^\s*Checksum64\s*=\s*)('.*')" = "`$1'$($Latest.Checksum64)'"      #2
 
         }
     }
@@ -23,7 +23,7 @@ function global:au_GetLatest {
      $url32   = $info.'dlc-runtime' + $exe32
      $url64   = $info.'dlc-runtime' + $exe64
 
-     return @{ Version = $version; URL32 = $url32; URL64 = $url64 }
+     return @{ Version = $version; URL32 = $url32; URL64 = $url64; ChecksumType32 = 'sha512'; ChecksumType64 = 'sha512'; }
 }
 
 update
