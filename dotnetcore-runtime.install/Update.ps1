@@ -17,11 +17,9 @@ function global:au_SearchReplace {
 function global:au_GetLatest {
      $info = (Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json)[0]
     
-     $exe32 = [System.IO.Path]::ChangeExtension($info.'runtime-win-x86', 'exe')
-     $exe64 = [System.IO.Path]::ChangeExtension($info.'runtime-win-x64', 'exe')
      $version = $info.'version-runtime'
-     $url32   = $info.'dlc-runtime' + $exe32
-     $url64   = $info.'dlc-runtime' + $exe64
+     $url32   = $info.'dlc-runtime' + $info.'runtime-win-x86.exe'
+     $url64   = $info.'dlc-runtime' + $info.'runtime-win-x64.exe'
 
      return @{ Version = $version; URL32 = $url32; URL64 = $url64; ChecksumType32 = 'sha512'; ChecksumType64 = 'sha512'; }
 }

@@ -17,8 +17,8 @@ function global:au_GetLatest {
      $info = (Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json)[0]
     
      $version = $info.'version-runtime'
-     $url32   = $info.'dlc-runtime' + $info.'rps-win-x86'
-     $url64   = $info.'dlc-runtime' + $info.'rps-win-x64'
+     $url32   = $info.'dlc-runtime' + $info.'rps-win-x86.exe'
+     $url64   = $info.'dlc-runtime' + $info.'rps-win-x64.exe'
 
      return @{ 
         Version = $version; 

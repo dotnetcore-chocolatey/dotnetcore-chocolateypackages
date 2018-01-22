@@ -27,8 +27,8 @@ function global:au_GetLatest {
      $info = (Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json)[0]
     
      $version = $info.'version-runtime'
-     $url32   = $info.'dlc-runtime' + $info.'hosting-win-x64'
-     $url64   = $info.'dlc-runtime' + $info.'hosting-win-x64'
+     $url32   = $info.'dlc-runtime' + $info.'hosting-win-x64.exe'
+     $url64   = $info.'dlc-runtime' + $info.'hosting-win-x64.exe'
 
      return @{ Version = $version; URL32 = $url32; URL64 = $url64; ChecksumType32 = 'sha512'; ChecksumType64 = 'sha512'; }
 }
