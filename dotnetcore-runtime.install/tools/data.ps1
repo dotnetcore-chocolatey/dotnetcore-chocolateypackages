@@ -1,11 +1,11 @@
-@{
+﻿@{
     PackageName = 'dotnetcore-runtime.install'
     Version = '2.0.5'
-    Url = 'https://download.microsoft.com/download/1/1/0/11046135-4207-40D3-A795-13ECEA741B32/dotnet-runtime-2.0.5-win-x86.exe'
-    Checksum = '84dc1b30e36dc0aef5cc7294aeb43963570bf4bd6fd824ff9c9ae9fe5c7bb574b9b2a48d299d526097732879317ce92e76f9ac1b034b8c14eaebb27297b4401b'
+    Url = 'https://download.microsoft.com/download/A/B/1/AB1AA972-8F2F-43AD-9A81-72E9245CB0F5/dotnet-runtime-2.1.0-preview1-26216-03-win-x86.exe'
+    Checksum = '8ec6e0efe7134b79debea41fa7bb45736f7a317260b15955c33d018ccf21fc13c46f1b30f4d0abed385ba76437d3be861e97fdc12022b99bc69c31cf22497214'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.microsoft.com/download/1/1/0/11046135-4207-40D3-A795-13ECEA741B32/dotnet-runtime-2.0.5-win-x64.exe'
-    Checksum64 = 'dc6c0f438258e8a5ea825809cc5d7e3f0e69d6aa233894086ffafafe8e539d707aac1abcf4f56ea324fc54f578b52d7796c2b828c26bb838b9b94299bf754c20'
+    Url64 = 'https://download.microsoft.com/download/A/B/1/AB1AA972-8F2F-43AD-9A81-72E9245CB0F5/dotnet-runtime-2.1.0-preview1-26216-03-win-x64.exe'
+    Checksum64 = 'b7830445ac00a37718ed1b3b563fa323ca5889484141d9dd30e9b46b004c62ac2c003cc8f8bba1d4266ead62966817c93dc21c36f0660de3867125dfaffe04d3'
     ChecksumType64 = 'sha512'
     ApplicationName = 'Microsoft .NET Core Runtime - 2.0.5 *'
     UninstallerName = 'dotnet-runtime-*.exe'
