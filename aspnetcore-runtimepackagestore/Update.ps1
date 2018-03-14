@@ -4,7 +4,7 @@ $releases = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/
 
 function global:au_SearchReplace {
     @{
-        "tools\data.ps1" = @{
+        "$PSScriptRoot\tools\data.ps1" = @{
             "(^\s*Url\s*=\s*)('.*')"      = "`$1'$($Latest.URL32)'"           #1
             "(^\s*Checksum\s*=\s*)('.*')" = "`$1'$($Latest.Checksum32)'"      #2
             "(^\s*Url64\s*=\s*)('.*')"      = "`$1'$($Latest.URL64)'"           #1
