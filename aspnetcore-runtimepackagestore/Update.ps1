@@ -14,7 +14,8 @@ function global:au_SearchReplace {
 }
 
 function global:au_GetLatest {
-     $info = (Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json)[0]
+     $json = (Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json)
+     $info = $json | where { $_.'version-runtime' -notmatch '-' } | sort -Property 'version-runtime' -Descending | select -First 1
     
      $version = $info.'version-runtime'
      $url32   = $info.'dlc-runtime' + $info.'rps-win-x86.exe'

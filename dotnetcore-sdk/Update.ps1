@@ -15,8 +15,9 @@ function global:au_SearchReplace {
 }
 
 function global:au_GetLatest {
-     $info = (Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json)[0]
-    
+     $json = (Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json)
+     $info = $json | where { $_.'version-sdk' -notmatch '-' } | sort -Property version-sdk -Descending | select -First 1
+
      $version = $info.'version-sdk'
      $url32   = $info.'dlc-sdk' + $info.'sdk-win-x86.exe'
      $url64   = $info.'dlc-sdk' + $info.'sdk-win-x64.exe'
