@@ -3,10 +3,10 @@ $ErrorActionPreference = 'Stop';
 
 $packageName= 'dotnetcore-sdk'
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url        = 'https://download.microsoft.com/download/D/7/8/D788D3CD-44C4-487D-829B-413E914FB1C3/dotnet-sdk-2.1.300-preview1-008174-win-x86.exe'
-$checksum   = 'bd8a9145f651026cfa1ca7c264c2e05b3740afc0b5f8ac5572409a95836d8f87e1a8c460eb985182501f679b721a97fd174b7690ab8cdc5e43c8155ee8af94b5'
-$url64      = 'https://download.microsoft.com/download/D/7/8/D788D3CD-44C4-487D-829B-413E914FB1C3/dotnet-sdk-2.1.300-preview1-008174-win-x64.exe'
-$checksum64 = 'd6749ef041136865353289250a92fae582c118f77b2838ceb9484854b636249bc2950da942bd807bd3ec04f91bc2b9ccf0bc73a9771c04e8552db82d56eb73ee'
+$url        = 'https://download.microsoft.com/download/D/C/F/DCFA73BE-93CE-4DA0-AB76-98972FD6E475/dotnet-sdk-2.1.101-win-x86.exe'
+$checksum   = '22527e8d3ce51189707c411bf67a23d3745bd39f994b67d2a5004f3c143439d3583d7df3935b89f5a3d58ac5a51970c2ee61043897258d45c3fff74e95091fe0'
+$url64      = 'https://download.microsoft.com/download/D/C/F/DCFA73BE-93CE-4DA0-AB76-98972FD6E475/dotnet-sdk-2.1.101-win-x64.exe'
+$checksum64 = 'c7fb50ca82acba7e9454d53bf9c47a240611f731ea4a095957dfe58ab0404d4f98585951258fb353b5ff16a808dc89931f30b6b8a0ea6e1c967f2e84ba6ee101'
 
 $packageArgs = @{
   packageName   = $packageName
@@ -25,20 +25,3 @@ $packageArgs = @{
 }
 
 Install-ChocolateyPackage @packageArgs
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
