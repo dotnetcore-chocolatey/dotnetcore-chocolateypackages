@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-runtime.install</id>
-    <version>2.1.0-preview1-26216-03</version>
+    <version>2.0.6</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-runtime.install</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET Core Runtime (Install)</title>
@@ -33,7 +33,7 @@ Example: cinst -y --params="Quiet" dotnetcore-runtime.install
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
 ##### Package
-Initial package release for software version 2.0.5.
+Initial package release for software version 2.0.6.
     </releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
