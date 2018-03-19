@@ -9,4 +9,4 @@ function global:au_SearchReplace {
     }
 }
 
-update -ChecksumFor none
+if ($MyInvocation.InvocationName -ne '.') { update -ChecksumFor none }
