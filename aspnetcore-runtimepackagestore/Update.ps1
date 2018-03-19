@@ -31,4 +31,4 @@ function global:au_GetLatest {
     }
 }
 
-update
+if ($MyInvocation.InvocationName -ne '.') { update }
