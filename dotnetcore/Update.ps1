@@ -3,7 +3,7 @@
 function global:au_SearchReplace {
    @{
         ".\$($Latest.PackageName).nuspec" = @{
-            "(\<dependency .+?`"$($Latest.PackageName)-runtime`" version=)`"([^`"]+)`"" = "`$1`"$($Latest.Version)`""
+            "(\<dependency .+?`"$($Latest.PackageName)-runtime`" version=)`"([^`"]+)`"" = "`$1`"[$($Latest.Version)]`""
         }
     }
 }

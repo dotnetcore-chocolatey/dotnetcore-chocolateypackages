@@ -3,7 +3,7 @@
 function global:au_SearchReplace {
     @{
          "$PSScriptRoot\$($Latest.PackageName).nuspec" = @{
-             "(\<dependency .+?`"aspnetcore-runtimepackagestore`" version=)`"([^`"]+)`"" = "`$1`"$($Latest.Version)`""
+             "(\<dependency .+?`"aspnetcore-runtimepackagestore`" version=)`"([^`"]+)`"" = "`$1`"[$($Latest.Version)]`""
          }
      }
  }
