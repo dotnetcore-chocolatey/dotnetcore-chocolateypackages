@@ -30,23 +30,16 @@ function Test-IisInstalled
     return $iisInstalled
 }
 
-function Test-IisExpressInstalled
-{
-    $iisExpressInstalled = Test-Path -Path (Join-Path -Path $Env:ProgramFiles -ChildPath 'IIS Express\iisexpress.exe')
-    return $iisExpressInstalled
-}
-
-function Ensure-IisOrIisExpressInstalled
+function Ensure-IisInstalled
 {
     $iisInstalled = Test-IisInstalled
-    $iisExpressInstalled = Test-IisExpressInstalled
 
-    if (-not $iisInstalled -and -not $iisExpressInstalled) {
+    if (-not $iisInstalled) {
         $ignoreMissingIisKeyword = 'IgnoreMissingIIS'
         if ($Env:chocolateyPackageParameters -notlike "*$ignoreMissingIisKeyword*") {
-            throw "Neither IIS nor IIS Express is installed. Install at least one of them before installing this package, or pass '$ignoreMissingIisKeyword' as package parameter to force the installation anyway."
+            throw "IIS is not installed. Install at least one of them before installing this package, or pass '$ignoreMissingIisKeyword' as package parameter to force the installation anyway."
         } else {
-            Write-Warning "Neither IIS nor IIS Express is installed, but proceeding with the installation because '$ignoreMissingIisKeyword' was passed as package parameter."
+            Write-Warning "IIS is not installed, but proceeding with the installation because '$ignoreMissingIisKeyword' was passed as package parameter."
         }
     }
 
@@ -54,11 +47,6 @@ function Ensure-IisOrIisExpressInstalled
         Write-Verbose 'IIS is enabled.'
     } else {
         Write-Warning 'IIS is not enabled. The ASP.NET Core Module for IIS requires IIS to be enabled before installing the module. To install the module, enable IIS and install this package again using the --force switch.'
-    }
-    if ($iisExpressInstalled) {
-        Write-Verbose 'IIS Express is installed.'
-    } else {
-        Write-Verbose 'IIS Express is not installed.'
     }
 }
 
@@ -83,7 +71,7 @@ function Get-PassiveOrQuietArgument
     return $passiveOrQuiet
 }
 
-Ensure-IisOrIisExpressInstalled
+Ensure-IisInstalled
 
 $passiveOrQuiet = Get-PassiveOrQuietArgument -Scenario 'installation'
 $arguments = @{
