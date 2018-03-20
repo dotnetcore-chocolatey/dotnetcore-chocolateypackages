@@ -40,4 +40,5 @@ $arguments = @{
     checksumType64 = $data.ChecksumType64
 }
 
+Set-StrictMode -Off
 Install-ChocolateyPackage @arguments

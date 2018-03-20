@@ -55,7 +55,9 @@ $arguments = @{
     checksum64 = $data.Checksum64
     checksumType64 = $data.ChecksumType64
 }
+Set-StrictMode -Off
 Install-ChocolateyZipPackage @arguments | Out-Null # returns unzipLocation
+Set-StrictMode -Version 2
 
 Write-Debug "Generating ShimGen .ignore files"
 $rootDotnetExePath = Join-Path -Path $packageDir -ChildPath 'dotnet.exe'

@@ -59,6 +59,7 @@ function Uninstall-ApplicationPackage
     }
     $argumentsDump = ($arguments.GetEnumerator() | % { '-{0}:''{1}''' -f $_.Key,"$($_.Value)" }) -join ' '
     Write-Debug "Uninstall-ChocolateyPackage $argumentsDump"
+    Set-StrictMode -Off
     Uninstall-ChocolateyPackage @arguments
 }
 
