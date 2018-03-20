@@ -26,13 +26,15 @@ The runtime package store enables creating a precompiled cache of common librari
 The package supports the following parameters (--package-parameters, --params):
 
 - `Quiet` - suppress display of native installer progress window (may be needed on Server Core)
+- `Skip32Bit` - do not install the 32-bit package store on a 64-bit system
 
-Example: cinst -y --params="Quiet" aspnetcore-runtimepackagestore
+Example: cinst -y --params="Quiet Skip32Bit" aspnetcore-runtimepackagestore
     </description>
     <releaseNotes>
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
 ##### Package
+Both 64-bit and 32-bit package stores are now installed on 64-bit systems (except for Server systems with the WoW64 subsystem removed).
     </releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
