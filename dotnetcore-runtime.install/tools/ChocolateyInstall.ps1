@@ -51,10 +51,10 @@ if (Get-ProcessorBits -eq 64) {
         if (Test-OsSupports32Bit) {
             $shouldInstall32Bit = $true
         } else {
-            Write-Host 'Installation of 32-bit runtime will be skipped because the WOW64 subsystem is not installed.'
+            Write-Host 'Installation of 32-bit version will be skipped because the WOW64 subsystem is not installed.'
         }
     } else {
-        Write-Host 'Installation of 32-bit runtime will be skipped, as requested by package parameters.'
+        Write-Host 'Installation of 32-bit version will be skipped, as requested by package parameters.'
     }
 }
 
