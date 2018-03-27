@@ -3,10 +3,10 @@ $ErrorActionPreference = 'Stop';
 
 $packageName= 'dotnetcore-sdk'
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url        = 'https://download.microsoft.com/download/1/2/E/12E2BC14-7A9F-4497-A351-02B7C2DDD599/dotnet-sdk-2.1.102-win-x86.exe'
-$checksum   = '3850b7ed490d64599f7aa592ab1cc59609c77f5f131e04c81cdc47b884db521b4ff421c25730907694b6107573c0fbc38765f6417b0ad5a1bbbd915765d8d617'
-$url64      = 'https://download.microsoft.com/download/1/2/E/12E2BC14-7A9F-4497-A351-02B7C2DDD599/dotnet-sdk-2.1.102-win-x64.exe'
-$checksum64 = 'ee698f7a3d88d22c344f3bf692a671c03abed634250a58c55de7eba33135df6d26315bf75caf8de5dd614900e51b3f602a07a0acbcee9ecc22ba9e323c5d0cdb'
+$url        = 'https://download.microsoft.com/download/E/2/6/E266C257-F7AF-4E79-8EA2-DF26031C84E2/dotnet-sdk-2.1.103-win-x86.exe'
+$checksum   = 'ba0f0f9519a6c5a3bcd8325034f466212797e820e7671b019eec199c8ab9ffb2f3543eb5594c76f2374459e5c0e175bc8604b67f7de3c7505959c4e209d6d835'
+$url64      = 'https://download.microsoft.com/download/E/2/6/E266C257-F7AF-4E79-8EA2-DF26031C84E2/dotnet-sdk-2.1.103-win-x64.exe'
+$checksum64 = '909f178a98e1742e965d005187a6121dda71c224d8bfd018b07d8ec66591cc19906825e674e9f012f422d21a2929e67b15ff79d4c1ab3e72602b5b27e9ad4cbd'
 
 $packageArgs = @{
   packageName   = $packageName
