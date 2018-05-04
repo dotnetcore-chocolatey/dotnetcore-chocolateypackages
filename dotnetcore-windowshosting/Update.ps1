@@ -8,7 +8,7 @@ function global:au_SearchReplace {
      }
  }
  
-update -ChecksumFor none
+ if ($MyInvocation.InvocationName -ne '.') { update -ChecksumFor none }
 
 $releases = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/releases.json"
 function global:au_SearchReplace {
