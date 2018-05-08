@@ -36,9 +36,9 @@ function global:au_GetLatest {
 
       @{
          Streams = [ordered] @{
-             '2.1' = EntryToData($json | where { $_.'version-runtime' -match '^2.1.\d+-preview.*$' } | sort { $_.'version-runtime' -as [version] } -Descending | select -First 1)
+             '2.1' = EntryToData($json | where { $_.'version-runtime' -match '^2.1.\d+-rc\d+$' } | sort { $_.'version-runtime' -as [version] } -Descending | select -First 1)
              '2.0' = EntryToData($json | where { $_.'version-runtime' -match '^2.0.\d+$' } | sort { $_.'version-runtime' -as [version] } -Descending | select -First 1)
-             #'1.1' = EntryToData($json | where { $_.'version-runtime' -match '^1.1.\d+$' } | sort { $_.'version-runtime' -as [version] } -Descending | select -First 1)
+             '1.1' = EntryToData($json | where { $_.'version-runtime' -match '^1.1.\d+$' } | sort { $_.'version-runtime' -as [version] } -Descending | select -First 1)
         }
     }
 }
