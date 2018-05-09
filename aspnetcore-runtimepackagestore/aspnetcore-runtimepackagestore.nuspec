@@ -40,4 +40,7 @@ Example: cinst -y --params="Quiet" aspnetcore-runtimepackagestore
       <dependency id="KB2533623" version="1.0.1" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="tools\*.ps1" target="tools" />
+  </files>
 </package>
