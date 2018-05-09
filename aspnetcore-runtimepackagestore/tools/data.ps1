@@ -6,7 +6,5 @@
     Url64 = 'https://download.microsoft.com/download/A/9/F/A9F8872C-48B2-41DB-8AAD-D5908D988592/AspNetCore.2.0.7.RuntimePackageStore_x64.exe'
     Checksum64 = '81d8bb363a7d8b517027229fce7d60800902b84921dbf926582213e3b0f9b856daeba4cfed8f6ab52974f04752722303a09e2370a9cb3dae2c443fad188dbe05'
     ChecksumType64 = 'sha512'
-    ApplicationName = 'Microsoft ASP.NET Core * - Runtime Package Store'
-    UninstallerName = 'AspNetCore.*.RuntimePackageStore_*.exe'
     AdditionalArgumentsToInstaller = $null
 }
