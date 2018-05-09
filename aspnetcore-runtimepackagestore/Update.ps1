@@ -13,21 +13,22 @@ function global:au_SearchReplace {
     }
 }
 
+function EntryToData($info) {
+    $version = $info.'version-runtime'
+    $url32   = $info.'dlc-runtime' + $info.'rps-win-x86.exe'
+    $url64   = $info.'dlc-runtime' + $info.'rps-win-x64.exe'
+
+     @{ Version = $version; URL32 = $url32; URL64 = $url64; ChecksumType32 = 'sha512'; ChecksumType64 = 'sha512' }
+}
+
 function global:au_GetLatest {
      $json = (Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json)
-     $info = $json | where { $_.'version-runtime' -notmatch '-' } | sort -Property 'version-runtime' -Descending | select -First 1
-    
-     $version = $info.'version-runtime'
-     $url32   = $info.'dlc-runtime' + $info.'rps-win-x86.exe'
-     $url64   = $info.'dlc-runtime' + $info.'rps-win-x64.exe'
 
-     return @{ 
-        Version = $version; 
-        URL32 = $url32; 
-        URL64 = $url64; 
-        ChecksumType32 = 'sha512'; 
-        ChecksumType64 = 'sha512'; 
-        UninstallerName = $($info.'rps-win-x64' -replace '_x64', '_*');
+      @{
+         Streams = [ordered] @{
+             '2.1' = EntryToData ($json | where { $_.'version-runtime' -match '^2\.1\.\d+(-[a-zA-Z0-9]+)?$' } | sort { $_.'version-runtime' -as [version] } -Descending | select -First 1)
+             '2.0' = EntryToData ($json | where { $_.'version-runtime' -match '^2\.0\.\d+(-[a-zA-Z0-9]+)?$' } | sort { $_.'version-runtime' -as [version] } -Descending | select -First 1)
+        }
     }
 }
 
