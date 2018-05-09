@@ -31,6 +31,12 @@ function global:au_SearchReplace {
     return $replacements
 }
 
+function global:au_BeforeUpdate() {
+    $checksum = Get-RemoteChecksum -Url $Latest.Url32 -Algorithm 'sha512'
+    $Latest.Checksum32 = $checksum
+    $Latest.Checksum64 = $checksum
+}
+
 function EntryToData($info, $rpsVersion) {
     $version = $info.'version-runtime'
     $url32   = $info.'dlc-runtime' + $info.'hosting-win-x64.exe'
@@ -54,4 +60,4 @@ function global:au_GetLatest {
     }
 }
 
-update
+update -ChecksumFor none
