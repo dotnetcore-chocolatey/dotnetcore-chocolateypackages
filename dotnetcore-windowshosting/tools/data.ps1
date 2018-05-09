@@ -1,6 +1,5 @@
 ﻿@{
     PackageName = 'dotnetcore-windowshosting'
-    Version = '2.0.6'
     Url = 'https://download.microsoft.com/download/D/0/B/D0B7F62D-9C5D-4CF3-AB6C-88F56B4FC1A9/dotnet-hosting-2.1.0-rc1-final-win.exe'
     Checksum = '45ae5913e8fca08513fef71bd9a849dabd829bbaf5fbd6e9489ffeb38177e65b1042e267243d40bd70df404ccd292c15746ecd2c820ad35527308b83da4bddc0'
     ChecksumType = 'sha512'

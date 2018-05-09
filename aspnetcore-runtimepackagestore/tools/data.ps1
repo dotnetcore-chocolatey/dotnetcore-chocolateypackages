@@ -1,6 +1,5 @@
 ﻿@{
     PackageName = 'aspnetcore-runtimepackagestore'
-    Version = '2.0.6'
     Url = 'https://download.microsoft.com/download/A/9/F/A9F8872C-48B2-41DB-8AAD-D5908D988592/AspNetCore.2.0.7.RuntimePackageStore_x86.exe'
     Checksum = '071d19f2d897a0fcd6d61e1ea8c418b305ece143eaf1c0ad03af9de03cf49084d17408f2edb3e950b9ac3bff24638638865e88a6e149bf6f7d37f8d5f9ec22d6'
     ChecksumType = 'sha512'
