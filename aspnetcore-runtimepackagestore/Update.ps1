@@ -1,3 +1,4 @@
+. $PSScriptRoot\..\functions.ps1
 Import-Module au
 
 $releases = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/releases.json"
@@ -11,6 +12,11 @@ function global:au_SearchReplace {
             "(^\s*Checksum64\s*=\s*)('.*')" = "`$1'$($Latest.Checksum64)'"      #2
         }
     }
+}
+
+function global:au_BeforeUpdate() {
+    $Latest.Checksum32 = Get-RemoteChecksumFast -Url $Latest.Url32 -Algorithm 'sha512'
+    $Latest.Checksum64 = Get-RemoteChecksumFast -Url $Latest.Url64 -Algorithm 'sha512'
 }
 
 function EntryToData($info) {
@@ -32,4 +38,4 @@ function global:au_GetLatest {
     }
 }
 
-if ($MyInvocation.InvocationName -ne '.') { update }
+if ($MyInvocation.InvocationName -ne '.') { update -ChecksumFor none }
