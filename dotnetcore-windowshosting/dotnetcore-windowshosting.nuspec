@@ -34,7 +34,6 @@ Example: cinst -y --params="Quiet IgnoreMissingIIS" dotnetcore-windowshosting
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
 ##### Package
-Fixed aspnetcore-runtimepackagestore dependency version.
     </releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
