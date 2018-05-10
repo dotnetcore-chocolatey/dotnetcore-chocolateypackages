@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-windowshosting</id>
-    <version>2.0.7</version>
+    <version>2.1.0.20180510-rc1</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-windowshosting</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET Core - Windows Server Hosting</title>
@@ -34,10 +34,11 @@ Example: cinst -y --params="Quiet IgnoreMissingIIS" dotnetcore-windowshosting
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
 ##### Package
+Fixed aspnetcore-runtimepackagestore dependency version.
     </releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
-      <dependency id="aspnetcore-runtimepackagestore" version="[2.0.7]" />
+      <dependency id="aspnetcore-runtimepackagestore" version="[2.1.0-rc1]" />
     </dependencies>
   </metadata>
   <files>

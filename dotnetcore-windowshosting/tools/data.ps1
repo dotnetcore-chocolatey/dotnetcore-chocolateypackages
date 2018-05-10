@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnetcore-windowshosting'
-    Url = 'https://download.microsoft.com/download/A/9/F/A9F8872C-48B2-41DB-8AAD-D5908D988592/DotNetCore.2.0.7-WindowsHosting.exe'
-    Checksum = '83f7c2607a0ad97800d2302cd6b9462b623cc66960974bdb1c404eff89eedb0d1f876a957a671b885f7ac81584bc9fd97a34231c342fa19affa38fa603c4974e'
+    Url = 'https://download.microsoft.com/download/D/0/B/D0B7F62D-9C5D-4CF3-AB6C-88F56B4FC1A9/dotnet-hosting-2.1.0-rc1-final-win.exe'
+    Checksum = '45ae5913e8fca08513fef71bd9a849dabd829bbaf5fbd6e9489ffeb38177e65b1042e267243d40bd70df404ccd292c15746ecd2c820ad35527308b83da4bddc0'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.microsoft.com/download/A/9/F/A9F8872C-48B2-41DB-8AAD-D5908D988592/DotNetCore.2.0.7-WindowsHosting.exe'
-    Checksum64 = '83f7c2607a0ad97800d2302cd6b9462b623cc66960974bdb1c404eff89eedb0d1f876a957a671b885f7ac81584bc9fd97a34231c342fa19affa38fa603c4974e'
+    Url64 = 'https://download.microsoft.com/download/D/0/B/D0B7F62D-9C5D-4CF3-AB6C-88F56B4FC1A9/dotnet-hosting-2.1.0-rc1-final-win.exe'
+    Checksum64 = '45ae5913e8fca08513fef71bd9a849dabd829bbaf5fbd6e9489ffeb38177e65b1042e267243d40bd70df404ccd292c15746ecd2c820ad35527308b83da4bddc0'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = 'OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0'
 }
