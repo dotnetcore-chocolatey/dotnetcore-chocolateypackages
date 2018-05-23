@@ -27,6 +27,7 @@ function global:au_GetLatest {
 
       @{
          Streams = [ordered] @{
+             '2.1-preview' = EntryToData($json | where { $_.'version-sdk' -match '^2.1.\d+-.*$' } | sort { [datetime]$_.'date' } -Descending | select -First 1)
              '2.1' = EntryToData($json | where { $_.'version-sdk' -match '^2.1.\d+$' } | sort { $_.'version-sdk' -as [version] } -Descending | select -First 1)
              '1.1' = EntryToData($json | where { $_.'version-sdk' -match '^1.1.\d+$' } | sort { $_.'version-sdk' -as [version] } -Descending | select -First 1)
         }
