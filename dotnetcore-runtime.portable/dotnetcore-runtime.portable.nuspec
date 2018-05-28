@@ -40,4 +40,7 @@ Initial package release for .NET Core 2.0.6.
       <dependency id="KB2533623" version="1.0.1" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="tools\*.ps1" target="tools" />
+  </files>
 </package>

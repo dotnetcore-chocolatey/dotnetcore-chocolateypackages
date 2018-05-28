@@ -16,7 +16,7 @@ function global:au_SearchReplace {
 
 function EntryToData($info) {
     $version = $info.'version-runtime'
-     $url32   = $info.'dlc-runtime' + @($info.'sruntimedk-win-x86.exe', [IO.Path]::ChangeExtension($info.'runtime-win-x86', 'exe') -ne $null)[0]
+     $url32   = $info.'dlc-runtime' + @($info.'runtime-win-x86.exe', [IO.Path]::ChangeExtension($info.'runtime-win-x86', 'exe') -ne $null)[0]
      $url64   = $info.'dlc-runtime' + @($info.'runtime-win-x64.exe', [IO.Path]::ChangeExtension($info.'runtime-win-x64', 'exe') -ne $null)[0]
 
      @{ Version = $version; URL32 = $url32; URL64 = $url64; ChecksumType32 = 'sha512'; ChecksumType64 = 'sha512'; }
