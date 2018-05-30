@@ -26,14 +26,15 @@ This package is required to run console applications with the .NET Core runtime.
 The package supports the following parameters (--package-parameters, --params):
 
 - `Quiet` - suppress display of native installer progress window (may be needed on Server Core)
+- `Skip32Bit` - do not install the 32-bit runtime on a 64-bit system
 
-Example: cinst -y --params="Quiet" dotnetcore-runtime.install
+Example: cinst -y --params="Quiet Skip32Bit" dotnetcore-runtime.install
     </description>
     <releaseNotes>
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
 ##### Package
-Initial package release for software version 2.0.6.
+Both 64-bit and 32-bit package stores are now installed on 64-bit systems (except for Server systems with the WoW64 subsystem removed).
     </releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />

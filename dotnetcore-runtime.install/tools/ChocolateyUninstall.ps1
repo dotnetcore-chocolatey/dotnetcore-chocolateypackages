@@ -26,41 +26,38 @@ function Uninstall-ApplicationPackage
         Write-Warning "Uninstall information for $ApplicationName could not be found. This probably means the application was uninstalled outside Chocolatey."
         return
     }
-    if ($count -gt 1)
-    {
-        throw "More than one Uninstall key found for $ApplicationName! $informMaintainer"
-    }
 
-    $uninstallKey = $uninstallKey | Select-Object -First 1
-    # in PS 2.0, casting to [array] done inside Get-UninstallRegistryKey strips the PS* properties
-    if ($uninstallKey.PSObject.Properties['PSPath'] -ne $null)
-    {
-        Write-Debug "Using Uninstall key: $($uninstallKey.PSPath)"
-    }
-    $uninstallString = $uninstallKey.UninstallString
-    Write-Debug "UninstallString: $uninstallString"
-    if (-not ($uninstallString -match '^\s*(\"[^\"]+\")|([^\s]+)'))
-    {
-        throw "UninstallString '$uninstallString' is not of the expected format. $informMaintainer"
-    }
-    $uninstallerPath = $matches[0].Trim('"')
-    Write-Debug "uninstallerPath: $uninstallerPath"
-    if ((Split-Path -Path $uninstallerPath -Leaf) -notlike $UninstallerName)
-    {
-        throw "The uninstaller file name is unexpected (uninstallerPath: $uninstallerPath). $informMaintainer"
-    }
+    $uninstallKey | %{
+        # in PS 2.0, casting to [array] done inside Get-UninstallRegistryKey strips the PS* properties
+        if ($_.PSObject.Properties['PSPath'] -ne $null)
+        {
+            Write-Debug "Using Uninstall key: $($uninstallKey.PSPath)"
+        }
+        $uninstallString = $_.UninstallString
+        Write-Debug "UninstallString: $uninstallString"
+        if (-not ($uninstallString -match '^\s*(\"[^\"]+\")|([^\s]+)'))
+        {
+            throw "UninstallString '$uninstallString' is not of the expected format. $informMaintainer"
+        }
+        $uninstallerPath = $matches[0].Trim('"')
+        Write-Debug "uninstallerPath: $uninstallerPath"
+        if ((Split-Path -Path $uninstallerPath -Leaf) -notlike $UninstallerName)
+        {
+            throw "The uninstaller file name is unexpected (uninstallerPath: $uninstallerPath). $informMaintainer"
+        }
 
-    $arguments = @{
-        PackageName = $PackageName
-        FileType = 'exe'
-        SilentArgs = $ArgumentsToUninstaller
-        ValidExitCodes = $ValidExitCodes
-        File = $uninstallerPath
+        $arguments = @{
+            PackageName = $PackageName
+            FileType = 'exe'
+            SilentArgs = $ArgumentsToUninstaller
+            ValidExitCodes = $ValidExitCodes
+            File = $uninstallerPath
+        }
+        $argumentsDump = ($arguments.GetEnumerator() | % { '-{0}:''{1}''' -f $_.Key,"$($_.Value)" }) -join ' '
+        Write-Debug "Uninstall-ChocolateyPackage $argumentsDump"
+        Set-StrictMode -Off
+        Uninstall-ChocolateyPackage @arguments
     }
-    $argumentsDump = ($arguments.GetEnumerator() | % { '-{0}:''{1}''' -f $_.Key,"$($_.Value)" }) -join ' '
-    Write-Debug "Uninstall-ChocolateyPackage $argumentsDump"
-    Set-StrictMode -Off
-    Uninstall-ChocolateyPackage @arguments
 }
 
 function Test-QuietRequested
