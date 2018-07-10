@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'aspnetcore-runtimepackagestore'
-    Url = 'https://download.microsoft.com/download/E/F/7/EF7302FE-4F84-4529-9E3A-893450F76501/AspNetCore.2.0.8.RuntimePackageStore_x86.exe'
-    Checksum = '1c943c82451bdda0bc3526bd3471010ab5a9a508ff07396888986e05b55218fea8c89eb6ba504c300b438a68b100d0198549ff3ad0546280d0be15db50150279'
+    Url = 'https://download.microsoft.com/download/1/f/7/1f7755c5-934d-4638-b89f-1f4ffa5afe89/aspnetcore-runtime-2.1.2-win-x86.exe'
+    Checksum = 'cf0f185c906dae5e359f230f2c5bcc65e6f04a3cf6fbac89b79f02ffe2e13f2c4085fb817a7f65038df5884be39057a992b43631d74f52c6d5951861c03f6031'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.microsoft.com/download/E/F/7/EF7302FE-4F84-4529-9E3A-893450F76501/AspNetCore.2.0.8.RuntimePackageStore_x64.exe'
-    Checksum64 = '8c9199f6ede36c24c9d5350e5b71401d2154ecb37e641c0fac9c53055235a4e4844a37369255c59926924f3d4f96868affe47fbb9fef8b96fc5f658cf7dc5cca'
+    Url64 = 'https://download.microsoft.com/download/1/f/7/1f7755c5-934d-4638-b89f-1f4ffa5afe89/aspnetcore-runtime-2.1.2-win-x64.exe'
+    Checksum64 = '63c8dfc01ff5a3a852a4d2930e185748f534ddc6c8aae96fac1cd6f7780a97aeb7d38a2b7be1f90c61df8bb3ca406cab37c5673676434d3597925ecbd2643276'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }
