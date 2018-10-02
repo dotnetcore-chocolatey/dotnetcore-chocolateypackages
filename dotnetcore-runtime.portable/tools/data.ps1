@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnetcore-runtime.portable'
     Version = '2.0.6'
-    Url = 'https://download.microsoft.com/download/6/E/B/6EBD972D-2E2F-41EB-9668-F73F5FDDC09C/dotnet-runtime-2.1.3-win-x86.zip'
-    Checksum = 'c9dd70d7b98297d32de05108efc2f3859f31fcc4c92a20e8797c51df7d14608280185dbdce25d172a56bfc935562fa66677497c48b8115d92245be3e4bc6fa5b'
+    Url = 'https://download.visualstudio.microsoft.com/download/pr/256f1cce-ad71-4ebe-ae45-5be6b7d4edb8/68f8caf678adde0af55266e955556c74/dotnet-runtime-2.1.5-win-x86.zip'
+    Checksum = '0765035c328e479681bbc8967ae1b8031bc16e6fe399fb74b93d517677cc8ecc852984f556f0bb41960bdb7620c67bd7ac95c66304699966aa6cd1cea80b3b9e'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.microsoft.com/download/6/E/B/6EBD972D-2E2F-41EB-9668-F73F5FDDC09C/dotnet-runtime-2.1.3-win-x64.zip'
-    Checksum64 = 'eec3465a1dfecc3890e8c07d45198352a9ef4026bebc867ca8723ddf4bf30e83b79dfae4c5b8800a4b1b83d38c63be06b8ebf7c5dce87cf7108cbb83b169b47f'
+    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/ce443d89-75f1-4122-aaa8-c094a9017b4a/255b06ace4207a8ee923758160ed01c3/dotnet-runtime-2.1.5-win-x64.zip'
+    Checksum64 = 'aa7145201f1ed0689ff6abeb53b9c64c1efa1420dee7e5cc916168fd2479e252ed56b2492221f4038edbc73056accd9d4a46ec469155f2bdf0fc71bd909bd220'
     ChecksumType64 = 'sha512'
 }
