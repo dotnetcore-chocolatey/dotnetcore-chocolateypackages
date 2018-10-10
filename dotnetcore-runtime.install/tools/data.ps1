@@ -1,11 +1,11 @@
 ﻿@{
     PackageName = 'dotnetcore-runtime.install'
     Version = '2.1.0'
-    Url = 'https://download.microsoft.com/download/A/7/8/A78F1D25-8D5C-4411-B544-C7D527296D5E/dotnet-runtime-2.1.4-win-x86.exe'
-    Checksum = '76bc8246a9dcef7fb7486842b405c387abc4558e1fb82d408415904242ce50e387c73be792d4b4e367708f14251e3cf8976c3a9be20d89b09d1944fcddb07859'
+    Url = 'https://download.visualstudio.microsoft.com/download/pr/69d04e62-57d7-481e-9441-3b45ac73cf3b/040505f07aba828c022ed9cf43488dd5/dotnet-win-x86.1.1.10.exe'
+    Checksum = '67e07ddb58f26166633b1db45db2ad73a98cd68f3ac0cd48eff3823da0ae31883fea64e9b4aa39141c83c41fa70085e4d333402f6dbec1f6f794f972efbfb483'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.microsoft.com/download/A/7/8/A78F1D25-8D5C-4411-B544-C7D527296D5E/dotnet-runtime-2.1.4-win-x64.exe'
-    Checksum64 = '2812c23e0fc89dd7cfdc972fc99b867ba1883d9a1a921659371f346d1efc7638205cd22e372d78cc3250c3878d6a764002177f14a6200adc70c4b61e322bd47f'
+    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/f2c70fc3-d08f-41d0-80cd-851530acb391/6f5c6c2715f92c4aa3c45616c0419125/dotnet-win-x64.1.1.10.exe'
+    Checksum64 = '0653d989fd88ec8d94e66825c70134476f405da4e00fa850b42a597fd8faeb72fd389f947444d7bdddf30e600a3d7398f607aaee2e63047c25d620f46f2d39db'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }
