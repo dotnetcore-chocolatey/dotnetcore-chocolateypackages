@@ -1,4 +1,3 @@
-. $PSScriptRoot\..\functions.ps1
 . $PSScriptRoot\..\aspnetcore-runtimepackagestore\update.ps1
 
 Rename-Item -Path Function:\au_GetLatest -NewName Get-RuntimePackageStoreLatest
@@ -32,31 +31,36 @@ function global:au_SearchReplace {
     return $replacements
 }
 
-function global:au_BeforeUpdate() {
-    $checksum = Get-RemoteChecksumFast -Url $Latest.Url32 -Algorithm 'sha512'
-    $Latest.Checksum32 = $checksum
-    $Latest.Checksum64 = $checksum
-}
+function EntryToData($version) {
+    $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$version/releases.json"
+    $result = (Invoke-WebRequest -Uri $url -UseBasicParsing | ConvertFrom-Json)
 
-function EntryToData($info, $rpsVersion) {
-    $version = $info.'version-runtime'
-    $url32   = $info.'dlc-runtime' + $info.'hosting-win-x64.exe'
-    $url64   = $info.'dlc-runtime' + $info.'hosting-win-x64.exe'
+    $latest = $result.releases | ?{ $_.'aspnetcore-runtime' } | select -First 1
+    $exe64 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like '*hosting*.exe' }
+    $exe32 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like '*hosting*.exe' }
 
-     @{ Version = $version; URL32 = $url32; URL64 = $url64; ChecksumType32 = 'sha512'; ChecksumType64 = 'sha512'; RpsVersion = $rpsVersion }
+    @{ 
+        Version = $latest.'aspnetcore-runtime'.version;
+        URL32 = $exe32.url;
+        URL64 = $exe64.url;
+        ChecksumType32 = 'sha512';
+        ChecksumType64 = 'sha512'; 
+        Checksum32 = $exe32.hash;
+        Checksum64 = $exe64.hash;
+    }
 }
 
 function global:au_GetLatest {
     $rpsLatest = Get-RuntimePackageStoreLatest
     $rpsLatest | Format-List -Property * | Out-String | Write-Debug
 
-     $json = (Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json)
-
-      @{
-         Streams = [ordered] @{
-             '2.1' = EntryToData ($json | where { $_.'version-runtime' -match '^2\.1\.\d+(-[a-zA-Z0-9]+)?$' } | sort { $_.'version-runtime' -as [version] } -Descending | select -First 1) $rpsLatest.Streams['2.1'].Version
-             '2.0' = EntryToData ($json | where { $_.'version-runtime' -match '^2\.0\.\d+(-[a-zA-Z0-9]+)?$' } | sort { $_.'version-runtime' -as [version] } -Descending | select -First 1) $rpsLatest.Streams['2.0'].Version
-             '1.1' = EntryToData ($json | where { $_.'version-runtime' -match '^1\.1\.\d+(-[a-zA-Z0-9]+)?$' } | sort { $_.'version-runtime' -as [version] } -Descending | select -First 1) $null
+    @{
+        Streams = [ordered] @{
+            '2.2' = EntryToData('2.2')
+            '2.1' = EntryToData('2.1')
+            '2.0' = EntryToData('2.0')
+            '1.1' = EntryToData('1.1')
+            '1.0' = EntryToData('1.0')
         }
     }
 }

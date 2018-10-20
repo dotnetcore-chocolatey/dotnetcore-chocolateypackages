@@ -1,7 +1,4 @@
-. $PSScriptRoot\..\functions.ps1
 Import-Module au
-
-$releases = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/releases.json"
 
 function global:au_SearchReplace {
     @{
@@ -14,28 +11,33 @@ function global:au_SearchReplace {
     }
 }
 
-function global:au_BeforeUpdate() {
-    $Latest.Checksum32 = Get-RemoteChecksumFast -Url $Latest.Url32 -Algorithm 'sha512'
-    $Latest.Checksum64 = Get-RemoteChecksumFast -Url $Latest.Url64 -Algorithm 'sha512'
-}
+function EntryToData($version) {
+    $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$version/releases.json"
+    $result = (Invoke-WebRequest -Uri $url -UseBasicParsing | ConvertFrom-Json)
 
-function EntryToData($info) {
-    $version = $info.'version-runtime'
-    $url32   = $info.'dlc-runtime' + $info.'rps-win-x86.exe'
-    $url64   = $info.'dlc-runtime' + $info.'rps-win-x64.exe'
+    $latest = $result.releases | select -First 1
+    $exe64 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like 'aspnetcore*x64.exe' }
+    $exe32 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like 'aspnetcore*x86.exe' }
 
-     @{ Version = $version; URL32 = $url32; URL64 = $url64; ChecksumType32 = 'sha512'; ChecksumType64 = 'sha512' }
+    @{ 
+        Version = $latest.'aspnetcore-runtime'.version;
+        URL32 = $exe32.url;
+        URL64 = $exe64.url;
+        ChecksumType32 = 'sha512';
+        ChecksumType64 = 'sha512'; 
+        Checksum32 = $exe32.hash;
+        Checksum64 = $exe64.hash;
+    }
 }
 
 function global:au_GetLatest {
-     $json = (Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json)
-
       @{
          Streams = [ordered] @{
-             '2.1' = EntryToData ($json | where { $_.'version-runtime' -match '^2\.1\.\d+$' } | sort { $_.'version-runtime' -as [version] } -Descending | select -First 1)
-             '2.0' = EntryToData ($json | where { $_.'version-runtime' -match '^2\.0\.\d+$' } | sort { $_.'version-runtime' -as [version] } -Descending | select -First 1)
+             '2.2' = EntryToData('2.2')
+             '2.1' = EntryToData('2.1')
+             '2.0' = EntryToData('2.0')
         }
     }
 }
 
-if ($MyInvocation.InvocationName -ne '.') { update -ChecksumFor none }
+update -ChecksumFor none
