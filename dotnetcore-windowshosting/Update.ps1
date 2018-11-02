@@ -31,22 +31,27 @@ function global:au_SearchReplace {
     return $replacements
 }
 
-function EntryToData($version) {
-    $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$version/releases.json"
+function EntryToData($channel, $rpsVersion) {
+    $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$channel/releases.json"
     $result = (Invoke-WebRequest -Uri $url -UseBasicParsing | ConvertFrom-Json)
 
-    $latest = $result.releases | ?{ $_.'aspnetcore-runtime' } | select -First 1
-    $exe64 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like '*hosting*.exe' }
-    $exe32 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like '*hosting*.exe' }
+    $version = $result."latest-release"
+    $latest = $result.releases | ?{ $_.'release-version' -eq $version } | select -First 1
+
+    $exe32 = $exe64 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like '*hosting*.exe' }
+    if (-Not($exe32)) {
+        return
+    }
 
     @{ 
-        Version = $latest.'aspnetcore-runtime'.version;
+        Version = $version;
         URL32 = $exe32.url;
         URL64 = $exe64.url;
         ChecksumType32 = 'sha512';
         ChecksumType64 = 'sha512'; 
         Checksum32 = $exe32.hash;
         Checksum64 = $exe64.hash;
+        RpsVersion = $rpsVersion
     }
 }
 
@@ -56,11 +61,11 @@ function global:au_GetLatest {
 
     @{
         Streams = [ordered] @{
-            '2.2' = EntryToData('2.2')
-            '2.1' = EntryToData('2.1')
-            '2.0' = EntryToData('2.0')
-            '1.1' = EntryToData('1.1')
-            '1.0' = EntryToData('1.0')
+            '2.2' = EntryToData('2.2') $rpsLatest.Streams['2.2'].Version
+            '2.1' = EntryToData('2.1') $rpsLatest.Streams['2.1'].Version
+            '2.0' = EntryToData('2.0') $rpsLatest.Streams['2.0'].Version
+            '1.1' = EntryToData('1.1') $null
+            '1.0' = EntryToData('1.0') $null
         }
     }
 }

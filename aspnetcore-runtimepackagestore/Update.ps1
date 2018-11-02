@@ -11,16 +11,18 @@ function global:au_SearchReplace {
     }
 }
 
-function EntryToData($version) {
-    $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$version/releases.json"
+function EntryToData($channel, $rps) {
+    $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$channel/releases.json"
     $result = (Invoke-WebRequest -Uri $url -UseBasicParsing | ConvertFrom-Json)
 
-    $latest = $result.releases | select -First 1
+    $version = $result."latest-release"
+    $latest = $result.releases | ?{ $_.'release-version' -eq $version } | select -First 1
+    
     $exe64 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like 'aspnetcore*x64.exe' }
     $exe32 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like 'aspnetcore*x86.exe' }
 
     @{ 
-        Version = $latest.'aspnetcore-runtime'.version;
+        Version = $version;
         URL32 = $exe32.url;
         URL64 = $exe64.url;
         ChecksumType32 = 'sha512';

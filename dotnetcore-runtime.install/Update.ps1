@@ -11,16 +11,18 @@ function global:au_SearchReplace {
     }
 }
 
-function EntryToData($version) {
-    $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$version/releases.json"
+function EntryToData($channel) {
+    $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$channel/releases.json"
     $result = (Invoke-WebRequest -Uri $url -UseBasicParsing | ConvertFrom-Json)
 
-    $latest = $result.releases | select -First 1
+    $version = $result."latest-release"
+    $latest = $result.releases | ?{ $_.'release-version' -eq $version } | select -First 1
+    
     $exe64 = $latest.runtime.files | ?{ $_.name -like '*win-x64.exe' }
     $exe32 = $latest.runtime.files | ?{ $_.name -like '*win-x86.exe' }
 
     @{ 
-        Version = $latest.runtime.version;
+        Version = $version;
         URL32 = $exe32.url;
         URL64 = $exe64.url;
         ChecksumType32 = 'sha512';
