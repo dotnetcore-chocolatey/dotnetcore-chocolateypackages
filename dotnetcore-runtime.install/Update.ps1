@@ -37,7 +37,9 @@ function global:au_GetLatest {
          Streams = [ordered] @{
              '2.2' = EntryToData('2.2')
              '2.1' = EntryToData('2.1')
+             '2.0' = EntryToData('2.0')
              '1.1' = EntryToData('1.1')
+             '1.0' = EntryToData('1.0')
         }
     }
 }

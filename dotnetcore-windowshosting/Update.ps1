@@ -65,7 +65,6 @@ function global:au_GetLatest {
             '2.1' = EntryToData('2.1') $rpsLatest.Streams['2.1'].Version
             '2.0' = EntryToData('2.0') $rpsLatest.Streams['2.0'].Version
             '1.1' = EntryToData('1.1') $null
-            '1.0' = EntryToData('1.0') $null
         }
     }
 }
