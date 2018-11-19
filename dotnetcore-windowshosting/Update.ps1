@@ -1,7 +1,3 @@
-. $PSScriptRoot\..\aspnetcore-runtimepackagestore\update.ps1
-
-Rename-Item -Path Function:\au_GetLatest -NewName Get-RuntimePackageStoreLatest
-
 $releases = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/releases.json"
 function global:au_SearchReplace {
     $replacements = @{
@@ -13,25 +9,14 @@ function global:au_SearchReplace {
 
         }
          "$PSScriptRoot\$($Latest.PackageName).nuspec" = @{
-             "(\<dependency .+?""aspnetcore-runtimepackagestore"" version=)""([^""]+)""" = "`$1""[$($Latest.RpsVersion)]"""
+             "(\<dependency .+?""aspnetcore-runtimepackagestore"" version=)""([^""]+)""" = "`$1""[$($Latest.Version)]"""
          }
     }
-    if ($Latest.RpsVersion -ne $null)
-    {
-        $replacements["$PSScriptRoot\$($Latest.PackageName).nuspec"] = @{
-             "(\<dependency .+?""aspnetcore-runtimepackagestore"" version=)""([^""]+)""" = "`$1""[$($Latest.RpsVersion)]"""
-        }
-    }
-    else
-    {
-        $replacements["$PSScriptRoot\$($Latest.PackageName).nuspec"] = @{
-             "<dependency .+?""aspnetcore-runtimepackagestore""[^>]+>" = ''
-        }
-    }
+
     return $replacements
 }
 
-function EntryToData($channel, $rpsVersion) {
+function EntryToData($channel) {
     $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$channel/releases.json"
     $result = (Invoke-WebRequest -Uri $url -UseBasicParsing | ConvertFrom-Json)
 
@@ -39,10 +24,6 @@ function EntryToData($channel, $rpsVersion) {
     $latest = $result.releases | ?{ $_.'release-version' -eq $version } | select -First 1
 
     $exe32 = $exe64 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like '*hosting*.exe' }
-    if (-Not($exe32)) {
-        return
-    }
-
     @{ 
         Version = $version;
         URL32 = $exe32.url;
@@ -56,15 +37,11 @@ function EntryToData($channel, $rpsVersion) {
 }
 
 function global:au_GetLatest {
-    $rpsLatest = Get-RuntimePackageStoreLatest
-    $rpsLatest | Format-List -Property * | Out-String | Write-Debug
-
     @{
         Streams = [ordered] @{
-            '2.2' = EntryToData('2.2') $rpsLatest.Streams['2.2'].Version
-            '2.1' = EntryToData('2.1') $rpsLatest.Streams['2.1'].Version
-            '2.0' = EntryToData('2.0') $rpsLatest.Streams['2.0'].Version
-            '1.1' = EntryToData('1.1') $null
+            '2.2' = EntryToData('2.2')§
+            '2.1' = EntryToData('2.1')
+            '2.0' = EntryToData('2.0')
         }
     }
 }
