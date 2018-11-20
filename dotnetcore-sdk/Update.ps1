@@ -18,6 +18,11 @@ function EntryToData($channel) {
     $version = $result."latest-release"
     $latest = $result.releases | ?{ $_.'release-version' -eq $version } | select -First 1
 
+    # prior to 2.2 we used the versioning separate version scheme for the sdk
+    if ($channel -lt [Version]'2.2') {
+        $version = $latest.sdk.version
+    }
+
     $exe64 = $latest.sdk.files | ?{ $_.name -like '*win-x64.exe' }
     $exe32 = $latest.sdk.files | ?{ $_.name -like '*win-x86.exe' }
 
