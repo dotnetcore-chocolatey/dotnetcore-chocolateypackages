@@ -20,8 +20,8 @@ function EntryToData($channel) {
     $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$channel/releases.json"
     $result = (Invoke-WebRequest -Uri $url -UseBasicParsing | ConvertFrom-Json)
 
-    $version = $result."latest-release"
-    $latest = $result.releases | ?{ $_.'release-version' -eq $version } | select -First 1
+    $version = $result."latest-runtime"
+    $latest = $result.releases | ?{ $_.'aspnetcore-runtime'.version -eq $version } | select -First 1
 
     $exe32 = $exe64 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like '*hosting*.exe' }
     @{ 
