@@ -22,7 +22,7 @@ function EntryToData($channel) {
     $exe32 = $latest.runtime.files | ?{ $_.name -like '*win-x86.exe' }
 
     @{ 
-        Version = $version;
+        Version = $version -replace "-\d+$";
         URL32 = $exe32.url;
         URL64 = $exe64.url;
         ChecksumType32 = 'sha512';
@@ -35,6 +35,7 @@ function EntryToData($channel) {
 function global:au_GetLatest {
       @{
          Streams = [ordered] @{
+             '3.0' = EntryToData('3.0')
              '2.2' = EntryToData('2.2')
              '2.1' = EntryToData('2.1')
              '2.0' = EntryToData('2.0')
