@@ -22,7 +22,7 @@ function EntryToData($channel) {
     $exe32 = $latest.runtime.files | ?{ $_.name -like '*win-x86.exe' }
 
     @{ 
-        Version = $version -replace "-\d+$";
+        Version = $version;
         URL32 = $exe32.url;
         URL64 = $exe64.url;
         ChecksumType32 = 'sha512';
