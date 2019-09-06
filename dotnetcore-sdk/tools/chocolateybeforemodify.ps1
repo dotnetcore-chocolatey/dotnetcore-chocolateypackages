@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop';
 $packageArgs = @{
   packageName   = $env:ChocolateyPackageName
-  softwareName  = 'Microsoft .NET Core SDK *'
+  softwareName  = "Microsoft .NET Core SDK $env:ChocolateyPackageVersion*"
   fileType      = 'EXE'
   silentArgs    = "/uninstall /quiet"
   validExitCodes= @(0, 3010, 1605, 1614, 1641)
