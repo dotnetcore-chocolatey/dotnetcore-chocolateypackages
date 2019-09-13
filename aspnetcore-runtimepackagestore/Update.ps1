@@ -21,8 +21,12 @@ function EntryToData($channel, $rps) {
     $exe64 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like 'aspnetcore*x64.exe' }
     $exe32 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like 'aspnetcore*x86.exe' }
 
+    if ($channel -ne '3.0') {
+        $version = $latest.'aspnetcore-runtime'.version; #versioning scheme used prior to 3.0
+    }
+
     @{ 
-        Version = $latest.'aspnetcore-runtime'.version;
+        Version = $version
         URL32 = $exe32.url;
         URL64 = $exe64.url;
         ChecksumType32 = 'sha512';
