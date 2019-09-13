@@ -18,8 +18,8 @@ function EntryToData($channel) {
     $version = $result."latest-runtime"
     $latest = $result.releases | ?{ $_.runtime.version -eq $version } | select -First 1
     
-    $exe64 = $latest.runtime.files | ?{ $_.name -like '*win-x64.exe' }
-    $exe32 = $latest.runtime.files | ?{ $_.name -like '*win-x86.exe' }
+    $exe64 = $latest.runtime.files | ?{ $_.name -like 'dotnet*win-x64.exe' }
+    $exe32 = $latest.runtime.files | ?{ $_.name -like 'dotnet*win-x86.exe' }
 
     @{ 
         Version = $version;
