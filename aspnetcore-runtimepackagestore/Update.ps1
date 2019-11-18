@@ -21,7 +21,7 @@ function EntryToData($channel, $rps) {
     $exe64 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like 'aspnetcore*x64.exe' }
     $exe32 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like 'aspnetcore*x86.exe' }
 
-    if ($channel -ne '3.0') {
+    if ($channel -lt '3.0') {
         $version = $latest.'aspnetcore-runtime'.version; #versioning scheme used prior to 3.0
     }
 
@@ -39,6 +39,7 @@ function EntryToData($channel, $rps) {
 function global:au_GetLatest {
       @{
          Streams = [ordered] @{
+             '3.1' = EntryToData('3.1')
              '3.0' = EntryToData('3.0')
              '2.2' = EntryToData('2.2')
              '2.1' = EntryToData('2.1')
