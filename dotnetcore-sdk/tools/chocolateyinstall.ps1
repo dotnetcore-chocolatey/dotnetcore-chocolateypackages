@@ -3,10 +3,10 @@ $ErrorActionPreference = 'Stop';
 
 $packageName= 'dotnetcore-sdk'
 $toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$url        = 'https://download.visualstudio.microsoft.com/download/pr/16378a9f-1291-4c34-8625-ab4dfebfb74a/096945940a346e326368c070b8ecc050/dotnet-sdk-3.0.100-win-x86.exe'
-$checksum   = 'd5223e9526eadff3d80047ccc8d32c569b0eeed8372460f93d489544696bd6b4f053e5ab93730da4b4031f3d4d4b1c19f1ce30da6e7c1305b4dfea0ff91312d4'
-$url64      = 'https://download.visualstudio.microsoft.com/download/pr/53f250a1-318f-4350-8bda-3c6e49f40e76/e8cbbd98b08edd6222125268166cfc43/dotnet-sdk-3.0.100-win-x64.exe'
-$checksum64 = '2b353ca10cd5865a996ac707a8d548dc300e3676383e35930dfab97a16863a8d8e2056d4ecc3b863d10ff22b9e7cd0a874e016f45d77f9c5a02e5e7e821e6a7d'
+$url        = 'https://download.visualstudio.microsoft.com/download/pr/9a8b141c-a157-48df-af71-4ce922ad7ee4/0d24f68cb8e404cff90d0e0a39d4b86e/dotnet-sdk-3.0.101-win-x86.exe'
+$checksum   = 'ba25df49ce10fa7b75e2dcee600b489e52eb04668a3208682dfbc11bd26d9909a606641ddaa3470a431f9d31afdef17afdd3d2fc9b6119be9cc980c9e80ff374'
+$url64      = 'https://download.visualstudio.microsoft.com/download/pr/66adfd75-9c1d-4e44-8d9c-cdc0cbc41104/5288b628601e30b0fa10d64fdaf64287/dotnet-sdk-3.0.101-win-x64.exe'
+$checksum64 = 'cc0cac8e6850295f5a265d28bc21c5b22442823d996ad4742b3d93646b8846298bb393e1b9602c185c765ef4d29b9957eba5851cba4a5613c505c3980cf469ff'
 
 $packageArgs = @{
   packageName   = $packageName
