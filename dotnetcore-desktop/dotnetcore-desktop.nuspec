@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>dotnetcore-desktop</id>
+    <version>3.0.0</version>
+    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore</packageSourceUrl>
+    <owners>qbik,jberezanski,riezebosch,Jerome Bell</owners>
+    <title>Microsoft .NET Core Desktop</title>
+    <authors>Microsoft</authors>
+    <projectUrl>https://dot.net/core</projectUrl>
+    <iconUrl>https://cdn.rawgit.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
+    <copyright>.NET Foundation and Contributors</copyright>
+    <licenseUrl>https://cdn.rawgit.com/dotnet/core/290743955c7dec3315e72da5dcd589b2bd177e71/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <docsUrl>https://docs.microsoft.com/dotnet</docsUrl>
+    <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
+    <tags>microsoft .net core desktop runtime redistributable</tags>
+    <summary>This package is required to run desktop applications with the .NET Core runtime.</summary>
+    <description>
+.NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
+
+This package is required to run desktop applications with the .NET Core runtime (it is effectively an alias for the [dotnetcore-desktop-runtime](https://chocolatey.org/packages/dotnetcore-desktop-runtime) package). For running ASP.NET Core applications on IIS or IIS Express, install the [dotnetcore-windowshosting](https://chocolatey.org/packages/dotnetcore-windowshosting) package. For developing .NET Core applications, install the [dotnetcore-sdk](https://chocolatey.org/packages/dotnetcore-sdk) package.
+    </description>
+    <releaseNotes>
+##### Software
+[.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
+##### Package
+3.0.0: Initial package release for software version 3.0.0.
+    </releaseNotes>
+    <dependencies>
+      <dependency id="dotnetcore-desktop-runtime" version="[3.0.0]" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\*.ps1" target="tools" />
+  </files>
+</package>
