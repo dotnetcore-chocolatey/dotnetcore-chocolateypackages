@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-desktop-runtime.install</id>
-    <version>3.0.1</version>
+    <version>3.1.0</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-runtime.install</packageSourceUrl>
     <owners>jberezanski,riezebosch,Jerome Bell</owners>
     <title>Microsoft .NET Core Desktop Runtime (Install)</title>
@@ -38,7 +38,7 @@ Both 64-bit and 32-bit package stores are now installed on 64-bit systems (excep
     </releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
-      <dependency id="dotnetcore-runtime.install" version="3.0.1" />
+      <dependency id="dotnetcore-runtime.install" version="3.1.0" />
     </dependencies>
   </metadata>
   <files>
