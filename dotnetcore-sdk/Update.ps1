@@ -49,6 +49,7 @@ function EntryToData() {
 function global:au_GetLatest {
       @{
          Streams = [ordered] @{
+             '5.0.1' = EntryToData -channel '5.0' -version '5.0.1*'
              '3.1' = EntryToData -channel '3.1'
              '3.0' = EntryToData -channel '3.0'
              '2.2' = EntryToData -channel '2.2'

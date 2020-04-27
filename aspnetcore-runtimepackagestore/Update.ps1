@@ -39,6 +39,7 @@ function EntryToData($channel, $rps) {
 function global:au_GetLatest {
       @{
          Streams = [ordered] @{
+             '5.0' = EntryToData('5.0')
              '3.1' = EntryToData('3.1')
              '3.0' = EntryToData('3.0')
              '2.2' = EntryToData('2.2')
