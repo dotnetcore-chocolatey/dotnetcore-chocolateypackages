@@ -1,4 +1,3 @@
-$releases = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/releases.json"
 function global:au_SearchReplace {
     $replacements = @{
         "$PSScriptRoot\tools\data.ps1" = @{
