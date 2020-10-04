@@ -31,7 +31,6 @@ function EntryToData($channel) {
         ChecksumType64 = 'sha512'; 
         Checksum32 = $exe32.hash;
         Checksum64 = $exe64.hash;
-        RpsVersion = $rpsVersion
     }
 }
 

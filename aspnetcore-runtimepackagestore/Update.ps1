@@ -11,7 +11,7 @@ function global:au_SearchReplace {
     }
 }
 
-function EntryToData($channel, $rps) {
+function EntryToData($channel) {
     $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$channel/releases.json"
     $result = (Invoke-WebRequest -Uri $url -UseBasicParsing | ConvertFrom-Json)
 
