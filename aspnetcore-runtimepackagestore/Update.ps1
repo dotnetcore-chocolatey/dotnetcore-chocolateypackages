@@ -15,14 +15,16 @@ function EntryToData($channel, $rps) {
     $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$channel/releases.json"
     $result = (Invoke-WebRequest -Uri $url -UseBasicParsing | ConvertFrom-Json)
 
-    $version = $result."latest-release"
-    $latest = $result.releases | ?{ $_.'release-version' -eq $version } | select -First 1
+    $latestRelease = $result."latest-release"
+    $latest = $result.releases | ?{ $_.'release-version' -eq $latestRelease } | select -First 1
 
     $exe64 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like 'aspnetcore*x64.exe' }
     $exe32 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like 'aspnetcore*x86.exe' }
 
-    if ($channel -lt '3.0') {
-        $version = $latest.'aspnetcore-runtime'.version; #versioning scheme used prior to 3.0
+    if ([version]$channel -lt [version]'3.0' -or [version]$channel -ge [version]'5.0') {
+        $version = $latest.'aspnetcore-runtime'.version
+    } else {
+        $version = $latestRelease #versioning scheme used in 3.x
     }
 
     @{ 
