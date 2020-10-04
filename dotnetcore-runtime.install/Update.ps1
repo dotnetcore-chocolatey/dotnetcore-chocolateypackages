@@ -22,7 +22,7 @@ function EntryToData($channel) {
     $exe32 = $latest.runtime.files | ?{ $_.name -like 'dotnet*win-x86.exe' }
 
     @{ 
-        Version = Get-Version($version);
+        Version = Get-Version -Version $version;
         URL32 = $exe32.url;
         URL64 = $exe64.url;
         ChecksumType32 = 'sha512';
@@ -35,14 +35,14 @@ function EntryToData($channel) {
 function global:au_GetLatest {
       @{
          Streams = [ordered] @{
-             '5.0' = EntryToData('5.0')
-             '3.1' = EntryToData('3.1')
-             '3.0' = EntryToData('3.0')
-             '2.2' = EntryToData('2.2')
-             '2.1' = EntryToData('2.1')
-             '2.0' = EntryToData('2.0')
-             '1.1' = EntryToData('1.1')
-             '1.0' = EntryToData('1.0')
+             '5.0' = EntryToData -channel '5.0'
+             '3.1' = EntryToData -channel '3.1'
+             '3.0' = EntryToData -channel '3.0'
+             '2.2' = EntryToData -channel '2.2'
+             '2.1' = EntryToData -channel '2.1'
+             '2.0' = EntryToData -channel '2.0'
+             '1.1' = EntryToData -channel '1.1'
+             '1.0' = EntryToData -channel '1.0'
         }
     }
 }
