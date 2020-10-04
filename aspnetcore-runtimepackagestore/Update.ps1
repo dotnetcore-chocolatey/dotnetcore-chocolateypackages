@@ -26,7 +26,7 @@ function EntryToData($channel, $rps) {
     }
 
     @{ 
-        Version = $version
+        Version = Get-Version -Version $version
         URL32 = $exe32.url;
         URL64 = $exe64.url;
         ChecksumType32 = 'sha512';

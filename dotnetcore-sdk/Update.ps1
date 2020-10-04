@@ -36,7 +36,7 @@ function EntryToData() {
     }
 
     @{ 
-        Version = $latestVersion;
+        Version = Get-Version -Version $latestVersion;
         URL32 = $exe32.url;
         URL64 = $exe64.url;
         ChecksumType32 = 'sha512';
