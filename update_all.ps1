@@ -1,6 +1,12 @@
 # AU Packages Template: https://github.com/majkinetor/au-packages-template
-
-param([string[]] $Name, [string] $ForcedPackages, [string] $Root = $PSScriptRoot)
+[CmdletBinding()]
+param
+(
+    [string[]] $Name,
+    [string] $ForcedPackages,
+    [string] $Root = $PSScriptRoot,
+    [switch] $NoCheckChocoVersion
+)
 
 if (Test-Path $PSScriptRoot/update_vars.ps1) { . $PSScriptRoot/update_vars.ps1 }
 
@@ -82,12 +88,13 @@ $Options = [ordered]@{
         $global:au_Version = ($p -split ':')[1]
     }
 
-    PushAll = $true
+    PushAll = $true                                         #Push all updated packages and not only the most recent one per folder.
+    NoCheckChocoVersion = $NoCheckChocoVersion.IsPresent    #Do not ignore versions which already exist in the Chocolatey community repository.
 }
 
 if ($ForcedPackages) { Write-Host "FORCED PACKAGES: $ForcedPackages" }
 $global:au_Root = $Root                                    #Path to the AU packages
-$global:info = updateall -Name $Name -Options $Options
+$global:info = updateall -Name $Name -Options $Options -Verbose:(@('Ignore', 'SilentlyContinue') -notcontains $VerbosePreference)
 
 #Uncomment to fail the build on AppVeyor on any package error
 if ($global:info.error_count.total) { throw 'Errors during update' }
