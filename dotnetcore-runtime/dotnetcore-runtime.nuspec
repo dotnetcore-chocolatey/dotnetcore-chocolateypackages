@@ -24,11 +24,9 @@ This package is required to run console applications with the .NET Core runtime.
     <releaseNotes>
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
-    </releaseNotes>
-    <!--
 ##### Package
-TBD
-    -->
+Fix installation on Windows client with Remote Server Administration Tools installed.
+    </releaseNotes>
     <dependencies>
       <dependency id="dotnetcore-runtime.install" version="[2.1.23.20201015]" />
     </dependencies>
