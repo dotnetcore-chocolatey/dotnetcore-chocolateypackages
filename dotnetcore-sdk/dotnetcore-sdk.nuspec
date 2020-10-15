@@ -27,7 +27,14 @@
       <dependency id="vcredist2015" version="14.0.24215.20160928" />
       <dependency id="KB2533623" version="1.0.2" />
     </dependencies>
-    <releaseNotes>https://github.com/dotnet/core/blob/master/release-notes/</releaseNotes>
+    <releaseNotes>
+##### Software
+[.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
+    </releaseNotes>
+    <!--
+##### Package
+TBD
+    -->
     <!--<provides></provides>-->
   </metadata>
   <files>

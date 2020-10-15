@@ -21,7 +21,14 @@
 
 This package is required to run console applications with the .NET Core runtime.
     </description>
-    <releaseNotes>https://github.com/dotnet/core/tree/master/release-notes</releaseNotes>
+    <releaseNotes>
+##### Software
+[.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
+    </releaseNotes>
+    <!--
+##### Package
+TBD
+    -->
     <dependencies>
       <dependency id="dotnetcore-runtime.install" version="[5.0.0-rc2204755]" />
     </dependencies>
