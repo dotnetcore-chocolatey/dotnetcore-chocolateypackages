@@ -33,11 +33,9 @@ Example: cinst -y --params="Quiet Skip32Bit" dotnetcore-runtime.install
     <releaseNotes>
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
-    </releaseNotes>
-    <!--
 ##### Package
-TBD
-    -->
+Fix installation on Windows client with Remote Server Administration Tools installed.
+    </releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
       <dependency id="vcredist2015" version="14.0.24215.20170201" />
