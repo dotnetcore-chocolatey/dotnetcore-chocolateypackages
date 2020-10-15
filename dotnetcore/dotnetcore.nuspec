@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore</id>
-    <version>5.0.0-rc2204755</version>
+    <version>3.1.9.20201015</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore</packageSourceUrl>
     <owners>qbik,jberezanski,riezebosch</owners>
     <title>Microsoft .NET Core</title>
@@ -28,7 +28,7 @@ This package is required to run console applications with the .NET Core runtime 
 Fix installation on Windows client with Remote Server Administration Tools installed.
     </releaseNotes>
     <dependencies>
-      <dependency id="dotnetcore-runtime" version="[5.0.0-rc2204755]" />
+      <dependency id="dotnetcore-runtime" version="[3.1.9.20201015]" />
     </dependencies>
   </metadata>
   <files>
