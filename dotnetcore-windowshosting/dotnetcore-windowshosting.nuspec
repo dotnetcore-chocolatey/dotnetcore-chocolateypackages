@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-windowshosting</id>
-    <version>5.0.0-rc22047517</version>
+    <version>2.1.23.20201015</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-windowshosting</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET Core - Windows Server Hosting</title>
@@ -38,7 +38,7 @@ Fix installation on Windows client with Remote Server Administration Tools insta
     </releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
-      <dependency id="aspnetcore-runtimepackagestore" version="[5.0.0-rc22047517]" />
+      <dependency id="aspnetcore-runtimepackagestore" version="[2.1.23.20201015]" />
     </dependencies>
   </metadata>
   <files>
