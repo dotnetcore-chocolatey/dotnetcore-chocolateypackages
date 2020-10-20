@@ -250,7 +250,7 @@ function Get-DotNetRuntimeComponentUpdateInfo
     Param
     (
         [switch] $IgnoreCache,
-        [ValidateSet('Runtime', 'DesktopRuntime', 'AspNetRuntime', 'AspNetCoreModuleV2')] [Parameter(Mandatory = $true)] [string] $Component,
+        [ValidateSet('Runtime', 'DesktopRuntime', 'AspNetRuntime', 'RuntimePackageStore', 'AspNetCoreModuleV2')] [Parameter(Mandatory = $true)] [string] $Component,
         [Parameter(Mandatory = $true)] [string] $Channel
     )
 
@@ -304,6 +304,14 @@ function Get-DotNetRuntimeComponentUpdateInfo
 
             $exe64 = $componentInfo.files | Where-Object { $_.name -like 'aspnetcore-runtime*win-x64.exe' }
             $exe32 = $componentInfo.files | Where-Object { $_.name -like 'aspnetcore-runtime*win-x86.exe' }
+        }
+        'RuntimePackageStore' {
+            # 2.0
+            $componentInfo = $latestRelease.'aspnetcore-runtime'
+            $version = $componentInfo.version
+
+            $exe64 = $componentInfo.files | Where-Object { $_.name -like 'AspNetCore*RuntimePackageStore*x64.exe' }
+            $exe32 = $componentInfo.files | Where-Object { $_.name -like 'AspNetCore*RuntimePackageStore*x86.exe' }
         }
         'AspNetCoreModuleV2' {
             # ANCM v2 is 2.2+, but the hosting bundle has been since forever.
