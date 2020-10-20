@@ -204,7 +204,8 @@ function Get-DotNetUpdateInfo
         $indexInfo = Get-DotNetReleasesIndex -IgnoreCache:$IgnoreCache
         if ($AllChannels)
         {
-            $Channel = @($indexInfo.ReleasesIndex.Keys)
+            # Let's not play paleontologists.
+            $Channel = @($indexInfo.ReleasesIndex.Keys | Where-Object { $_ -notlike '1.*' })
         }
     }
     Process
