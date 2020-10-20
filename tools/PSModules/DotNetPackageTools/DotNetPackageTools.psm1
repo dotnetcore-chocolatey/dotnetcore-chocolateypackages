@@ -221,5 +221,111 @@ function Get-DotNetUpdateInfo
     }
 }
 
+filter Get-GuesstimatedChecksumType
+{
+    $length = $_.Length
+    $defaultType = 'sha512'
+    switch ($length)
+    {
+        32 {
+            'sha1'
+        }
+        64 {
+            'sha256'
+        }
+        128 {
+            'sha512'
+        }
+        default {
+            Write-Warning "Unrecognized checksum type (length: $length), assuming $defaultType"
+            $defaultType
+        }
+    }
+}
+
+function Get-DotNetRuntimeComponentUpdateInfo
+{
+    [CmdletBinding(PositionalBinding = $false)]
+    Param
+    (
+        [switch] $IgnoreCache,
+        [ValidateSet('Runtime', 'DesktopRuntime', 'AspNetRuntime', 'AspNetCoreModuleV2')] [Parameter(Mandatory = $true)] [string] $Component,
+        [Parameter(Mandatory = $true)] [string] $Channel
+    )
+
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    $ErrorActionPreference = 'Stop'
+
+    $channelContent = Get-DotNetUpdateInfo -Channel $Channel
+
+    $latestRuntimeVersion = $channelContent.'latest-runtime'
+    $latestRelease = $channelContent.releases | Where-Object {
+        $_.PSObject.Properties['runtime'] -ne $null <# some 2.x releases contain the SDK only #> `
+        -and $_.runtime -ne $null `
+        -and $_.runtime.version -eq $latestRuntimeVersion
+    }
+
+    $latestReleaseCount = ($latestRelease | Measure-Object).Count
+    if ($latestReleaseCount -eq 0)
+    {
+        Write-Error "Could not find release with runtime version equal to latest-runtime ($latestRuntimeVersion) for channel $Channel"
+        return
+    }
+    elseif ($latestReleaseCount -gt 1)
+    {
+        Write-Warning "Multiple ($latestReleaseCount) releases found with runtime version equal to latest-runtime ($latestRuntimeVersion) for channel $Channel, using the first one"
+        $latestRelease = $latestRelease | Select-Object -First 1
+    }
+
+    switch ($Component)
+    {
+        'Runtime' {
+            $componentInfo = $latestRelease.runtime
+            $version = $componentInfo.version
+
+            $exe64 = $componentInfo.files | Where-Object { $_.name -like 'dotnet*win-x64.exe' }
+            $exe32 = $componentInfo.files | Where-Object { $_.name -like 'dotnet*win-x86.exe' }
+        }
+        'DesktopRuntime' {
+            # 3.0+
+            $componentInfo = $latestRelease.windowsdesktop
+            $version = $componentInfo.version
+
+            $exe64 = $componentInfo.files | Where-Object { $_.name -like 'windowsdesktop*win-x64.exe' }
+            $exe32 = $componentInfo.files | Where-Object { $_.name -like 'windowsdesktop*win-x86.exe' }
+        }
+        'AspNetRuntime' {
+            # 2.1+
+            $componentInfo = $latestRelease.'aspnetcore-runtime'
+            $version = $componentInfo.version
+
+            $exe64 = $componentInfo.files | Where-Object { $_.name -like 'aspnetcore-runtime*win-x64.exe' }
+            $exe32 = $componentInfo.files | Where-Object { $_.name -like 'aspnetcore-runtime*win-x86.exe' }
+        }
+        'AspNetCoreModuleV2' {
+            # ANCM v2 is 2.2+, but the hosting bundle has been since forever.
+            $componentInfo = $latestRelease.'aspnetcore-runtime'
+            $version = $componentInfo.'version-aspnetcoremodule' | Select-Object -First 1
+
+            $exe64 = $exe32 = $componentInfo.files | Where-Object { $_.name -like '*hosting*.exe' }
+        }
+        default { throw "Unknown component: $Component"}
+    }
+
+    $chocolateyCompatibleVersion = AU\Get-Version -Version $version
+    @{
+        Version = $chocolateyCompatibleVersion
+        ComponentVersion = $version
+        URL32 = $exe32.url
+        URL64 = $exe64.url
+        ChecksumType32 = $exe32.hash | Get-GuesstimatedChecksumType
+        ChecksumType64 = $exe32.hash | Get-GuesstimatedChecksumType
+        Checksum32 = $exe32.hash
+        Checksum64 = $exe64.hash
+        ReleaseVersion = $latestRelease.'release-version'
+        ReleaseNotes = $latestRelease.'release-notes'
+    }
+}
+
 $script:DotNetCacheRootPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$PSScriptRoot\..\..\..\cache")
 $script:DotNetCacheMaxAge = [timespan]::FromHours(1)
