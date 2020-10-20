@@ -256,9 +256,11 @@ function Get-DotNetRuntimeComponentUpdateInfo
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
     $ErrorActionPreference = 'Stop'
 
-    $channelContent = Get-DotNetUpdateInfo -Channel $Channel
+    Write-Debug "Determining update info for component '$Component' in channel '$Channel' (IgnoreCache: $IgnoreCache)"
+    $channelContent = Get-DotNetUpdateInfo -Channel $Channel -IgnoreCache:$IgnoreCache
 
     $latestRuntimeVersion = $channelContent.'latest-runtime'
+    Write-Debug "Latest runtime version: $latestRuntimeVersion"
     $latestRelease = $channelContent.releases | Where-Object {
         $_.PSObject.Properties['runtime'] -ne $null <# some 2.x releases contain the SDK only #> `
         -and $_.runtime -ne $null `
@@ -312,6 +314,9 @@ function Get-DotNetRuntimeComponentUpdateInfo
         default { throw "Unknown component: $Component"}
     }
 
+    $releaseVersion = $latestRelease.'release-version'
+    Write-Debug "Component '$Component' in channel '$Channel': ComponentVersion '$version' latestRuntimeVersion '$latestRuntimeVersion' ReleaseVersion '$releaseVersion'"
+
     $chocolateyCompatibleVersion = AU\Get-Version -Version $version
     @{
         Version = $chocolateyCompatibleVersion
@@ -322,7 +327,7 @@ function Get-DotNetRuntimeComponentUpdateInfo
         ChecksumType64 = $exe32.hash | Get-GuesstimatedChecksumType
         Checksum32 = $exe32.hash
         Checksum64 = $exe64.hash
-        ReleaseVersion = $latestRelease.'release-version'
+        ReleaseVersion = $releaseVersion
         ReleaseNotes = $latestRelease.'release-notes'
     }
 }
