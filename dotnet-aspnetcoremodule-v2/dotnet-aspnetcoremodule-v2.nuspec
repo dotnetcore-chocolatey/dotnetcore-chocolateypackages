@@ -33,11 +33,9 @@ Example: cinst -y --params="Quiet IgnoreMissingIIS" dotnet-aspnetcoremodule-v2
     <releaseNotes>
 ##### Software
 [.NET Core 0.0 Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
-    </releaseNotes>
-    <!--
 ##### Package
-TBD
-    -->
+This package version installs ASP.NET Core Module version 0.0.0.0.
+    </releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
     </dependencies>

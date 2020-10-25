@@ -280,11 +280,12 @@ function Get-DotNetRuntimeComponentUpdateInfo
         $latestRelease = $latestRelease | Select-Object -First 1
     }
 
+    $chocolateyCompatibleVersion = $null
     switch ($Component)
     {
         'Runtime' {
             $componentInfo = $latestRelease.runtime
-            $version = $componentInfo.version
+            $componentVersion = $componentInfo.version
 
             $exe64 = $componentInfo.files | Where-Object { $_.name -like 'dotnet*win-x64.exe' }
             $exe32 = $componentInfo.files | Where-Object { $_.name -like 'dotnet*win-x86.exe' }
@@ -292,7 +293,7 @@ function Get-DotNetRuntimeComponentUpdateInfo
         'DesktopRuntime' {
             # 3.0+
             $componentInfo = $latestRelease.windowsdesktop
-            $version = $componentInfo.version
+            $componentVersion = $componentInfo.version
 
             $exe64 = $componentInfo.files | Where-Object { $_.name -like 'windowsdesktop*win-x64.exe' }
             $exe32 = $componentInfo.files | Where-Object { $_.name -like 'windowsdesktop*win-x86.exe' }
@@ -300,7 +301,7 @@ function Get-DotNetRuntimeComponentUpdateInfo
         'AspNetRuntime' {
             # 2.1+
             $componentInfo = $latestRelease.'aspnetcore-runtime'
-            $version = $componentInfo.version
+            $componentVersion = $componentInfo.version
 
             $exe64 = $componentInfo.files | Where-Object { $_.name -like 'aspnetcore-runtime*win-x64.exe' }
             $exe32 = $componentInfo.files | Where-Object { $_.name -like 'aspnetcore-runtime*win-x86.exe' }
@@ -308,7 +309,7 @@ function Get-DotNetRuntimeComponentUpdateInfo
         'RuntimePackageStore' {
             # 2.0
             $componentInfo = $latestRelease.'aspnetcore-runtime'
-            $version = $componentInfo.version
+            $componentVersion = $componentInfo.version
 
             $exe64 = $componentInfo.files | Where-Object { $_.name -like 'AspNetCore*RuntimePackageStore*x64.exe' }
             $exe32 = $componentInfo.files | Where-Object { $_.name -like 'AspNetCore*RuntimePackageStore*x86.exe' }
@@ -316,7 +317,43 @@ function Get-DotNetRuntimeComponentUpdateInfo
         'AspNetCoreModuleV2' {
             # ANCM v2 is 2.2+, but the hosting bundle has been since forever.
             $componentInfo = $latestRelease.'aspnetcore-runtime'
-            $version = $componentInfo.'version-aspnetcoremodule' | Select-Object -First 1
+
+            # some transitional packages installed both V1 and V2; V2 versions were higher
+            $auAncmVersion = $componentInfo.'version-aspnetcoremodule' `
+                | ForEach-Object { AU\Get-Version -Version $_.Trim() } `
+                | Sort-Object `
+                | Select-Object -Last 1
+            $componentVersion = $auAncmVersion
+
+            # To this day, version-aspnetcoremodule never had the prerelease suffix, even if the release was preview/rc,
+            # so let's inherit the suffix from aspnetcore-runtime,
+            # but use the version-display, because it does not contain the build number (unlike version).
+            $aspDisplayVersion = $componentInfo.'version-display'
+            if ($null -eq $aspDisplayVersion)
+            {
+                # some old releases had empty version-display
+                $aspDisplayVersion = $componentInfo.version
+            }
+
+            $auAspDisplayVersion = AU\Get-Version -Version $aspDisplayVersion
+            $ancmPrereleaseTag = $auAncmVersion.Prerelease
+            if (-not [string]::IsNullOrEmpty($auAspDisplayVersion.Prerelease) -and [string]::IsNullOrEmpty($ancmPrereleaseTag))
+            {
+                $ancmPrereleaseTag = $auAspDisplayVersion.Prerelease
+            }
+
+            # ANCM version uses all four parts (10 + .NET major; .NET minor; unique build; usually .NET patch),
+            # e.g. 13.1.20268.9 for .NET 3.1.9
+            # The unique build is enough to distinguish between ANCM versions, so let's reserve the fourth part for package fixes.
+            $ancmVersionNumbersString = $auAncmVersion.ToString(3)
+            if (-not [string]::IsNullOrEmpty($ancmPrereleaseTag))
+            {
+                $chocolateyCompatibleVersion = AU\Get-Version -Version "${ancmVersionNumbersString}-${ancmPrereleaseTag}"
+            }
+            else
+            {
+                $chocolateyCompatibleVersion = AU\Get-Version -Version $ancmVersionNumbersString
+            }
 
             $exe64 = $exe32 = $componentInfo.files | Where-Object { $_.name -like '*hosting*.exe' }
         }
@@ -324,12 +361,16 @@ function Get-DotNetRuntimeComponentUpdateInfo
     }
 
     $releaseVersion = $latestRelease.'release-version'
-    Write-Debug "Component '$Component' in channel '$Channel': ComponentVersion '$version' latestRuntimeVersion '$latestRuntimeVersion' ReleaseVersion '$releaseVersion'"
+    if ($null -eq $chocolateyCompatibleVersion)
+    {
+        $chocolateyCompatibleVersion = AU\Get-Version -Version $componentVersion
+    }
 
-    $chocolateyCompatibleVersion = AU\Get-Version -Version $version
+    Write-Debug "Component '$Component' in channel '$Channel': version for nuspec '$chocolateyCompatibleVersion' ComponentVersion '$componentVersion' latestRuntimeVersion '$latestRuntimeVersion' ReleaseVersion '$releaseVersion'"
+
     @{
         Version = $chocolateyCompatibleVersion
-        ComponentVersion = $version
+        ComponentVersion = $componentVersion
         URL32 = $exe32.url
         URL64 = $exe64.url
         ChecksumType32 = $exe32.hash | Get-GuesstimatedChecksumType
@@ -339,6 +380,75 @@ function Get-DotNetRuntimeComponentUpdateInfo
         ReleaseVersion = $releaseVersion
         ReleaseNotes = $latestRelease.'release-notes'
     }
+}
+
+function ConvertTo-DotNetSystemVersion
+{
+    [CmdletBinding(PositionalBinding = $false)]
+    Param
+    (
+        [Parameter(Mandatory = $true)] [PSObject] $Version
+    )
+
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    $ErrorActionPreference = 'Stop'
+
+    if ($Version.GetType().Name -eq 'AUVersion')
+    {
+        $systemVersion = $Version.Version
+    }
+    elseif ($Version -is [Version])
+    {
+        $systemVersion = $Version
+    }
+    elseif ($Version -is [string])
+    {
+        $systemVersion = (AU\Get-Version -Version $Version).Version
+    }
+    else
+    {
+        throw "Unsupported argument: Version must be an AUVersion, a System.Version or a string (actual: $($Version.GetType().FullName))."
+    }
+
+    return $systemVersion
+}
+
+function Get-DotNetProductTitle
+{
+    [CmdletBinding(PositionalBinding = $false)]
+    Param
+    (
+        [Parameter(Mandatory = $true)] [PSObject] $Version
+    )
+
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    $ErrorActionPreference = 'Stop'
+
+    $systemVersion = ConvertTo-DotNetSystemVersion -Version $Version
+
+    if ($systemVersion -lt [version]'5.0')
+    {
+        return '.NET Core'
+    }
+    else
+    {
+        return '.NET'
+    }
+}
+
+function Get-DotNetReleaseDescription
+{
+    [CmdletBinding(PositionalBinding = $false)]
+    Param
+    (
+        [Parameter(Mandatory = $true)] [PSObject] $ReleaseVersion
+    )
+
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    $ErrorActionPreference = 'Stop'
+
+    $desc = '{0} {1}' -f (Get-DotNetProductTitle -Version $ReleaseVersion), $ReleaseVersion
+    return $desc
 }
 
 $script:DotNetCacheRootPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$PSScriptRoot\..\..\..\cache")

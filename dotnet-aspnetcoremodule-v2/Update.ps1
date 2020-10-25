@@ -13,7 +13,8 @@ function global:au_SearchReplace {
             "(^\s*ChecksumType64\s*=\s*)('.*')" = "`$1'$($Latest.ChecksumType64)'"
         }
         "$PSScriptRoot\$($Latest.PackageName).nuspec" = @{
-            "[^\s]+\s+Release\s+Notes\]\([^)]+" = '{0} Release Notes]({1}' -f $Latest.ReleaseVersion, $Latest.ReleaseNotes
+            '\[.+Release\s+Notes\]\([^)]+\)' = '[{0} Release Notes]({1})' -f (Get-DotNetReleaseDescription -ReleaseVersion $Latest.ReleaseVersion), $Latest.ReleaseNotes
+            "This\s+package\s+version\s+installs.+$" = 'This package version installs ASP.NET Core Module version {0}.' -f $Latest.ComponentVersion
         }
     }
 }
