@@ -436,6 +436,39 @@ function Get-DotNetProductTitle
     }
 }
 
+function Get-DotNetPackagePrefix
+{
+    [CmdletBinding(PositionalBinding = $false)]
+    Param
+    (
+        [Parameter(Mandatory = $true)] [PSObject] $Version,
+        [switch] $IncludeMajorMinor
+    )
+
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    $ErrorActionPreference = 'Stop'
+
+    $systemVersion = ConvertTo-DotNetSystemVersion -Version $Version
+
+    if ($systemVersion -lt [version]'5.0')
+    {
+        $baseName = 'dotnetcore'
+    }
+    else
+    {
+        $baseName = 'dotnet'
+    }
+
+    if ($IncludeMajorMinor)
+    {
+        return ('{0}-{1}' -f $baseName, $systemVersion.ToString(2))
+    }
+    else
+    {
+        return $baseName
+    }
+}
+
 function Get-DotNetReleaseDescription
 {
     [CmdletBinding(PositionalBinding = $false)]
@@ -449,6 +482,46 @@ function Get-DotNetReleaseDescription
 
     $desc = '{0} {1}' -f (Get-DotNetProductTitle -Version $ReleaseVersion), $ReleaseVersion
     return $desc
+}
+
+function Get-DotNetDependencyVersionRange
+{
+    [CmdletBinding(PositionalBinding = $false)]
+    Param
+    (
+        [Parameter(Mandatory = $true)] [PSObject] $BaseVersion,
+        [Parameter(Mandatory = $true)] [ValidateSet('Patch', 'Minor', 'Major')] [string] $Boundary # in semver lingo
+    )
+
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    $ErrorActionPreference = 'Stop'
+
+    $baseSystemVersion = ConvertTo-DotNetSystemVersion -Version $BaseVersion
+
+    if ($baseSystemVersion.Build -lt 0)
+    {
+        $nextVersion = switch ($Boundary)
+        {
+            'Patch' { throw "Patch boundary is not supported when BaseVersion does not have at least three parts. BaseVersion = '${BaseVersion}'" }
+            'Minor' { New-Object -TypeName Version -ArgumentList @($baseSystemVersion.Major, ($baseSystemVersion.Minor + 1)) }
+            'Major' { New-Object -TypeName Version -ArgumentList @(($baseSystemVersion.Major + 1), 0) }
+            default { throw "Unsupported Boundary: '${Boundary}'" }
+        }
+    }
+    else
+    {
+        $nextVersion = switch ($Boundary)
+        {
+            'Patch' { New-Object -TypeName Version -ArgumentList @($baseSystemVersion.Major, $baseSystemVersion.Minor, ($baseSystemVersion.Build + 1)) }
+            'Minor' { New-Object -TypeName Version -ArgumentList @($baseSystemVersion.Major, ($baseSystemVersion.Minor + 1), 0) }
+            'Major' { New-Object -TypeName Version -ArgumentList @(($baseSystemVersion.Major + 1), 0, 0) }
+            default { throw "Unsupported Boundary: '${Boundary}'" }
+        }
+    }
+
+    $result = '[{0},{1})' -f $BaseVersion, $nextVersion
+    Write-Debug "Dependency version range with '${Boundary}' boundary for base [$($BaseVersion.GetType().Name)] ${BaseVersion} = $result"
+    return $result
 }
 
 $script:DotNetCacheRootPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$PSScriptRoot\..\..\..\cache")
