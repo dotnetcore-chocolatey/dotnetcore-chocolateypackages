@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>aspnetcore-runtimepackagestore</id>
-    <version>3.1.0</version>
+    <version>2.1.23.20201015</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/aspnetcore-runtimepackagestore</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft ASP.NET Core Package Store</title>
@@ -33,9 +33,11 @@ Example: cinst -y --params="Quiet Skip32Bit" aspnetcore-runtimepackagestore
     <releaseNotes>
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
-##### Package
-Both 64-bit and 32-bit package stores are now installed on 64-bit systems (except for Server systems with the WoW64 subsystem removed).
     </releaseNotes>
+    <!--
+##### Package
+TBD
+    -->
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
       <dependency id="vcredist2015" version="14.0.24215.20170201" />

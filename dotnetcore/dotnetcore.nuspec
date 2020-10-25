@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore</id>
-    <version>3.0.1</version>
+    <version>2.1.23.20201015</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore</packageSourceUrl>
     <owners>qbik,jberezanski,riezebosch</owners>
     <title>Microsoft .NET Core</title>
@@ -24,11 +24,13 @@ This package is required to run console applications with the .NET Core runtime 
     <releaseNotes>
 ##### Software
 [.NET Core Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
-##### Package
-2.0.6: Initial package release for software version 2.0.6.
     </releaseNotes>
+    <!--
+##### Package
+TBD
+    -->
     <dependencies>
-      <dependency id="dotnetcore-runtime" version="[3.0.1]" />
+      <dependency id="dotnetcore-runtime" version="[2.1.23.20201015]" />
     </dependencies>
   </metadata>
   <files>
