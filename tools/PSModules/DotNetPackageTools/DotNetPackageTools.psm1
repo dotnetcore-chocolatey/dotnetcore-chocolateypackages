@@ -250,7 +250,7 @@ function Get-DotNetRuntimeComponentUpdateInfo
     Param
     (
         [switch] $IgnoreCache,
-        [ValidateSet('Runtime', 'DesktopRuntime', 'AspNetRuntime', 'RuntimePackageStore', 'AspNetCoreModuleV2')] [Parameter(Mandatory = $true)] [string] $Component,
+        [ValidateSet('Runtime', 'DesktopRuntime', 'AspNetRuntime', 'RuntimePackageStore', 'AspNetCoreModuleV1', 'AspNetCoreModuleV2')] [Parameter(Mandatory = $true)] [string] $Component,
         [Parameter(Mandatory = $true)] [string] $Channel
     )
 
@@ -281,16 +281,16 @@ function Get-DotNetRuntimeComponentUpdateInfo
     }
 
     $chocolateyCompatibleVersion = $null
-    switch ($Component)
+    switch -Regex ($Component)
     {
-        'Runtime' {
+        '^Runtime$' {
             $componentInfo = $latestRelease.runtime
             $componentVersion = $componentInfo.version
 
             $exe64 = $componentInfo.files | Where-Object { $_.name -like 'dotnet*win-x64.exe' }
             $exe32 = $componentInfo.files | Where-Object { $_.name -like 'dotnet*win-x86.exe' }
         }
-        'DesktopRuntime' {
+        '^DesktopRuntime$' {
             # 3.0+
             $componentInfo = $latestRelease.windowsdesktop
             $componentVersion = $componentInfo.version
@@ -298,7 +298,7 @@ function Get-DotNetRuntimeComponentUpdateInfo
             $exe64 = $componentInfo.files | Where-Object { $_.name -like 'windowsdesktop*win-x64.exe' }
             $exe32 = $componentInfo.files | Where-Object { $_.name -like 'windowsdesktop*win-x86.exe' }
         }
-        'AspNetRuntime' {
+        '^AspNetRuntime$' {
             # 2.1+
             $componentInfo = $latestRelease.'aspnetcore-runtime'
             $componentVersion = $componentInfo.version
@@ -306,7 +306,7 @@ function Get-DotNetRuntimeComponentUpdateInfo
             $exe64 = $componentInfo.files | Where-Object { $_.name -like 'aspnetcore-runtime*win-x64.exe' }
             $exe32 = $componentInfo.files | Where-Object { $_.name -like 'aspnetcore-runtime*win-x86.exe' }
         }
-        'RuntimePackageStore' {
+        '^RuntimePackageStore$' {
             # 2.0
             $componentInfo = $latestRelease.'aspnetcore-runtime'
             $componentVersion = $componentInfo.version
@@ -314,11 +314,33 @@ function Get-DotNetRuntimeComponentUpdateInfo
             $exe64 = $componentInfo.files | Where-Object { $_.name -like 'AspNetCore*RuntimePackageStore*x64.exe' }
             $exe32 = $componentInfo.files | Where-Object { $_.name -like 'AspNetCore*RuntimePackageStore*x86.exe' }
         }
-        'AspNetCoreModuleV2' {
-            # ANCM v2 is 2.2+, but the hosting bundle has been since forever.
+        '^AspNetCoreModuleV(1|2)$' {
+            # .NET Core up to 2.1 => ANCM v1
+            # .NET Core 2.2 => ANCM v1 and v2 (hosting bundle installs both)
+            # .NET Core 3.0 and higher => ANCM v2
+            $channelSystemVersion = [version]$Channel
+            if ($Component -eq 'AspNetCoreModuleV1')
+            {
+                if ($channelSystemVersion -le [version]'2.0')
+                {
+                    throw "Although AspNetCoreModuleV1 is present in .NET Core $Channel, the release information (releases.json) does not contain its version, so this script does not support it."
+                }
+                elseif ($channelSystemVersion -gt [version]'2.2')
+                {
+                    throw "AspNetCoreModuleV1 is only present in .NET Core 2.2 and earlier."
+                }
+            }
+            else
+            {
+                if ($channelSystemVersion -lt [version]'2.2')
+                {
+                    throw "AspNetCoreModuleV2 is only present in .NET Core 2.2 and later."
+                }
+            }
+
             $componentInfo = $latestRelease.'aspnetcore-runtime'
 
-            # some transitional packages installed both V1 and V2; V2 versions were higher
+            # some releases (2.1.4-2.1.6) contained two version numbers; use the higher one
             $auAncmVersion = $componentInfo.'version-aspnetcoremodule' `
                 | ForEach-Object { AU\Get-Version -Version $_.Trim() } `
                 | Sort-Object `
