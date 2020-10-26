@@ -23,8 +23,6 @@ This metapackage installs all components needed for hosting .NET Core web/server
 - the .NET Core runtime,
 - the ASP.NET Core runtime,
 - the ASP.NET Core Module v2 for IIS.
-
-Note: because of how Chocolatey resolves dependencies, the installed ASP.NET Core Module version may be from a newer .NET Core minor.major release. The ASP.NET Core Module is backward compatible, so typically this should not be a problem. However, if precise control over the ASP.NET Core Module version is required, please install the desired `dotnet-aspnetcoremodule-v2` package version first.
     </description>
     <releaseNotes>
 ##### Software
@@ -37,7 +35,7 @@ TBD
     <dependencies>
       <dependency id="dotnetcore-2.2-runtime" version="[0.0.0,0.0.0)" />
       <dependency id="dotnetcore-2.2-aspnetruntime" version="[0.0.0,0.0.0)" />
-      <dependency id="dotnet-aspnetcoremodule-v2" version="0.0.0" />
+      <dependency id="dotnet-aspnetcoremodule-v2" version="[0.0.0,0.0.0)" />
     </dependencies>
   </metadata>
 </package>

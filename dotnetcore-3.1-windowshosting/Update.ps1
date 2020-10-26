@@ -23,7 +23,7 @@ function global:au_GetLatest {
         ReleaseNotes = $rtBase.ReleaseNotes
         DepBase = Get-DotNetDependencyVersionRange -Boundary Patch -BaseVersion $rtBase.Version
         DepAspNet = Get-DotNetDependencyVersionRange -Boundary Patch -BaseVersion $rtAsp.Version
-        DepAncm = $ancm.Version
+        DepAncm = Get-DotNetDependencyVersionRange -Boundary Patch -BaseVersion $ancm.Version
     }
 }
 
