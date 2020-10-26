@@ -181,7 +181,7 @@ function Get-DotNetChannelUpdateInfoContent
     $obj = $json | ConvertFrom-Json
 
     $releasesCount = $obj.releases.Length
-    Write-Debug "Parsed update info for channel $($obj.'channel-version') with $($obj.releases.length) release(s)"
+    Write-Debug "Parsed update info for channel $($obj.'channel-version') with $releasesCount release(s)"
     $result = $obj
     return $result
 }
@@ -263,8 +263,8 @@ function Get-DotNetRuntimeComponentUpdateInfo
     $latestRuntimeVersion = $channelContent.'latest-runtime'
     Write-Debug "Latest runtime version: $latestRuntimeVersion"
     $latestRelease = $channelContent.releases | Where-Object {
-        $_.PSObject.Properties['runtime'] -ne $null <# some 2.x releases contain the SDK only #> `
-        -and $_.runtime -ne $null `
+        $null -ne $_.PSObject.Properties['runtime']  <# some 2.x releases contain the SDK only #> `
+        -and $null -ne $_.runtime `
         -and $_.runtime.version -eq $latestRuntimeVersion
     }
 
