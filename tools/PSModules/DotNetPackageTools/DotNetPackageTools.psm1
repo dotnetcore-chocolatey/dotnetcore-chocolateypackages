@@ -404,6 +404,94 @@ function Get-DotNetRuntimeComponentUpdateInfo
     }
 }
 
+function Get-DotNetSdkUpdateInfo
+{
+    [CmdletBinding(PositionalBinding = $false)]
+    Param
+    (
+        [switch] $IgnoreCache,
+        [Parameter(Mandatory = $true)] [string] $Channel,
+        [Parameter(Mandatory = $true)] [ValidateRange(1, 999)] [int] $SdkFeatureNumber
+    )
+
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    $ErrorActionPreference = 'Stop'
+
+    Write-Debug "Determining update info for SDK in channel '$Channel' and feature number $SdkFeatureNumber (IgnoreCache: $IgnoreCache)"
+    $channelContent = Get-DotNetUpdateInfo -Channel $Channel -IgnoreCache:$IgnoreCache
+
+    <#
+    This versioning scheme is valid for 2.1 and later.
+    SDKs start at X.Y.100, with the exception of 2.1, where the first SDK is 2.1.300.
+
+    "If the SDK has 10 feature updates before a runtime feature update, version numbers roll into the 1000 series with numbers like 2.2.1000 as the feature release following 2.2.900. This situation isn't expected to occur."
+    https://docs.microsoft.com/en-us/dotnet/core/versions/#versioning-details
+    #>
+    $minVersionInclusive = [version]"${Channel}.${SdkFeatureNumber}00"
+    $maxVersionExclusive = [version]"${Channel}.$($SdkFeatureNumber + 1)00"
+    Write-Debug "minVersionInclusive $minVersionInclusive maxVersionExclusive $maxVersionExclusive"
+    $availableSdks = $channelContent.releases `
+        | ForEach-Object {
+            $release = $_
+            $sdks = @($release.sdk)
+            if ($null -ne $release.PSObject.Properties['sdks'] -and $null -ne $release.sdks)
+            {
+                $sdks = $release.sdks
+            }
+
+            foreach ($sdk in $sdks)
+            {
+                $v = AU\Get-Version -Version $sdk.version
+                Write-Debug "Considering: $v"
+                Write-Output ([pscustomobject]@{ Sdk = $sdk; SdkVersion = $v; Release = $release })
+            }
+        } `
+        | Where-Object {
+            # using System.Version comparison, so that X.Y.100-preview is treated as X.Y.100, not X.Y.0 (as AUVersion would)
+            $inLeftBoundary = $minVersionInclusive -le $_.SdkVersion.Version
+            $notOutsideRightBoundary = $_.SdkVersion.Version -lt $maxVersionExclusive
+            $verdict = $inLeftBoundary -and $notOutsideRightBoundary
+            Write-Debug "Filter result: $verdict (inLeftBoundary: $inLeftBoundary notOutsideRightBoundary: $notOutsideRightBoundary)"
+            Write-Output $verdict
+        } `
+        | Sort-Object -Property SdkVersion -Descending
+
+    $latestSdk = $availableSdks | Select-Object -First 1
+    if (($latestSdk | Measure-Object).Count -eq 0)
+    {
+        Write-Error "Could not find any SDK with SdkFeatureNumber ${SdkFeatureNumber} (.${SdkFeatureNumber}xx) for channel $Channel"
+        return
+    }
+
+    $latestRelease = $latestSdk.Release
+    $componentInfo = $latestSdk.Sdk
+    $componentVersion = $componentInfo.version
+
+    $exe64 = $componentInfo.files | Where-Object { $_.name -like '*win-x64.exe' }
+    $exe32 = $componentInfo.files | Where-Object { $_.name -like '*win-x86.exe' }
+
+    $chocolateyCompatibleVersion = $latestSdk.SdkVersion
+
+    $releaseVersion = $latestRelease.'release-version'
+    $runtimeVersion = $latestSdk.Sdk.'runtime-version'
+
+    Write-Debug "SDK feature number ${SdkFeatureNumber} in channel '$Channel': version for nuspec '$chocolateyCompatibleVersion' ComponentVersion '$componentVersion' matching runtime version '$runtimeVersion' ReleaseVersion '$releaseVersion'"
+
+    @{
+        Version = $chocolateyCompatibleVersion
+        ComponentVersion = $componentVersion
+        URL32 = $exe32.url
+        URL64 = $exe64.url
+        ChecksumType32 = $exe32.hash | Get-GuesstimatedChecksumType
+        ChecksumType64 = $exe32.hash | Get-GuesstimatedChecksumType
+        Checksum32 = $exe32.hash
+        Checksum64 = $exe64.hash
+        ReleaseVersion = $releaseVersion
+        ReleaseNotes = $latestRelease.'release-notes'
+        RuntimeVersion = $runtimeVersion
+    }
+}
+
 function ConvertTo-DotNetSystemVersion
 {
     [CmdletBinding(PositionalBinding = $false)]
