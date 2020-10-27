@@ -634,5 +634,102 @@ function Get-DotNetDependencyVersionRange
     return $result
 }
 
+function Add-DotNetSdkPackagesFromTemplate
+{
+    [CmdletBinding(PositionalBinding = $false)]
+    Param
+    (
+        [switch] $IgnoreCache,
+        [string] $TemplatePath = "$PSScriptRoot\..\..\..\templates\dotnetcore-X.Y-sdk-Nxx",
+        [string] $DestinationPath = "$PSScriptRoot\..\..\..",
+        [version] $MinChannel = [version]'2.1'
+    )
+
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    $ErrorActionPreference = 'Stop'
+
+    $passThruArgs = $PSBoundParameters.PSObject.Copy()
+    $passThruArgs.Remove('MinChannel')
+
+    Write-Debug "Adding missing SDK packages"
+
+    $wrappedReleasesIndex = Get-DotNetReleasesIndex
+    $channels = $wrappedReleasesIndex.ReleasesIndex.Keys `
+        | Where-Object { $MinChannel -le [version]$_ }
+
+    $channelUpdateInfos = Get-DotNetUpdateInfo -Channel $channels -IgnoreCache:$IgnoreCache
+    foreach ($cui in $channelUpdateInfos)
+    {
+        $channel = $cui.'channel-version'
+        Write-Debug "Adding missing SDK packages for channel $channel"
+        $sdkFeatureNumbers = $cui.releases `
+            | ForEach-Object {
+                if ($null -eq $_.PSObject.Properties['sdks'] -or $null -eq $_.sdks)
+                {
+                    @($_.sdk)
+                }
+                else
+                {
+                    $_.sdks
+                }
+            } `
+            | ForEach-Object { AU\Get-Version $_.version } `
+            | ForEach-Object { [int][Math]::Floor(($_.Version.Build) / 100) } `
+            | Sort-Object -Unique
+
+        Write-Debug "SDK feature numbers for channel ${channel}: $sdkFeatureNumbers"
+
+        foreach ($number in $sdkFeatureNumbers)
+        {
+            Add-DotNetSdkFeaturePackageFromTemplate `
+                -Channel $channel `
+                -SdkFeatureNumber $number `
+                @passThruArgs
+        }
+    }
+}
+
+function Add-DotNetSdkFeaturePackageFromTemplate
+{
+    [CmdletBinding(PositionalBinding = $false)]
+    Param
+    (
+        [switch] $IgnoreCache,
+        [Parameter(Mandatory = $true)] [string] $Channel,
+        [Parameter(Mandatory = $true)] [ValidateRange(1, 999)] [int] $SdkFeatureNumber,
+        [string] $TemplatePath = "$PSScriptRoot\..\..\..\templates\dotnetcore-X.Y-sdk-Nxx",
+        [string] $DestinationPath = "$PSScriptRoot\..\..\.."
+    )
+
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    $ErrorActionPreference = 'Stop'
+
+    $targetPackageName = '{0}-sdk-{1}xx' -f (Get-DotNetPackagePrefix -Version $Channel -IncludeMajorMinor), $SdkFeatureNumber
+    $targetPackageTitle = 'Microsoft {0} SDK feature update {1}' -f (Get-DotNetReleaseDescription -ReleaseVersion $Channel), $SdkFeatureNumber
+    $targetPackagePath = Join-Path -Path $DestinationPath -ChildPath $targetPackageName
+    if (Test-Path -Path $targetPackagePath)
+    {
+        Write-Debug "Package '$targetPackageName' already exists."
+        return
+    }
+
+    $templateName = (Get-Item -Path $TemplatePath).Name
+    Write-Debug "Generating package $targetPackageName from template $templateName"
+
+    $nuspecContent = Get-Content -Path "$TemplatePath\$templateName.nuspec"
+
+    New-Item -ItemType Directory -Path $targetPackagePath | Out-Null
+    Copy-Item -Path "$TemplatePath\*" -Destination $targetPackagePath -Exclude "${templateName}.nuspec" -Recurse
+
+    $updatedNuspec = $nuspecContent `
+        | ForEach-Object { $_.Replace($templateName, $targetPackageName) } `
+        | ForEach-Object { $_ -replace '(?<=title\>)[^<]+', $targetPackageTitle }
+    $updatedNuspec | Set-Content -Path "$targetPackagePath\$targetPackageName.nuspec"
+
+    Rename-Item -Path "$targetPackagePath\Update.template.ps1" -NewName 'Update.ps1'
+
+    Write-Debug "Generated package $targetPackageName"
+}
+
 $script:DotNetCacheRootPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$PSScriptRoot\..\..\..\cache")
 $script:DotNetCacheMaxAge = [timespan]::FromHours(1)
