@@ -486,7 +486,15 @@ function Get-DotNetSdkUpdateInfo
         $chocolateyCompatibleVersion = $sdkInfo.SdkVersion
 
         $releaseVersion = $currentRelease.'release-version'
-        $runtimeVersion = $sdkInfo.Sdk.'runtime-version'
+        if ($null -ne $sdkInfo.Sdk.PSObject.Properties['runtime-version'])
+        {
+            $runtimeVersion = $sdkInfo.Sdk.'runtime-version'
+        }
+        else
+        {
+            Write-Warning "SDK version $componentVersion does not contain runtime-version info"
+            $runtimeVersion = $null
+        }
 
         $releaseNotes = $null
         if ($null -ne $currentRelease.PSObject.Properties['release-notes'])
