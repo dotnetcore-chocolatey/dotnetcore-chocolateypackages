@@ -487,6 +487,12 @@ function Get-DotNetSdkUpdateInfo
         $releaseVersion = $currentRelease.'release-version'
         $runtimeVersion = $sdkInfo.Sdk.'runtime-version'
 
+        $releaseNotes = $null
+        if ($null -ne $currentRelease.PSObject.Properties['release-notes'])
+        {
+            $releaseNotes = $currentRelease.'release-notes'
+        }
+
         Write-Debug "SDK feature number ${SdkFeatureNumber} in channel '$Channel': version for nuspec '$chocolateyCompatibleVersion' ComponentVersion '$componentVersion' matching runtime version '$runtimeVersion' ReleaseVersion '$releaseVersion'"
 
         @{
@@ -499,7 +505,7 @@ function Get-DotNetSdkUpdateInfo
             Checksum32 = $exe32.hash
             Checksum64 = $exe64.hash
             ReleaseVersion = $releaseVersion
-            ReleaseNotes = $currentRelease.'release-notes'
+            ReleaseNotes = $releaseNotes
             RuntimeVersion = $runtimeVersion
         }
     }
