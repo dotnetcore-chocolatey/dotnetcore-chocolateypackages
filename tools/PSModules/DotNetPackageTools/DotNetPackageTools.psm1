@@ -372,6 +372,14 @@ function Get-DotNetRuntimeComponentUpdateInfo
 
                 $componentInfo = $currentRelease.'aspnetcore-runtime'
 
+                if ($null -eq $componentInfo.PSObject.Properties['version-aspnetcoremodule'])
+                {
+                    Write-Warning "Release $releaseVersion does not contain $Component version info, skipping"
+                    $componentVersion = '0.0'
+                    $exe64 = $exe32 = $null
+                    break
+                }
+
                 # some releases (2.1.4-2.1.6) contained two version numbers; use the higher one
                 $auAncmVersion = $componentInfo.'version-aspnetcoremodule' `
                     | ForEach-Object { AU\Get-Version -Version $_.Trim() } `
