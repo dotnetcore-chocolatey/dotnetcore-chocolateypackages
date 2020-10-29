@@ -302,6 +302,7 @@ function Get-DotNetRuntimeComponentUpdateInfo
 
     foreach ($currentRelease in $releases)
     {
+        #$currentRelease | ConvertTo-Json -Depth 100 | Write-Debug
         $runtimeVersion = $currentRelease.runtime.version
 
         $chocolateyCompatibleVersion = $null
@@ -309,6 +310,13 @@ function Get-DotNetRuntimeComponentUpdateInfo
         {
             '^Runtime$' {
                 $componentInfo = $currentRelease.runtime
+                if ($null -eq $componentInfo)
+                {
+                    Write-Warning "Release $releaseVersion does not contain $Component, skipping"
+                    $exe64 = $exe32 = $null
+                    break
+                }
+
                 $componentVersion = $componentInfo.version
 
                 $exe64 = $componentInfo.files | Where-Object { $_.name -like 'dotnet*win-x64.exe' }
@@ -320,7 +328,6 @@ function Get-DotNetRuntimeComponentUpdateInfo
                 if ($null -eq $componentInfo)
                 {
                     Write-Warning "Release $releaseVersion does not contain $Component, skipping"
-                    $componentVersion = '0.0'
                     $exe64 = $exe32 = $null
                     break
                 }
@@ -333,6 +340,13 @@ function Get-DotNetRuntimeComponentUpdateInfo
             '^AspNetRuntime$' {
                 # 2.1+
                 $componentInfo = $currentRelease.'aspnetcore-runtime'
+                if ($null -eq $componentInfo)
+                {
+                    Write-Warning "Release $releaseVersion does not contain $Component, skipping"
+                    $exe64 = $exe32 = $null
+                    break
+                }
+
                 $componentVersion = $componentInfo.version
 
                 $exe64 = $componentInfo.files | Where-Object { $_.name -like 'aspnetcore-runtime*win-x64.exe' }
@@ -341,6 +355,13 @@ function Get-DotNetRuntimeComponentUpdateInfo
             '^RuntimePackageStore$' {
                 # 2.0
                 $componentInfo = $currentRelease.'aspnetcore-runtime'
+                if ($null -eq $componentInfo)
+                {
+                    Write-Warning "Release $releaseVersion does not contain $Component, skipping"
+                    $exe64 = $exe32 = $null
+                    break
+                }
+
                 $componentVersion = $componentInfo.version
 
                 $exe64 = $componentInfo.files | Where-Object { $_.name -like 'AspNetCore*RuntimePackageStore*x64.exe' }
@@ -371,11 +392,9 @@ function Get-DotNetRuntimeComponentUpdateInfo
                 }
 
                 $componentInfo = $currentRelease.'aspnetcore-runtime'
-
-                if ($null -eq $componentInfo.PSObject.Properties['version-aspnetcoremodule'])
+                if ($null -eq $componentInfo -or $null -eq $componentInfo.PSObject.Properties['version-aspnetcoremodule'])
                 {
                     Write-Warning "Release $releaseVersion does not contain $Component version info, skipping"
-                    $componentVersion = '0.0'
                     $exe64 = $exe32 = $null
                     break
                 }
@@ -423,18 +442,6 @@ function Get-DotNetRuntimeComponentUpdateInfo
         }
 
         $releaseVersion = $currentRelease.'release-version'
-        if ($null -eq $chocolateyCompatibleVersion)
-        {
-            $chocolateyCompatibleVersion = AU\Get-Version -Version $componentVersion
-        }
-
-        $releaseNotes = $null
-        if ($null -ne $currentRelease.PSObject.Properties['release-notes'])
-        {
-            $releaseNotes = $currentRelease.'release-notes'
-        }
-
-        Write-Debug "Component '$Component' in channel '$Channel': version for nuspec '$chocolateyCompatibleVersion' ComponentVersion '$componentVersion' runtimeVersion '$runtimeVersion' ReleaseVersion '$releaseVersion'"
 
         if ($null -eq $exe64)
         {
@@ -447,6 +454,19 @@ function Get-DotNetRuntimeComponentUpdateInfo
             Write-Warning "Release $releaseVersion does not contain $Component 32-bit installer info, skipping"
             continue
         }
+
+        $releaseNotes = $null
+        if ($null -ne $currentRelease.PSObject.Properties['release-notes'])
+        {
+            $releaseNotes = $currentRelease.'release-notes'
+        }
+
+        if ($null -eq $chocolateyCompatibleVersion)
+        {
+            $chocolateyCompatibleVersion = AU\Get-Version -Version $componentVersion
+        }
+
+        Write-Debug "Component '$Component' in channel '$Channel': version for nuspec '$chocolateyCompatibleVersion' ComponentVersion '$componentVersion' runtimeVersion '$runtimeVersion' ReleaseVersion '$releaseVersion'"
 
         @{
             Version = $chocolateyCompatibleVersion
@@ -542,6 +562,18 @@ function Get-DotNetSdkUpdateInfo
         $exe64 = $componentInfo.files | Where-Object { $_.name -like '*win-x64.exe' }
         $exe32 = $componentInfo.files | Where-Object { $_.name -like '*win-x86.exe' }
 
+        if ($null -eq $exe64)
+        {
+            Write-Warning "SDK version $componentVersion does not contain 64-bit installer info, skipping"
+            continue
+        }
+
+        if ($null -eq $exe32)
+        {
+            Write-Warning "SDK version $componentVersion does not contain 32-bit installer info, skipping"
+            continue
+        }
+
         $chocolateyCompatibleVersion = $sdkInfo.SdkVersion
 
         $releaseVersion = $currentRelease.'release-version'
@@ -562,18 +594,6 @@ function Get-DotNetSdkUpdateInfo
         }
 
         Write-Debug "SDK feature number ${SdkFeatureNumber} in channel '$Channel': version for nuspec '$chocolateyCompatibleVersion' ComponentVersion '$componentVersion' matching runtime version '$runtimeVersion' ReleaseVersion '$releaseVersion'"
-
-        if ($null -eq $exe64)
-        {
-            Write-Warning "SDK version $componentVersion does not contain 64-bit installer info, skipping"
-            continue
-        }
-
-        if ($null -eq $exe32)
-        {
-            Write-Warning "SDK version $componentVersion does not contain 32-bit installer info, skipping"
-            continue
-        }
 
         @{
             Version = $chocolateyCompatibleVersion
