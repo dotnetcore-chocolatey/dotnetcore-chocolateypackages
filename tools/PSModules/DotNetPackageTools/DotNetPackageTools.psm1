@@ -661,7 +661,8 @@ function Add-DotNetSdkPackagesFromTemplate
         [switch] $IgnoreCache,
         [string] $TemplatePath = "$PSScriptRoot\..\..\..\templates\dotnetcore-X.Y-sdk-Nxx",
         [string] $DestinationPath = "$PSScriptRoot\..\..\..",
-        [version] $MinChannel = [version]'2.1'
+        [version] $MinChannel = [version]'2.1',
+        [switch] $Update
     )
 
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
@@ -717,7 +718,8 @@ function Add-DotNetSdkFeaturePackageFromTemplate
         [Parameter(Mandatory = $true)] [string] $Channel,
         [Parameter(Mandatory = $true)] [ValidateRange(1, 999)] [int] $SdkFeatureNumber,
         [string] $TemplatePath = "$PSScriptRoot\..\..\..\templates\dotnetcore-X.Y-sdk-Nxx",
-        [string] $DestinationPath = "$PSScriptRoot\..\..\.."
+        [string] $DestinationPath = "$PSScriptRoot\..\..\..",
+        [switch] $Update
     )
 
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
@@ -729,7 +731,10 @@ function Add-DotNetSdkFeaturePackageFromTemplate
     if (Test-Path -Path $targetPackagePath)
     {
         Write-Debug "Package '$targetPackageName' already exists."
-        return
+        if (-not $Update)
+        {
+            return
+        }
     }
 
     $templateName = (Get-Item -Path $TemplatePath).Name
@@ -737,14 +742,15 @@ function Add-DotNetSdkFeaturePackageFromTemplate
 
     $nuspecContent = Get-Content -Path "$TemplatePath\$templateName.nuspec"
 
-    New-Item -ItemType Directory -Path $targetPackagePath | Out-Null
-    Copy-Item -Path "$TemplatePath\*" -Destination $targetPackagePath -Exclude "${templateName}.nuspec" -Recurse
+    New-Item -ItemType Directory -Path $targetPackagePath -ErrorAction SilentlyContinue | Out-Null
+    Copy-Item -Path "$TemplatePath\*" -Destination $targetPackagePath -Exclude "${templateName}.nuspec" -Recurse -Force
 
     $updatedNuspec = $nuspecContent `
         | ForEach-Object { $_.Replace($templateName, $targetPackageName) } `
         | ForEach-Object { $_ -replace '(?<=title\>)[^<]+', $targetPackageTitle }
     $updatedNuspec | Set-Content -Path "$targetPackagePath\$targetPackageName.nuspec"
 
+    Remove-Item -Path "$targetPackagePath\Update.ps1" -ErrorAction SilentlyContinue
     Rename-Item -Path "$targetPackagePath\Update.template.ps1" -NewName 'Update.ps1'
 
     Write-Debug "Generated package $targetPackageName"
