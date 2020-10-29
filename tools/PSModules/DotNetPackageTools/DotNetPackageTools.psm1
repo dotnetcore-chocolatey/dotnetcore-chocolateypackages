@@ -317,6 +317,14 @@ function Get-DotNetRuntimeComponentUpdateInfo
             '^DesktopRuntime$' {
                 # 3.0+
                 $componentInfo = $currentRelease.windowsdesktop
+                if ($null -eq $componentInfo)
+                {
+                    Write-Warning "Release $releaseVersion does not contain $Component, skipping"
+                    $componentVersion = '0.0'
+                    $exe64 = $exe32 = $null
+                    break
+                }
+
                 $componentVersion = $componentInfo.version
 
                 $exe64 = $componentInfo.files | Where-Object { $_.name -like 'windowsdesktop*win-x64.exe' }
