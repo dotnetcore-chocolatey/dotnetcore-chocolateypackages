@@ -475,6 +475,7 @@ function Get-DotNetSdkUpdateInfo
 
     foreach ($sdkInfo in $sdks)
     {
+        #$sdkInfo | ConvertTo-Json -Depth 100 | Write-Debug
         $currentRelease = $sdkInfo.Release
         $componentInfo = $sdkInfo.Sdk
         $componentVersion = $componentInfo.version
@@ -494,6 +495,18 @@ function Get-DotNetSdkUpdateInfo
         }
 
         Write-Debug "SDK feature number ${SdkFeatureNumber} in channel '$Channel': version for nuspec '$chocolateyCompatibleVersion' ComponentVersion '$componentVersion' matching runtime version '$runtimeVersion' ReleaseVersion '$releaseVersion'"
+
+        if ($null -eq $exe64)
+        {
+            Write-Warning "SDK version $componentVersion does not contain 64-bit installer info, skipping"
+            continue
+        }
+
+        if ($null -eq $exe32)
+        {
+            Write-Warning "SDK version $componentVersion does not contain 32-bit installer info, skipping"
+            continue
+        }
 
         @{
             Version = $chocolateyCompatibleVersion
