@@ -251,7 +251,8 @@ function Get-DotNetRuntimeComponentUpdateInfo
     (
         [switch] $IgnoreCache,
         [ValidateSet('Runtime', 'DesktopRuntime', 'AspNetRuntime', 'RuntimePackageStore', 'AspNetCoreModuleV1', 'AspNetCoreModuleV2')] [Parameter(Mandatory = $true)] [string] $Component,
-        [Parameter(Mandatory = $true)] [string] $Channel
+        [Parameter(Mandatory = $true)] [string] $Channel,
+        [switch] $AllVersions
     )
 
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
@@ -260,147 +261,189 @@ function Get-DotNetRuntimeComponentUpdateInfo
     Write-Debug "Determining update info for component '$Component' in channel '$Channel' (IgnoreCache: $IgnoreCache)"
     $channelContent = Get-DotNetUpdateInfo -Channel $Channel -IgnoreCache:$IgnoreCache
 
-    $latestRuntimeVersion = $channelContent.'latest-runtime'
-    Write-Debug "Latest runtime version: $latestRuntimeVersion"
-    $latestRelease = $channelContent.releases | Where-Object {
-        $null -ne $_.PSObject.Properties['runtime']  <# some 2.x releases contain the SDK only #> `
-        -and $null -ne $_.runtime `
-        -and $_.runtime.version -eq $latestRuntimeVersion
+    if ($AllVersions)
+    {
+        $releases = $channelContent.releases | Where-Object {
+            $null -ne $_.PSObject.Properties['runtime']  <# some 2.x releases contain the SDK only #> `
+            -and $null -ne $_.runtime
+        }
+
+        $releasesCount = ($releases | Measure-Object).Count
+        if ($releasesCount -eq 0)
+        {
+            Write-Error "Could not find any runtime release for channel $Channel"
+            return
+        }
+    }
+    else
+    {
+        $latestRuntimeVersion = $channelContent.'latest-runtime'
+        Write-Debug "Latest runtime version: $latestRuntimeVersion"
+        $latestRelease = $channelContent.releases | Where-Object {
+            $null -ne $_.PSObject.Properties['runtime']  <# some 2.x releases contain the SDK only #> `
+            -and $null -ne $_.runtime `
+            -and $_.runtime.version -eq $latestRuntimeVersion
+        }
+
+        $latestReleaseCount = ($latestRelease | Measure-Object).Count
+        if ($latestReleaseCount -eq 0)
+        {
+            Write-Error "Could not find release with runtime version equal to latest-runtime ($latestRuntimeVersion) for channel $Channel"
+            return
+        }
+        elseif ($latestReleaseCount -gt 1)
+        {
+            Write-Warning "Multiple ($latestReleaseCount) releases found with runtime version equal to latest-runtime ($latestRuntimeVersion) for channel $Channel, using the first one"
+            $latestRelease = $latestRelease | Select-Object -First 1
+        }
+
+        $releases = @($latestRelease)
     }
 
-    $latestReleaseCount = ($latestRelease | Measure-Object).Count
-    if ($latestReleaseCount -eq 0)
+    foreach ($currentRelease in $releases)
     {
-        Write-Error "Could not find release with runtime version equal to latest-runtime ($latestRuntimeVersion) for channel $Channel"
-        return
-    }
-    elseif ($latestReleaseCount -gt 1)
-    {
-        Write-Warning "Multiple ($latestReleaseCount) releases found with runtime version equal to latest-runtime ($latestRuntimeVersion) for channel $Channel, using the first one"
-        $latestRelease = $latestRelease | Select-Object -First 1
-    }
+        $runtimeVersion = $currentRelease.runtime.version
 
-    $chocolateyCompatibleVersion = $null
-    switch -Regex ($Component)
-    {
-        '^Runtime$' {
-            $componentInfo = $latestRelease.runtime
-            $componentVersion = $componentInfo.version
+        $chocolateyCompatibleVersion = $null
+        switch -Regex ($Component)
+        {
+            '^Runtime$' {
+                $componentInfo = $currentRelease.runtime
+                $componentVersion = $componentInfo.version
 
-            $exe64 = $componentInfo.files | Where-Object { $_.name -like 'dotnet*win-x64.exe' }
-            $exe32 = $componentInfo.files | Where-Object { $_.name -like 'dotnet*win-x86.exe' }
-        }
-        '^DesktopRuntime$' {
-            # 3.0+
-            $componentInfo = $latestRelease.windowsdesktop
-            $componentVersion = $componentInfo.version
+                $exe64 = $componentInfo.files | Where-Object { $_.name -like 'dotnet*win-x64.exe' }
+                $exe32 = $componentInfo.files | Where-Object { $_.name -like 'dotnet*win-x86.exe' }
+            }
+            '^DesktopRuntime$' {
+                # 3.0+
+                $componentInfo = $currentRelease.windowsdesktop
+                $componentVersion = $componentInfo.version
 
-            $exe64 = $componentInfo.files | Where-Object { $_.name -like 'windowsdesktop*win-x64.exe' }
-            $exe32 = $componentInfo.files | Where-Object { $_.name -like 'windowsdesktop*win-x86.exe' }
-        }
-        '^AspNetRuntime$' {
-            # 2.1+
-            $componentInfo = $latestRelease.'aspnetcore-runtime'
-            $componentVersion = $componentInfo.version
+                $exe64 = $componentInfo.files | Where-Object { $_.name -like 'windowsdesktop*win-x64.exe' }
+                $exe32 = $componentInfo.files | Where-Object { $_.name -like 'windowsdesktop*win-x86.exe' }
+            }
+            '^AspNetRuntime$' {
+                # 2.1+
+                $componentInfo = $currentRelease.'aspnetcore-runtime'
+                $componentVersion = $componentInfo.version
 
-            $exe64 = $componentInfo.files | Where-Object { $_.name -like 'aspnetcore-runtime*win-x64.exe' }
-            $exe32 = $componentInfo.files | Where-Object { $_.name -like 'aspnetcore-runtime*win-x86.exe' }
-        }
-        '^RuntimePackageStore$' {
-            # 2.0
-            $componentInfo = $latestRelease.'aspnetcore-runtime'
-            $componentVersion = $componentInfo.version
+                $exe64 = $componentInfo.files | Where-Object { $_.name -like 'aspnetcore-runtime*win-x64.exe' }
+                $exe32 = $componentInfo.files | Where-Object { $_.name -like 'aspnetcore-runtime*win-x86.exe' }
+            }
+            '^RuntimePackageStore$' {
+                # 2.0
+                $componentInfo = $currentRelease.'aspnetcore-runtime'
+                $componentVersion = $componentInfo.version
 
-            $exe64 = $componentInfo.files | Where-Object { $_.name -like 'AspNetCore*RuntimePackageStore*x64.exe' }
-            $exe32 = $componentInfo.files | Where-Object { $_.name -like 'AspNetCore*RuntimePackageStore*x86.exe' }
-        }
-        '^AspNetCoreModuleV(1|2)$' {
-            # .NET Core up to 2.1 => ANCM v1
-            # .NET Core 2.2 => ANCM v1 and v2 (hosting bundle installs both)
-            # .NET Core 3.0 and higher => ANCM v2
-            $channelSystemVersion = [version]$Channel
-            if ($Component -eq 'AspNetCoreModuleV1')
-            {
-                if ($channelSystemVersion -le [version]'2.0')
+                $exe64 = $componentInfo.files | Where-Object { $_.name -like 'AspNetCore*RuntimePackageStore*x64.exe' }
+                $exe32 = $componentInfo.files | Where-Object { $_.name -like 'AspNetCore*RuntimePackageStore*x86.exe' }
+            }
+            '^AspNetCoreModuleV(1|2)$' {
+                # .NET Core up to 2.1 => ANCM v1
+                # .NET Core 2.2 => ANCM v1 and v2 (hosting bundle installs both)
+                # .NET Core 3.0 and higher => ANCM v2
+                $channelSystemVersion = [version]$Channel
+                if ($Component -eq 'AspNetCoreModuleV1')
                 {
-                    throw "Although AspNetCoreModuleV1 is present in .NET Core $Channel, the release information (releases.json) does not contain its version, so this script does not support it."
+                    if ($channelSystemVersion -le [version]'2.0')
+                    {
+                        throw "Although AspNetCoreModuleV1 is present in .NET Core $Channel, the release information (releases.json) does not contain its version, so this script does not support it."
+                    }
+                    elseif ($channelSystemVersion -gt [version]'2.2')
+                    {
+                        throw "AspNetCoreModuleV1 is only present in .NET Core 2.2 and earlier."
+                    }
                 }
-                elseif ($channelSystemVersion -gt [version]'2.2')
+                else
                 {
-                    throw "AspNetCoreModuleV1 is only present in .NET Core 2.2 and earlier."
+                    if ($channelSystemVersion -lt [version]'2.2')
+                    {
+                        throw "AspNetCoreModuleV2 is only present in .NET Core 2.2 and later."
+                    }
                 }
-            }
-            else
-            {
-                if ($channelSystemVersion -lt [version]'2.2')
+
+                $componentInfo = $currentRelease.'aspnetcore-runtime'
+
+                # some releases (2.1.4-2.1.6) contained two version numbers; use the higher one
+                $auAncmVersion = $componentInfo.'version-aspnetcoremodule' `
+                    | ForEach-Object { AU\Get-Version -Version $_.Trim() } `
+                    | Sort-Object `
+                    | Select-Object -Last 1
+                $componentVersion = $auAncmVersion
+
+                # To this day, version-aspnetcoremodule never had the prerelease suffix, even if the release was preview/rc,
+                # so let's inherit the suffix from aspnetcore-runtime,
+                # but use the version-display, because it does not contain the build number (unlike version).
+                $aspDisplayVersion = $componentInfo.'version-display'
+                if ($null -eq $aspDisplayVersion)
                 {
-                    throw "AspNetCoreModuleV2 is only present in .NET Core 2.2 and later."
+                    # some old releases had empty version-display
+                    $aspDisplayVersion = $componentInfo.version
                 }
+
+                $auAspDisplayVersion = AU\Get-Version -Version $aspDisplayVersion
+                $ancmPrereleaseTag = $auAncmVersion.Prerelease
+                if (-not [string]::IsNullOrEmpty($auAspDisplayVersion.Prerelease) -and [string]::IsNullOrEmpty($ancmPrereleaseTag))
+                {
+                    $ancmPrereleaseTag = $auAspDisplayVersion.Prerelease
+                }
+
+                # ANCM version uses all four parts (10 + .NET major; .NET minor; unique build; usually .NET patch),
+                # e.g. 13.1.20268.9 for .NET 3.1.9
+                # The unique build is enough to distinguish between ANCM versions, so let's reserve the fourth part for package fixes.
+                $ancmVersionNumbersString = $auAncmVersion.ToString(3)
+                if (-not [string]::IsNullOrEmpty($ancmPrereleaseTag))
+                {
+                    $chocolateyCompatibleVersion = AU\Get-Version -Version "${ancmVersionNumbersString}-${ancmPrereleaseTag}"
+                }
+                else
+                {
+                    $chocolateyCompatibleVersion = AU\Get-Version -Version $ancmVersionNumbersString
+                }
+
+                $exe64 = $exe32 = $componentInfo.files | Where-Object { $_.name -like '*hosting*.exe' }
             }
-
-            $componentInfo = $latestRelease.'aspnetcore-runtime'
-
-            # some releases (2.1.4-2.1.6) contained two version numbers; use the higher one
-            $auAncmVersion = $componentInfo.'version-aspnetcoremodule' `
-                | ForEach-Object { AU\Get-Version -Version $_.Trim() } `
-                | Sort-Object `
-                | Select-Object -Last 1
-            $componentVersion = $auAncmVersion
-
-            # To this day, version-aspnetcoremodule never had the prerelease suffix, even if the release was preview/rc,
-            # so let's inherit the suffix from aspnetcore-runtime,
-            # but use the version-display, because it does not contain the build number (unlike version).
-            $aspDisplayVersion = $componentInfo.'version-display'
-            if ($null -eq $aspDisplayVersion)
-            {
-                # some old releases had empty version-display
-                $aspDisplayVersion = $componentInfo.version
-            }
-
-            $auAspDisplayVersion = AU\Get-Version -Version $aspDisplayVersion
-            $ancmPrereleaseTag = $auAncmVersion.Prerelease
-            if (-not [string]::IsNullOrEmpty($auAspDisplayVersion.Prerelease) -and [string]::IsNullOrEmpty($ancmPrereleaseTag))
-            {
-                $ancmPrereleaseTag = $auAspDisplayVersion.Prerelease
-            }
-
-            # ANCM version uses all four parts (10 + .NET major; .NET minor; unique build; usually .NET patch),
-            # e.g. 13.1.20268.9 for .NET 3.1.9
-            # The unique build is enough to distinguish between ANCM versions, so let's reserve the fourth part for package fixes.
-            $ancmVersionNumbersString = $auAncmVersion.ToString(3)
-            if (-not [string]::IsNullOrEmpty($ancmPrereleaseTag))
-            {
-                $chocolateyCompatibleVersion = AU\Get-Version -Version "${ancmVersionNumbersString}-${ancmPrereleaseTag}"
-            }
-            else
-            {
-                $chocolateyCompatibleVersion = AU\Get-Version -Version $ancmVersionNumbersString
-            }
-
-            $exe64 = $exe32 = $componentInfo.files | Where-Object { $_.name -like '*hosting*.exe' }
+            default { throw "Unknown component: $Component"}
         }
-        default { throw "Unknown component: $Component"}
-    }
 
-    $releaseVersion = $latestRelease.'release-version'
-    if ($null -eq $chocolateyCompatibleVersion)
-    {
-        $chocolateyCompatibleVersion = AU\Get-Version -Version $componentVersion
-    }
+        $releaseVersion = $currentRelease.'release-version'
+        if ($null -eq $chocolateyCompatibleVersion)
+        {
+            $chocolateyCompatibleVersion = AU\Get-Version -Version $componentVersion
+        }
 
-    Write-Debug "Component '$Component' in channel '$Channel': version for nuspec '$chocolateyCompatibleVersion' ComponentVersion '$componentVersion' latestRuntimeVersion '$latestRuntimeVersion' ReleaseVersion '$releaseVersion'"
+        $releaseNotes = $null
+        if ($null -ne $currentRelease.PSObject.Properties['release-notes'])
+        {
+            $releaseNotes = $currentRelease.'release-notes'
+        }
 
-    @{
-        Version = $chocolateyCompatibleVersion
-        ComponentVersion = $componentVersion
-        URL32 = $exe32.url
-        URL64 = $exe64.url
-        ChecksumType32 = $exe32.hash | Get-GuesstimatedChecksumType
-        ChecksumType64 = $exe32.hash | Get-GuesstimatedChecksumType
-        Checksum32 = $exe32.hash
-        Checksum64 = $exe64.hash
-        ReleaseVersion = $releaseVersion
-        ReleaseNotes = $latestRelease.'release-notes'
+        Write-Debug "Component '$Component' in channel '$Channel': version for nuspec '$chocolateyCompatibleVersion' ComponentVersion '$componentVersion' runtimeVersion '$runtimeVersion' ReleaseVersion '$releaseVersion'"
+
+        if ($null -eq $exe64)
+        {
+            Write-Warning "Release $releaseVersion does not contain $Component 64-bit installer info, skipping"
+            continue
+        }
+
+        if ($null -eq $exe32)
+        {
+            Write-Warning "Release $releaseVersion does not contain $Component 32-bit installer info, skipping"
+            continue
+        }
+
+        @{
+            Version = $chocolateyCompatibleVersion
+            ComponentVersion = $componentVersion
+            URL32 = $exe32.url
+            URL64 = $exe64.url
+            ChecksumType32 = $exe32.hash | Get-GuesstimatedChecksumType
+            ChecksumType64 = $exe32.hash | Get-GuesstimatedChecksumType
+            Checksum32 = $exe32.hash
+            Checksum64 = $exe64.hash
+            ReleaseVersion = $releaseVersion
+            ReleaseNotes = $releaseNotes
+        }
     }
 }
 
