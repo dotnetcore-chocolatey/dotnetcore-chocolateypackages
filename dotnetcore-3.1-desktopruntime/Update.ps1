@@ -1,3 +1,8 @@
+Param
+(
+    [switch] $AllVersionsAsStreams
+)
+
 Import-Module au
 Import-Module "$PSScriptRoot\..\tools\PSModules\DotNetPackageTools\DotNetPackageTools.psm1"
 
@@ -20,7 +25,15 @@ function global:au_SearchReplace {
 
 function global:au_GetLatest {
     $chunks = $Latest.PackageName -split '-'
-    Get-DotNetRuntimeComponentUpdateInfo -Channel $chunks[1] -Component $chunks[2]
+    $info = Get-DotNetRuntimeComponentUpdateInfo -Channel $chunks[1] -Component $chunks[2] -AllVersions:$AllVersionsAsStreams
+    if ($AllVersionsAsStreams)
+    {
+        Convert-DotNetUpdateInfoListToStreamInfo -UpdateInfo $info
+    }
+    else
+    {
+        $info
+    }
 }
 
 if ($MyInvocation.InvocationName -ne '.') { update -ChecksumFor none }
