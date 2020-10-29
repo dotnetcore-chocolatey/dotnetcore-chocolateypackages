@@ -411,7 +411,8 @@ function Get-DotNetSdkUpdateInfo
     (
         [switch] $IgnoreCache,
         [Parameter(Mandatory = $true)] [string] $Channel,
-        [Parameter(Mandatory = $true)] [ValidateRange(1, 999)] [int] $SdkFeatureNumber
+        [Parameter(Mandatory = $true)] [ValidateRange(1, 999)] [int] $SdkFeatureNumber,
+        [switch] $AllVersions
     )
 
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
@@ -456,39 +457,51 @@ function Get-DotNetSdkUpdateInfo
         } `
         | Sort-Object -Property SdkVersion -Descending
 
-    $latestSdk = $availableSdks | Select-Object -First 1
-    if (($latestSdk | Measure-Object).Count -eq 0)
+    if ($AllVersions)
+    {
+        $sdks = $availableSdks
+    }
+    else
+    {
+        $latestSdk = $availableSdks | Select-Object -First 1
+        $sdks = @($latestSdk)
+    }
+
+    if (($sdks | Measure-Object).Count -eq 0)
     {
         Write-Error "Could not find any SDK with SdkFeatureNumber ${SdkFeatureNumber} (.${SdkFeatureNumber}xx) for channel $Channel"
         return
     }
 
-    $latestRelease = $latestSdk.Release
-    $componentInfo = $latestSdk.Sdk
-    $componentVersion = $componentInfo.version
+    foreach ($sdkInfo in $sdks)
+    {
+        $currentRelease = $sdkInfo.Release
+        $componentInfo = $sdkInfo.Sdk
+        $componentVersion = $componentInfo.version
 
-    $exe64 = $componentInfo.files | Where-Object { $_.name -like '*win-x64.exe' }
-    $exe32 = $componentInfo.files | Where-Object { $_.name -like '*win-x86.exe' }
+        $exe64 = $componentInfo.files | Where-Object { $_.name -like '*win-x64.exe' }
+        $exe32 = $componentInfo.files | Where-Object { $_.name -like '*win-x86.exe' }
 
-    $chocolateyCompatibleVersion = $latestSdk.SdkVersion
+        $chocolateyCompatibleVersion = $sdkInfo.SdkVersion
 
-    $releaseVersion = $latestRelease.'release-version'
-    $runtimeVersion = $latestSdk.Sdk.'runtime-version'
+        $releaseVersion = $currentRelease.'release-version'
+        $runtimeVersion = $sdkInfo.Sdk.'runtime-version'
 
-    Write-Debug "SDK feature number ${SdkFeatureNumber} in channel '$Channel': version for nuspec '$chocolateyCompatibleVersion' ComponentVersion '$componentVersion' matching runtime version '$runtimeVersion' ReleaseVersion '$releaseVersion'"
+        Write-Debug "SDK feature number ${SdkFeatureNumber} in channel '$Channel': version for nuspec '$chocolateyCompatibleVersion' ComponentVersion '$componentVersion' matching runtime version '$runtimeVersion' ReleaseVersion '$releaseVersion'"
 
-    @{
-        Version = $chocolateyCompatibleVersion
-        ComponentVersion = $componentVersion
-        URL32 = $exe32.url
-        URL64 = $exe64.url
-        ChecksumType32 = $exe32.hash | Get-GuesstimatedChecksumType
-        ChecksumType64 = $exe32.hash | Get-GuesstimatedChecksumType
-        Checksum32 = $exe32.hash
-        Checksum64 = $exe64.hash
-        ReleaseVersion = $releaseVersion
-        ReleaseNotes = $latestRelease.'release-notes'
-        RuntimeVersion = $runtimeVersion
+        @{
+            Version = $chocolateyCompatibleVersion
+            ComponentVersion = $componentVersion
+            URL32 = $exe32.url
+            URL64 = $exe64.url
+            ChecksumType32 = $exe32.hash | Get-GuesstimatedChecksumType
+            ChecksumType64 = $exe32.hash | Get-GuesstimatedChecksumType
+            Checksum32 = $exe32.hash
+            Checksum64 = $exe64.hash
+            ReleaseVersion = $releaseVersion
+            ReleaseNotes = $currentRelease.'release-notes'
+            RuntimeVersion = $runtimeVersion
+        }
     }
 }
 
@@ -729,6 +742,30 @@ function Add-DotNetSdkFeaturePackageFromTemplate
     Rename-Item -Path "$targetPackagePath\Update.template.ps1" -NewName 'Update.ps1'
 
     Write-Debug "Generated package $targetPackageName"
+}
+
+function Convert-DotNetUpdateInfoListToStreamInfo
+{
+    [CmdletBinding(PositionalBinding = $false)]
+    Param
+    (
+        [Parameter(Mandatory = $true)] [Collections.IDictionary[]] $UpdateInfo,
+        [scriptblock] $StreamNameFactory = { $_.ComponentVersion }
+    )
+
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    $ErrorActionPreference = 'Stop'
+
+    $streams = [ordered]@{}
+    $UpdateInfo `
+        | Sort-Object -Property { $_.Version } `
+        | ForEach-Object {
+            $streamName = $_ | ForEach-Object $StreamNameFactory
+            $streams.Add($streamName, $_)
+        }
+    @{
+        Streams = $streams
+    }
 }
 
 $script:DotNetCacheRootPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$PSScriptRoot\..\..\..\cache")
