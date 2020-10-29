@@ -873,7 +873,7 @@ function Convert-DotNetUpdateInfoListToStreamInfo
         | Sort-Object -Property { $_.Version } `
         | ForEach-Object {
             $streamName = $_ | ForEach-Object $StreamNameFactory
-            $streams.Add($streamName, $_)
+            $streams[$streamName] = $_
         }
     @{
         Streams = $streams
