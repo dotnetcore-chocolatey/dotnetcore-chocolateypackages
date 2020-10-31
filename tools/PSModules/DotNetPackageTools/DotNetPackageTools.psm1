@@ -809,15 +809,60 @@ function Add-DotNetSdkPackagesFromTemplate
     }
 }
 
+function Resolve-DotNetSdkFeaturePackageTemplate
+{
+    [CmdletBinding(PositionalBinding = $false)]
+    Param
+    (
+        [Parameter(Mandatory = $true)] [string] $Channel,
+        [Parameter(Mandatory = $true)] [ValidateRange(1, 999)] [int] $SdkFeatureNumber,
+        [string] $TemplatesPath = "$PSScriptRoot\..\..\..\templates"
+    )
+
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    $ErrorActionPreference = 'Stop'
+
+    Write-Debug "Looking for the most specific package template for SDK Channel ${Channel} SdkFeatureNumber ${SdkFeatureNumber}"
+
+    $channelSystemVersion = [version]$Channel
+    $candidates = @(
+        'dotnetcore-{0}.{1}-sdk-{2}xx'
+        'dotnetcore-{0}.{1}-sdk-Nxx'
+        'dotnetcore-{0}.Y-sdk-Nxx'
+        'dotnetcore-X.Y-sdk-Nxx'
+    )
+
+    $template = $null
+    foreach ($candidatePattern in $candidates)
+    {
+        $candidateTemplateName = $candidatePattern -f $channelSystemVersion.Major, $channelSystemVersion.Minor, $SdkFeatureNumber
+        Write-Debug "Trying: $candidateTemplateName"
+        $candidatePath = Join-Path -Path $TemplatesPath -ChildPath $candidateTemplateName
+        $template = Get-Item -Path $candidatePath -ErrorAction SilentlyContinue
+        if ($null -ne $template)
+        {
+            Write-Debug "Found package template for SDK Channel ${Channel} SdkFeatureNumber ${SdkFeatureNumber}: ${candidateTemplateName}"
+            break
+        }
+    }
+
+    if ($null -eq $template)
+    {
+        Write-Error "Unable to find any package template for SDK Channel ${Channel} SdkFeatureNumber ${SdkFeatureNumber}"
+        return $null
+    }
+
+    return $template
+}
+
 function Add-DotNetSdkFeaturePackageFromTemplate
 {
     [CmdletBinding(PositionalBinding = $false)]
     Param
     (
-        [switch] $IgnoreCache,
         [Parameter(Mandatory = $true)] [string] $Channel,
         [Parameter(Mandatory = $true)] [ValidateRange(1, 999)] [int] $SdkFeatureNumber,
-        [string] $TemplatePath = "$PSScriptRoot\..\..\..\templates\dotnetcore-X.Y-sdk-Nxx",
+        [string] $TemplatesPath = "$PSScriptRoot\..\..\..\templates",
         [string] $DestinationPath = "$PSScriptRoot\..\..\..",
         [switch] $Update
     )
@@ -837,7 +882,9 @@ function Add-DotNetSdkFeaturePackageFromTemplate
         }
     }
 
-    $templateName = (Get-Item -Path $TemplatePath).Name
+    $template = Resolve-DotNetSdkFeaturePackageTemplate -Channel $Channel -SdkFeatureNumber $SdkFeatureNumber -TemplatesPath $TemplatesPath
+    $templatePath = $template.FullName
+    $templateName = $template.Name
     Write-Debug "Generating package $targetPackageName from template $templateName"
 
     $nuspecContent = Get-Content -Path "$TemplatePath\$templateName.nuspec"
