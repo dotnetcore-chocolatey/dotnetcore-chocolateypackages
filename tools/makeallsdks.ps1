@@ -1,7 +1,7 @@
 $global:au_NoCheckChocoVersion = $true
 try
 {
-    Get-ChildItem -Path .\dotnet*-sdk-* -Directory | ForEach-Object {
+    Get-ChildItem -Path .\dotnet*-*-sdk* -Directory | ForEach-Object {
         Push-Location $_
         .\update.ps1 -AllVersionsAsStreams
         Pop-Location
