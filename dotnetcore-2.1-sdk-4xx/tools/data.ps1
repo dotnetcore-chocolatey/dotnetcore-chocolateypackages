@@ -7,4 +7,5 @@
     Checksum64 = ''
     ChecksumType64 = 'tbd'
     AdditionalArgumentsToInstaller = $null
+    SoftwareVersion = ''
 }

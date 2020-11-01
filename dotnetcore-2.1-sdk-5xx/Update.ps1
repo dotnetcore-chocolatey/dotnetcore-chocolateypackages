@@ -16,6 +16,7 @@ function global:au_SearchReplace {
             "(^\s*Url64\s*=\s*)('.*')"          = "`$1'$($Latest.URL64)'"
             "(^\s*Checksum64\s*=\s*)('.*')"     = "`$1'$($Latest.Checksum64)'"
             "(^\s*ChecksumType64\s*=\s*)('.*')" = "`$1'$($Latest.ChecksumType64)'"
+            "(^\s*SoftwareVersion\s*=\s*)('.*')" = "`$1'$($Latest.Version)'"
         }
         "$PSScriptRoot\$($Latest.PackageName).nuspec" = @{
             '\[.+Release\s+Notes\]\([^)]+\)' = '[{0} Release Notes]({1})' -f (Get-DotNetReleaseDescription -ReleaseVersion $Latest.ReleaseVersion), $Latest.ReleaseNotes

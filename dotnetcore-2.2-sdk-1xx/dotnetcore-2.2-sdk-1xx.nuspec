@@ -38,5 +38,6 @@ TBD
   <files>
     <file src="tools\*.ps1" target="tools" />
     <file src="..\tools\Shared\ChocolateyInstall-sdk.ps1" target="tools\ChocolateyInstall.ps1" />
+    <file src="..\tools\Shared\ChocolateyBeforeModify-sdk-2.x.ps1" target="tools\ChocolateyBeforeModify.ps1" />
   </files>
 </package>
