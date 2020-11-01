@@ -10,8 +10,9 @@ $packageArgs = @{
     validExitCodes = @(0, 3010, 1605, 1614, 1641)
 }
 
+# 2.0 has " - " between "SDK" and version, unlike all later releases
 # the bitness info is at the end, e.g. "(x64)"
-$softwareName  = "Microsoft .NET Core SDK $($data.SoftwareVersion) (*)"
+$softwareName  = "Microsoft .NET Core SDK* $($data.SoftwareVersion) (*)"
 [array]$keys = Get-UninstallRegistryKey -SoftwareName $softwareName `
     | Where-Object {
         # each SDK install has two entries, one "public", for the WiX Burn package, one hidden, for the underlying MSI

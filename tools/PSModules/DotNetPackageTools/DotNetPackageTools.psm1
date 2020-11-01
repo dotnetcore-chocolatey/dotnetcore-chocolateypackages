@@ -500,15 +500,47 @@ function Get-DotNetSdkUpdateInfo
     Write-Debug "Determining update info for SDK in channel '$Channel' and feature number $SdkFeatureNumber (IgnoreCache: $IgnoreCache)"
     $channelContent = Get-DotNetUpdateInfo -Channel $Channel -IgnoreCache:$IgnoreCache
 
-    <#
-    This versioning scheme is valid for 2.1 and later.
-    SDKs start at X.Y.100, with the exception of 2.1, where the first SDK is 2.1.300.
+    if ($Channel -eq '2.0')
+    {
+        <#
+        For 2.0, the versioning scheme described below was applied partway during the lifetime of that channel.
+        First SDK 2.0 feature update conforming with the new scheme was 2.1.100, which was the next SDK release
+        after SDK version 2.1.4. Earlier SDK feature updates seem to have been marked in the second version part.
+        This would give us this mapping from SdkFeatureNumber to version range:
+        1 => [2.0.0, 2.1.0)
+        2 => [2.1.0, 2.1.100)
+        3 => [2.1.100, 2.1.200)
+        4 => [2.1.200, 2.1.300) <-- last 2.0 SDK feature update
+        #>
+        switch ($SdkFeatureNumber)
+        {
+            1 {
+                $minVersionInclusive = [version]'2.0.0'
+                $maxVersionExclusive = [version]'2.1.0'
+            }
+            2 {
+                $minVersionInclusive = [version]'2.1.0'
+                $maxVersionExclusive = [version]'2.1.100'
+            }
+            default {
+                $minVersionInclusive = [version]"2.1.$($SdkFeatureNumber - 2)00"
+                $maxVersionExclusive = [version]"2.1.$($SdkFeatureNumber - 1)00"
+            }
+        }
+    }
+    else
+    {
+        <#
+        This versioning scheme is valid for 2.1 and later.
+        SDKs start at X.Y.100, with the exception of 2.1, where the first SDK is 2.1.300.
 
-    "If the SDK has 10 feature updates before a runtime feature update, version numbers roll into the 1000 series with numbers like 2.2.1000 as the feature release following 2.2.900. This situation isn't expected to occur."
-    https://docs.microsoft.com/en-us/dotnet/core/versions/#versioning-details
-    #>
-    $minVersionInclusive = [version]"${Channel}.${SdkFeatureNumber}00"
-    $maxVersionExclusive = [version]"${Channel}.$($SdkFeatureNumber + 1)00"
+        "If the SDK has 10 feature updates before a runtime feature update, version numbers roll into the 1000 series with numbers like 2.2.1000 as the feature release following 2.2.900. This situation isn't expected to occur."
+        https://docs.microsoft.com/en-us/dotnet/core/versions/#versioning-details
+        #>
+        $minVersionInclusive = [version]"${Channel}.${SdkFeatureNumber}00"
+        $maxVersionExclusive = [version]"${Channel}.$($SdkFeatureNumber + 1)00"
+    }
+
     Write-Debug "minVersionInclusive $minVersionInclusive maxVersionExclusive $maxVersionExclusive"
     $availableSdks = $channelContent.releases `
         | ForEach-Object {
@@ -761,7 +793,7 @@ function Add-DotNetSdkPackagesFromTemplate
         [switch] $IgnoreCache,
         [string] $TemplatePath = "$PSScriptRoot\..\..\..\templates\dotnetcore-X.Y-sdk-Nxx",
         [string] $DestinationPath = "$PSScriptRoot\..\..\..",
-        [version] $MinChannel = [version]'2.1',
+        [version] $MinChannel = [version]'2.0',
         [switch] $Update
     )
 
@@ -794,7 +826,25 @@ function Add-DotNetSdkPackagesFromTemplate
                 }
             } `
             | ForEach-Object { AU\Get-Version $_.version } `
-            | ForEach-Object { [int][Math]::Floor(($_.Version.Build) / 100) } `
+            | ForEach-Object {
+                $auv = $_
+                switch ($channel)
+                {
+                    '2.0' {
+                        if ($auv.Version.Build -ge 100)
+                        {
+                            [int][Math]::Floor(($auv.Version.Build) / 100) + 2
+                        }
+                        else
+                        {
+                            $auv.Version.Minor + 1
+                        }
+                    }
+                    default {
+                        [int][Math]::Floor(($auv.Version.Build) / 100)
+                    }
+                }
+            } `
             | Sort-Object -Unique
 
         Write-Debug "SDK feature numbers for channel ${channel}: $sdkFeatureNumbers"
@@ -870,6 +920,7 @@ function Add-DotNetSdkFeaturePackageFromTemplate
     Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
     $ErrorActionPreference = 'Stop'
 
+    # in 2.0, for simplicity, we also use the current naming scheme even though versions 2.1.1xx were actually feature update 3
     $targetPackageName = '{0}-sdk-{1}xx' -f (Get-DotNetPackagePrefix -Version $Channel -IncludeMajorMinor), $SdkFeatureNumber
     $targetPackageTitle = 'Microsoft {0} SDK feature update {1}' -f (Get-DotNetReleaseDescription -ReleaseVersion $Channel), $SdkFeatureNumber
     $targetPackagePath = Join-Path -Path $DestinationPath -ChildPath $targetPackageName
