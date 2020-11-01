@@ -568,23 +568,13 @@ function Get-DotNetSdkUpdateInfo
         } `
         | Sort-Object -Property SdkVersion -Descending
 
-    if ($AllVersions)
-    {
-        $sdks = $availableSdks
-    }
-    else
-    {
-        $latestSdk = $availableSdks | Select-Object -First 1
-        $sdks = @($latestSdk)
-    }
-
-    if (($sdks | Measure-Object).Count -eq 0)
+    if (($availableSdks | Measure-Object).Count -eq 0)
     {
         Write-Error "Could not find any SDK with SdkFeatureNumber ${SdkFeatureNumber} (.${SdkFeatureNumber}xx) for channel $Channel"
         return
     }
 
-    foreach ($sdkInfo in $sdks)
+    foreach ($sdkInfo in $availableSdks)
     {
         #$sdkInfo | ConvertTo-Json -Depth 100 | Write-Debug
         $currentRelease = $sdkInfo.Release
@@ -639,6 +629,11 @@ function Get-DotNetSdkUpdateInfo
             ReleaseVersion = $releaseVersion
             ReleaseNotes = $releaseNotes
             RuntimeVersion = $runtimeVersion
+        }
+
+        if (-not $AllVersions)
+        {
+            break
         }
     }
 }
