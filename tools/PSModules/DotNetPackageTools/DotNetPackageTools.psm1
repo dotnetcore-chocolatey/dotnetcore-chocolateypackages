@@ -840,7 +840,7 @@ function Add-DotNetSdkPackagesFromTemplate
     $ErrorActionPreference = 'Stop'
 
     $passThruArgs = $PSBoundParameters.PSObject.Copy()
-    $passThruArgs.Remove('MinChannel')
+    [void]$passThruArgs.Remove('MinChannel')
 
     Write-Debug "Adding missing SDK packages"
 
