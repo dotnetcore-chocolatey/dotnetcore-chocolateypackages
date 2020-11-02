@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>dotnet-sdk</id>
+    <version>0.0.0</version>
+    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-sdk</packageSourceUrl>
+    <owners>riezebosch,jberezanski</owners>
+    <title>Microsoft .NET SDK</title>
+    <authors>Microsoft</authors>
+    <projectUrl>https://dot.net/core</projectUrl>
+    <iconUrl>https://cdn.rawgit.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
+    <copyright>.NET Foundation and Contributors</copyright>
+    <licenseUrl>https://cdn.rawgit.com/dotnet/core/290743955c7dec3315e72da5dcd589b2bd177e71/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <docsUrl>https://docs.microsoft.com/dotnet</docsUrl>
+    <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
+    <tags>microsoft .net core runtime redistributable sdk</tags>
+    <summary>The SDK includes the runtime and command line tools for creating .NET applications.</summary>
+    <description>
+.NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
+
+The SDK includes the runtime and command line tools for creating .NET applications.
+
+This is a *metapackage*, which installs the latest release of .NET SDK across all versions.
+    </description>
+    <releaseNotes>
+##### Software
+[.NET 0.0 Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
+    </releaseNotes>
+    <!--
+##### Package
+TBD
+    -->
+    <dependencies>
+      <dependency id="dotnet-0.0-sdk" version="[0.0.0,0.0.0)" />
+    </dependencies>
+  </metadata>
+  <files>
+  </files>
+</package>
