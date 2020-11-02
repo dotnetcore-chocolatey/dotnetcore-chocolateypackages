@@ -14,7 +14,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <docsUrl>https://docs.microsoft.com/dotnet</docsUrl>
     <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
-    <tags>microsoft .net core runtime redistributable sdk</tags>
+    <tags>microsoft .net core runtime redistributable sdk cli admin</tags>
     <summary>The SDK includes the runtime and command line tools for creating .NET applications.</summary>
     <description>
 .NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
