@@ -42,5 +42,6 @@ This package version installs ASP.NET Core Module version 0.0.0.0.
   </metadata>
   <files>
     <file src="tools\*.ps1" target="tools" />
+    <file src="..\tools\Shared\ChocolateyInstall-aspnetcoremodule.ps1" target="tools\ChocolateyInstall.ps1" />
   </files>
 </package>
