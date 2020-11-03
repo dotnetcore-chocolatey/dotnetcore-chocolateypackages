@@ -19,6 +19,7 @@ function global:au_SearchReplace {
         }
         "$PSScriptRoot\$($Latest.PackageName).nuspec" = @{
             '\[.+Release\s+Notes\]\([^)]+\)' = '[{0} Release Notes]({1})' -f (Get-DotNetReleaseDescription -ReleaseVersion $Latest.ReleaseVersion), $Latest.ReleaseNotes
+            '(?<=creating\s)\.NET(\sCore)?(?=\sapplications)' = (Get-DotNetProductTitle -Version $Latest.ReleaseVersion)
         }
     }
 }
