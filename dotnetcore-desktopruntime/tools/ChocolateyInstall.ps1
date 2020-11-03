@@ -15,18 +15,13 @@ function Test-QuietRequested
 
 function Test-OsSupports32Bit
 {
-    $getWindowsFeature = Get-Command -Name 'Get-WindowsFeature' -Module 'ServerManager' -ErrorAction 'SilentlyContinue'
-    if ($getWindowsFeature -eq $null) {
-        Write-Debug 'Get-WindowsFeature command not found, assuming client/legacy OS and 32-bit support always present'
-        return $true
-    }
-    $wow64 = Get-WindowsFeature -Name 'WoW64-Support' -ErrorAction 'SilentlyContinue'
+    $wow64 = Get-WindowsOptionalFeature -Online -FeatureName 'ServerCore-WOW64' -ErrorAction 'SilentlyContinue'
     if ($wow64 -eq $null) {
-        Write-Debug 'WoW64-Support feature not found, assuming legacy OS and 32-bit support always present'
+        Write-Debug 'ServerCore-WOW64 feature not found, assuming client or legacy server OS and 32-bit support always present'
         return $true
     }
-    Write-Debug "WoW64-Support feature is installed: $($wow64.Installed)"
-    return $wow64.Installed
+    Write-Debug "ServerCore-WOW64 feature state is: $($wow64.State)"
+    return ($wow64.State -eq 'Enabled')
 }
 
 function Get-PassiveOrQuietArgument
@@ -52,6 +47,7 @@ if (Get-ProcessorBits -eq 64) {
             $shouldInstall32Bit = $true
         } else {
             Write-Host 'Installation of 32-bit version will be skipped because the WOW64 subsystem is not installed.'
+            Write-Warning 'Because of a limitation of the .NET Core installer, even the 64-bit version will probably fail to install (https://github.com/dotnet/runtime/issues/3087).'
         }
     } else {
         Write-Host 'Installation of 32-bit version will be skipped, as requested by package parameters.'
