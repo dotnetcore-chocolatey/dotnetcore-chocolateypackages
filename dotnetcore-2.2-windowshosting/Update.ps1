@@ -12,16 +12,22 @@ function global:au_SearchReplace {
             '\[.+Release\s+Notes\]\([^)]+\)' = '[{0} Release Notes]({1})' -f (Get-DotNetReleaseDescription -ReleaseVersion $Latest.ReleaseVersion), $Latest.ReleaseNotes
             'id\=\"dotnet\w*-\d+\.\d+-runtime\"\s+version\=\"[^"]+\"' = 'id="{0}-runtime" version="{1}"' -f (Get-DotNetPackagePrefix -Version $Latest.ReleaseVersion -IncludeMajorMinor), $Latest.DepBase
             'id\=\"dotnet\w*-\d+\.\d+-aspnetruntime\"\s+version\=\"[^"]+\"' = 'id="{0}-aspnetruntime" version="{1}"' -f (Get-DotNetPackagePrefix -Version $Latest.ReleaseVersion -IncludeMajorMinor), $Latest.DepAspNet
-            'id\=\"dotnet-aspnetcoremodule-v2\"\s+version\=\"[^"]+\"' = 'id="dotnet-aspnetcoremodule-v2" version="{0}"' -f $Latest.DepAncm
+            'id\=\"dotnet-aspnetcoremodule-v\d+\"\s+version\=\"[^"]+\"' = 'id="{0}" version="{1}"' -f $Latest.AncmId, $Latest.DepAncm
         }
     }
 }
 
 function global:au_GetLatest {
-    $chunks = $Latest.PackageName -split '-'
-    $rtBase = Get-DotNetRuntimeComponentUpdateInfo -Channel $chunks[1] -Component 'Runtime' -AllVersions:$AllVersionsAsStreams
-    $rtAsp = Get-DotNetRuntimeComponentUpdateInfo -Channel $chunks[1] -Component 'AspNetRuntime' -AllVersions:$AllVersionsAsStreams
-    $ancm = Get-DotNetRuntimeComponentUpdateInfo -Channel $chunks[1] -Component 'AspNetCoreModuleV2' -AllVersions:$AllVersionsAsStreams
+    $channel = ($Latest.PackageName -split '-')[1]
+    switch ($channel)
+    {
+        '2.1' { $ancmName = 'AspNetCoreModuleV1'; $ancmId = 'dotnet-aspnetcoremodule-v1' }
+        default { $ancmName = 'AspNetCoreModuleV2'; $ancmId = 'dotnet-aspnetcoremodule-v2' }
+    }
+
+    $rtBase = Get-DotNetRuntimeComponentUpdateInfo -Channel $channel -Component 'Runtime' -AllVersions:$AllVersionsAsStreams
+    $rtAsp = Get-DotNetRuntimeComponentUpdateInfo -Channel $channel -Component 'AspNetRuntime' -AllVersions:$AllVersionsAsStreams
+    $ancm = Get-DotNetRuntimeComponentUpdateInfo -Channel $channel -Component $ancmName -AllVersions:$AllVersionsAsStreams
     if ($AllVersionsAsStreams)
     {
         $aspLookup = @{}
@@ -56,6 +62,7 @@ function global:au_GetLatest {
                 DepBase = Get-DotNetDependencyVersionRange -Boundary Patch -BaseVersion $thisRtBase.Version
                 DepAspNet = Get-DotNetDependencyVersionRange -Boundary Patch -BaseVersion $thisRtAsp.Version
                 DepAncm = Get-DotNetDependencyVersionRange -Boundary Patch -BaseVersion $thisAncm.Version
+                AncmId = $ancmId
             }
 
             $result.Streams.Add($thisRtBase.ReleaseVersion, $thisInfo)
@@ -70,6 +77,7 @@ function global:au_GetLatest {
             DepBase = Get-DotNetDependencyVersionRange -Boundary Patch -BaseVersion $rtBase.Version
             DepAspNet = Get-DotNetDependencyVersionRange -Boundary Patch -BaseVersion $rtAsp.Version
             DepAncm = Get-DotNetDependencyVersionRange -Boundary Patch -BaseVersion $ancm.Version
+            AncmId = $ancmId
         }
     }
 
