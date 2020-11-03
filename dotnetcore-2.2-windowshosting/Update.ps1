@@ -84,4 +84,4 @@ function global:au_GetLatest {
     return $result
 }
 
-if ($MyInvocation.InvocationName -ne '.') { update -ChecksumFor none }
+if ($MyInvocation.InvocationName -ne '.') { update -ChecksumFor none -NoCheckUrl }
