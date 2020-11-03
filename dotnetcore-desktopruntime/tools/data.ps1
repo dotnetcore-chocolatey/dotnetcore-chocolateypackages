@@ -1,6 +1,5 @@
 ﻿@{
-    PackageName = 'dotnetcore-desktop-runtime.install'
-    Version = '3.1.9'
+    PackageName = 'dotnetcore-desktopruntime'
     Url = 'https://download.visualstudio.microsoft.com/download/pr/1419cd1f-64ac-44c7-bfe0-937fd5e5f39a/e72ec98df78dfbb3a5bbf35b66cb7c15/windowsdesktop-runtime-3.1.9-win-x86.exe'
     Checksum = '9936845c7c9c0d9e8fc961ee718c8df224fa17047836afe1ee370eb43dea3089b234d7b7c17c08e22bb68691dfad09476b61a154c24e4205db92692ef8ce0a86'
     ChecksumType = 'sha512'

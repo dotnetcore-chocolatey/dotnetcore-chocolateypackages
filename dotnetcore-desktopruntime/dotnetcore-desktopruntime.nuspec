@@ -37,8 +37,9 @@ Example: cinst -y --params="Quiet Skip32Bit" dotnetcore-runtime.install
 Both 64-bit and 32-bit package stores are now installed on 64-bit systems (except for Server systems with the WoW64 subsystem removed).
     </releaseNotes>
     <dependencies>
-		<dependency id="chocolatey-core.extension" version="1.1.0" />
-		<dependency id="vcredist2015" version="14.0.24215.20170201" />
+      <dependency id="chocolatey-core.extension" version="1.1.0" />
+      <dependency id="vcredist2015" version="14.0.24215.20170201" />
+      <dependency id="KB2533623" version="1.0.1" />
     </dependencies>
   </metadata>
   <files>

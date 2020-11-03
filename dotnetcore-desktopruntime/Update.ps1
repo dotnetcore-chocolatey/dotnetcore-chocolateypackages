@@ -16,10 +16,10 @@ function EntryToData($channel) {
     $result = (Invoke-WebRequest -Uri $url -UseBasicParsing | ConvertFrom-Json)
 
     $version = $result."latest-runtime"
-    $latest = $result.releases | ?{ $_.runtime.version -eq $version } | select -First 1
+    $latest = $result.releases | ?{ $_.windowsdesktop.version -eq $version } | select -First 1
     
-    $exe64 = $latest.runtime.files | ?{ $_.name -like 'dotnet*win-x64.exe' }
-    $exe32 = $latest.runtime.files | ?{ $_.name -like 'dotnet*win-x86.exe' }
+    $exe64 = $latest.windowsdesktop.files | ?{ $_.name -like 'windowsdesktop-runtime*win-x64.exe' }
+    $exe32 = $latest.windowsdesktop.files | ?{ $_.name -like 'windowsdesktop-runtime*win-x86.exe' }
 
     @{ 
         Version = $version;
