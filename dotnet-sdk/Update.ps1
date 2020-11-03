@@ -1,3 +1,8 @@
+Param
+(
+    [switch] $AllVersionsAsStreams
+)
+
 Import-Module au
 Import-Module "$PSScriptRoot\..\tools\PSModules\DotNetPackageTools\DotNetPackageTools.psm1"
 
@@ -25,11 +30,21 @@ function global:au_GetLatest {
             continue
         }
 
-        $latestSdkInfo = Get-DotNetSdkUpdateInfo -Channel $channel -AnyFeatureNumber
-        $latestInfo.Streams.Add($channel, $latestSdkInfo)
+        $infosForChannel = Get-DotNetSdkUpdateInfo -Channel $channel -AnyFeatureNumber -AllVersions:$AllVersionsAsStreams
+        if ($AllVersionsAsStreams)
+        {
+            foreach ($currentInfo in $infosForChannel)
+            {
+                $latestInfo.Streams.Add($currentInfo.ReleaseVersion, $currentInfo)
+            }
+        }
+        else
+        {
+            $latestInfo.Streams.Add($channel, $infosForChannel)
+        }
     }
 
-    $latestInfo
+    return $latestInfo
 }
 
 if ($MyInvocation.InvocationName -ne '.') { update -ChecksumFor none -NoCheckUrl }
