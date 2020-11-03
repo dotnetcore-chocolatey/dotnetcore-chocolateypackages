@@ -15,8 +15,13 @@ function Test-PassiveRequested
 
 function Test-OsSupports32Bit
 {
+    $cmdGetWindowsOptionalFeature = Get-Command -Name 'Get-WindowsOptionalFeature' -ErrorAction 'SilentlyContinue'
+    if ($null -eq $cmdGetWindowsOptionalFeature) {
+        Write-Debug 'Get-WindowsOptionalFeature command not found, assuming legacy OS and 32-bit support always present'
+        return $true
+    }
     $wow64 = Get-WindowsOptionalFeature -Online -FeatureName 'ServerCore-WOW64' -ErrorAction 'SilentlyContinue'
-    if ($wow64 -eq $null) {
+    if ($null -eq $wow64) {
         Write-Debug 'ServerCore-WOW64 feature not found, assuming client or legacy server OS and 32-bit support always present'
         return $true
     }
