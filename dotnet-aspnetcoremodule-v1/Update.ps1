@@ -1,3 +1,8 @@
+Param
+(
+    [switch] $AllVersionsAsStreams
+)
+
 Import-Module au
 Import-Module "$PSScriptRoot\..\tools\PSModules\DotNetPackageTools\DotNetPackageTools.psm1"
 
@@ -20,13 +25,34 @@ function global:au_SearchReplace {
 }
 
 function global:au_GetLatest {
-    @{
+    $latestInfo = @{
         Streams = [ordered] @{
-            # 2.0 and earlier releases.json does not provide ANCM version
-            '2.1' = Get-DotNetRuntimeComponentUpdateInfo -Component 'AspNetCoreModuleV1' -Channel '2.1'
-            '2.2' = Get-DotNetRuntimeComponentUpdateInfo -Component 'AspNetCoreModuleV1' -Channel '2.2'
         }
     }
+
+    $channels = @(
+        # 2.0 and earlier releases.json does not provide ANCM version
+        '2.1'
+        '2.2'
+    )
+
+    foreach ($channel in $channels)
+    {
+        $infosForChannel = Get-DotNetRuntimeComponentUpdateInfo -Channel $channel -Component 'AspNetCoreModuleV1' -AllVersions:$AllVersionsAsStreams
+        if ($AllVersionsAsStreams)
+        {
+            foreach ($currentInfo in $infosForChannel)
+            {
+                $latestInfo.Streams.Add($currentInfo.ReleaseVersion, $currentInfo)
+            }
+        }
+        else
+        {
+            $latestInfo.Streams.Add($channel, $infosForChannel)
+        }
+    }
+
+    return $latestInfo
 }
 
 if ($MyInvocation.InvocationName -ne '.') { update -ChecksumFor none }

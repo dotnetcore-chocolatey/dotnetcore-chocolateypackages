@@ -1,3 +1,8 @@
+Param
+(
+    [switch] $AllVersionsAsStreams
+)
+
 Import-Module au
 Import-Module "$PSScriptRoot\..\tools\PSModules\DotNetPackageTools\DotNetPackageTools.psm1"
 
@@ -20,14 +25,33 @@ function global:au_SearchReplace {
 }
 
 function global:au_GetLatest {
-    @{
+    $latestInfo = @{
         Streams = [ordered] @{
-            '5.0' = Get-DotNetRuntimeComponentUpdateInfo -Component 'AspNetCoreModuleV2' -Channel '5.0'
-            '3.1' = Get-DotNetRuntimeComponentUpdateInfo -Component 'AspNetCoreModuleV2' -Channel '3.1'
-            '3.0' = Get-DotNetRuntimeComponentUpdateInfo -Component 'AspNetCoreModuleV2' -Channel '3.0'
-            '2.2' = Get-DotNetRuntimeComponentUpdateInfo -Component 'AspNetCoreModuleV2' -Channel '2.2'
         }
     }
+
+    foreach ($channel in (Get-DotNetReleasesIndex).ReleasesIndex.Keys)
+    {
+        if ([version]$channel -lt [version]'2.2')
+        {
+            continue
+        }
+
+        $infosForChannel = Get-DotNetRuntimeComponentUpdateInfo -Channel $channel -Component 'AspNetCoreModuleV2' -AllVersions:$AllVersionsAsStreams
+        if ($AllVersionsAsStreams)
+        {
+            foreach ($currentInfo in $infosForChannel)
+            {
+                $latestInfo.Streams.Add($currentInfo.ReleaseVersion, $currentInfo)
+            }
+        }
+        else
+        {
+            $latestInfo.Streams.Add($channel, $infosForChannel)
+        }
+    }
+
+    return $latestInfo
 }
 
 if ($MyInvocation.InvocationName -ne '.') { update -ChecksumFor none }

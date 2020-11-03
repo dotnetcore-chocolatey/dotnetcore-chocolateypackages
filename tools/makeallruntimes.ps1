@@ -7,7 +7,7 @@ try
         '.\dotnet*-*-runtime'
         '.\aspnetcore*-*-runtimepackagestore'
         #'.\dotnet*-*-windowshosting' # not ready yet
-        #'.\dotnet-aspnetcoremodule-*' # not ready yet
+        '.\dotnet-aspnetcoremodule-*'
     )
     Get-ChildItem -Path $paths -Directory | ForEach-Object {
         Push-Location $_
