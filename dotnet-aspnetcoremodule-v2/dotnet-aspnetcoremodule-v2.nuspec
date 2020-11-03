@@ -25,7 +25,7 @@ The native installer is instructed to skip installing the .NET Core Runtime (`OP
 
 The package supports the following parameters (--package-parameters, --params):
 
-- `Quiet` - suppress display of native installer progress window (may be needed on Server Core)
+- `Passive` - display native installer progress window (may not work on Server Core)
 - `IgnoreMissingIIS` - allow package installation even if IIS is not present (probably useless, as the native installer will not install anything)
 
 Example: cinst -y --params="Quiet IgnoreMissingIIS" dotnet-aspnetcoremodule-v2

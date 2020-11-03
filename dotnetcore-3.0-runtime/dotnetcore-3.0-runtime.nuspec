@@ -25,10 +25,10 @@ This package is required to run console applications with the .NET Core runtime.
 
 The package supports the following parameters (--package-parameters, --params):
 
-- `Quiet` - suppress display of native installer progress window (may be needed on Server Core)
+- `Passive` - display native installer progress window (may not work on Server Core)
 - `Skip32Bit` - do not install the 32-bit runtime on a 64-bit system
 
-Example: cinst -y --params="Quiet Skip32Bit" dotnetcore-runtime.install
+Example: cinst -y --params="Passive Skip32Bit" dotnetcore-runtime.install
     </description>
     <releaseNotes>
 ##### Software

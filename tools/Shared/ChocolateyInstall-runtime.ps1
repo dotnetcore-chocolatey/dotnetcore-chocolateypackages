@@ -8,9 +8,9 @@ function Test-Skip32BitRequested
     return $Env:chocolateyPackageParameters -like '*Skip32Bit*'
 }
 
-function Test-QuietRequested
+function Test-PassiveRequested
 {
-    return $Env:chocolateyPackageParameters -like '*Quiet*'
+    return $Env:chocolateyPackageParameters -like '*Passive*'
 }
 
 function Test-OsSupports32Bit
@@ -30,12 +30,12 @@ function Get-PassiveOrQuietArgument
     Param (
         [string] $Scenario = 'installation'
     )
-    if (Test-QuietRequested) {
-        Write-Verbose "Performing a quiet $Scenario, as requested."
-        $passiveOrQuiet = 'quiet'
-    } else {
-        Write-Verbose "Performing an $Scenario with visible progress window (default)."
+    if (Test-PassiveRequested) {
+        Write-Verbose "Performing an $Scenario with visible progress window, as requested."
         $passiveOrQuiet = 'passive'
+    } else {
+        Write-Verbose "Performing a quiet $Scenario (default)."
+        $passiveOrQuiet = 'quiet'
     }
     return $passiveOrQuiet
 }
