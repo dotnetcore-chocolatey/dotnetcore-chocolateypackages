@@ -57,7 +57,7 @@ if (Get-ProcessorBits -eq 64) {
 $passiveOrQuiet = Get-PassiveOrQuietArgument -Scenario 'installation'
 $arguments = @{
     packageName = $data.PackageName
-    silentArgs = "$($data.AdditionalArgumentsToInstaller) /install /$passiveOrQuiet /norestart /log ""${Env:TEMP}\$($data.PackageName).log"""
+    silentArgs = "$($data.AdditionalArgumentsToInstaller) /install /$passiveOrQuiet /norestart /log ""${Env:TEMP}\$($data.PackageName)-$(Get-Date -Format 'yyyyMMddHHmmss').log"""
     validExitCodes = @(
         0, # success
         3010 # success, restart required

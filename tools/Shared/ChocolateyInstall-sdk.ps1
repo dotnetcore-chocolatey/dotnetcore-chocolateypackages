@@ -5,7 +5,7 @@ $data = & (Join-Path -Path (Split-Path -Path $MyInvocation.MyCommand.Path) -Chil
 
 $arguments = @{
     packageName = $data.PackageName
-    silentArgs = "$($data.AdditionalArgumentsToInstaller) /install /quiet /norestart /log ""${Env:TEMP}\$($data.PackageName).log"""
+    silentArgs = "$($data.AdditionalArgumentsToInstaller) /install /quiet /norestart /log ""${Env:TEMP}\$($data.PackageName)-$(Get-Date -Format 'yyyyMMddHHmmss').log"""
     validExitCodes = @(
         0, # success
         3010 # success, restart required

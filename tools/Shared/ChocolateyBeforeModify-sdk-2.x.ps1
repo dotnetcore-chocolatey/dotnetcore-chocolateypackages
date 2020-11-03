@@ -6,7 +6,7 @@ $data = & (Join-Path -Path (Split-Path -Path $MyInvocation.MyCommand.Path) -Chil
 $packageArgs = @{
     packageName    = $env:ChocolateyPackageName
     fileType       = 'EXE'
-    silentArgs     = "/uninstall /quiet"
+    silentArgs     = "/uninstall /quiet /log ""${Env:TEMP}\$($data.PackageName)-$(Get-Date -Format 'yyyyMMddHHmmss').log"""
     validExitCodes = @(0, 3010, 1605, 1614, 1641)
 }
 
