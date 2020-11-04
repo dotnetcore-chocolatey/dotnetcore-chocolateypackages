@@ -50,9 +50,9 @@ function Ensure-IisInstalled
     }
 }
 
-function Test-QuietRequested
+function Test-PassiveRequested
 {
-    return $Env:chocolateyPackageParameters -like '*Quiet*'
+    return $Env:chocolateyPackageParameters -like '*Passive*'
 }
 
 function Get-PassiveOrQuietArgument
@@ -61,12 +61,12 @@ function Get-PassiveOrQuietArgument
     Param (
         [string] $Scenario = 'installation'
     )
-    if (Test-QuietRequested) {
-        Write-Verbose "Performing a quiet $Scenario, as requested."
-        $passiveOrQuiet = 'quiet'
-    } else {
-        Write-Verbose "Performing an $Scenario with visible progress window (default)."
+    if (Test-PassiveRequested) {
+        Write-Verbose "Performing an $Scenario with visible progress window, as requested."
         $passiveOrQuiet = 'passive'
+    } else {
+        Write-Verbose "Performing a quiet $Scenario (default)."
+        $passiveOrQuiet = 'quiet'
     }
     return $passiveOrQuiet
 }
@@ -76,7 +76,7 @@ Ensure-IisInstalled
 $passiveOrQuiet = Get-PassiveOrQuietArgument -Scenario 'installation'
 $arguments = @{
     packageName = $data.PackageName
-    silentArgs = "$($data.AdditionalArgumentsToInstaller) /install /$passiveOrQuiet /norestart /log ""${Env:TEMP}\$($data.PackageName).log"""
+    silentArgs = "$($data.AdditionalArgumentsToInstaller) /install /$passiveOrQuiet /norestart /log ""${Env:TEMP}\$($data.PackageName)-$(Get-Date -Format 'yyyyMMddHHmmss').log"""
     validExitCodes = @(
         0, # success
         3010 # success, restart required
