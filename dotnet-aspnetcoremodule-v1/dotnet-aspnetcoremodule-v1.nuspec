@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>dotnet-aspnetcoremodule-v1</id>
+    <version>0.0.0</version>
+    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-aspnetcoremodule-v1</packageSourceUrl>
+    <owners>jberezanski,riezebosch</owners>
+    <title>Microsoft ASP.NET Core Module V1</title>
+    <authors>Microsoft</authors>
+    <projectUrl>https://dot.net/core</projectUrl>
+    <iconUrl>https://cdn.rawgit.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
+    <copyright>.NET Foundation and Contributors</copyright>
+    <licenseUrl>https://cdn.rawgit.com/aspnet/Home/1f8898d3a153855e5057e7641ed0c1a5443afeac/LICENSE.txt</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <docsUrl>https://docs.microsoft.com/dotnet</docsUrl>
+    <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
+    <tags>microsoft .net core runtime redistributable asp.net module ancm iis admin</tags>
+    <summary>This package installs the ASP.NET Core Module for IIS, enabling hosting of ASP.NET Core applications.</summary>
+    <description>
+.NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
+
+This package installs the ASP.NET Core Module for IIS, enabling running of ASP.NET Core applications. IIS must be enabled prior to installing this package. ASP.NET Core does not use any managed IIS modules, so no ASP.NET IIS features need to be enabled.
+
+The native installer is instructed to skip installing the .NET Core Runtime (`OPT_NO_RUNTIME=1`) and the ASP.NET Core Runtime and Shared Framework (`OPT_NO_SHAREDFX=1`). The packages [dotnetcore-runtime](https://chocolatey.org/packages/dotnetcore-runtime) and [dotnetcore-aspnetruntime](https://chocolatey.org/packages/dotnetcore-aspnetruntime) should be used to install these runtimes when hosting ["portable"](https://docs.microsoft.com/en-us/dotnet/articles/core/deploying/index) ASP.NET Core applications (which use the machine-wide runtime). Hosting of ["self-contained"](https://docs.microsoft.com/en-us/dotnet/articles/core/deploying/index) ASP.NET Core applications does not require the runtime to be installed, because those applications include the desired runtime as part of their binaries.
+
+The package supports the following parameters (--package-parameters, --params):
+
+- `Passive` - display native installer progress window (may not work on Server Core)
+- `IgnoreMissingIIS` - allow package installation even if IIS is not present (probably useless, as the native installer will not install anything)
+
+Example: cinst -y --params="Quiet IgnoreMissingIIS" dotnet-aspnetcoremodule-v1
+</description>
+    <releaseNotes>
+##### Software
+[.NET Core 0.0 Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
+##### Package
+This package version installs ASP.NET Core Module version 0.0.0.0.
+    </releaseNotes>
+    <dependencies>
+      <dependency id="chocolatey-core.extension" version="1.1.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\*.ps1" target="tools" />
+    <file src="..\tools\Shared\ChocolateyInstall-aspnetcoremodule.ps1" target="tools\ChocolateyInstall.ps1" />
+  </files>
+</package>

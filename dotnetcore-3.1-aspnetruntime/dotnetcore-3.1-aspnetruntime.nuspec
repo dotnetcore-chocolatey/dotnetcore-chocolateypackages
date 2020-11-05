@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>dotnetcore-3.1-aspnetruntime</id>
+    <version>0.0.0</version>
+    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-3.1-aspnetruntime</packageSourceUrl>
+    <owners>jberezanski,riezebosch</owners>
+    <title>Microsoft ASP.NET Core Runtime and Shared Framework</title>
+    <authors>Microsoft</authors>
+    <projectUrl>https://dot.net/core</projectUrl>
+    <iconUrl>https://cdn.rawgit.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
+    <copyright>.NET Foundation and Contributors</copyright>
+    <licenseUrl>https://cdn.rawgit.com/dotnet/core/290743955c7dec3315e72da5dcd589b2bd177e71/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <docsUrl>https://docs.microsoft.com/dotnet</docsUrl>
+    <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
+    <tags>microsoft .net core runtime redistributable asp.net admin</tags>
+    <summary>The ASP.NET Core Runtime enables you to run existing web/server applications.</summary>
+    <description>
+.NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
+
+The ASP.NET Core Runtime (Microsoft.AspNetCore.App) enables you to run existing web/server applications.
+
+.NET Core supports Windows 7 SP1 / Server 2008 R2 or later. On Windows 7 / Server 2008 R2, [security update KB2533623](https://support.microsoft.com/en-us/kb/2533623) must be installed, according to [documented system requirements](https://github.com/dotnet/core/blob/master/Documentation/prereqs.md).
+
+The package supports the following parameters (--package-parameters, --params):
+
+- `Passive` - display native installer progress window (may not work on Server Core)
+- `Skip32Bit` - do not install the 32-bit runtime on a 64-bit system
+
+Example: cinst -y --params="Passive Skip32Bit" dotnetcore-runtime.install
+    </description>
+    <releaseNotes>
+##### Software
+[.NET Core 0.0 Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
+    </releaseNotes>
+    <!--
+##### Package
+TBD
+    -->
+    <dependencies>
+      <dependency id="chocolatey-core.extension" version="1.1.0" />
+      <dependency id="vcredist2015" version="14.0.24215.20170201" />
+      <dependency id="KB2533623" version="1.0.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\*.ps1" target="tools" />
+    <file src="..\tools\Shared\ChocolateyInstall-runtime.ps1" target="tools\ChocolateyInstall.ps1" />
+  </files>
+</package>

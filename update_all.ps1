@@ -107,6 +107,11 @@ $Options = [ordered]@{
     }
 }
 
+Get-ChildItem -Path $Root -Directory | Join-Path -ChildPath 'beforeall.ps1' | Get-Item -ErrorAction SilentlyContinue | ForEach-Object {
+    Write-Host "Running beforeall script in $(Split-Path -Leaf -Path $_.Directory)"
+    & $_
+}
+
 if ($ForcedPackages) { Write-Host "FORCED PACKAGES: $ForcedPackages" }
 $global:au_Root         = $Root          #Path to the AU packages
 $global:au_GalleryUrl   = ''             #URL to package gallery, leave empty for Chocolatey Gallery
