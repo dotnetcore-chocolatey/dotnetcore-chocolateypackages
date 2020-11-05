@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-5.0-runtime</id>
-    <version>0.0.0</version>
+    <version>5.0.0-rc2204755</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-5.0-runtime</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET Runtime</title>
@@ -32,7 +32,7 @@ Example: cinst -y --params="Passive Skip32Bit" dotnetcore-runtime.install
     </description>
     <releaseNotes>
 ##### Software
-[.NET 0.0 Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
+[.NET 5.0.0-rc.2 Release Notes](https://github.com/dotnet/core/blob/master/release-notes/5.0/preview/5.0.0-rc.2.md)
     </releaseNotes>
     <!--
 ##### Package
