@@ -37,7 +37,7 @@ function Ensure-IisInstalled
     if (-not $iisInstalled) {
         $ignoreMissingIisKeyword = 'IgnoreMissingIIS'
         if ($Env:chocolateyPackageParameters -notlike "*$ignoreMissingIisKeyword*") {
-            throw "IIS is not installed. Install at least one of them before installing this package, or pass '$ignoreMissingIisKeyword' as package parameter to force the installation anyway."
+            throw "IIS is not installed. Install at least one of IIS components, such as IIS-StaticContent, before installing this package, or pass '$ignoreMissingIisKeyword' as package parameter to force the installation anyway."
         } else {
             Write-Warning "IIS is not installed, but proceeding with the installation because '$ignoreMissingIisKeyword' was passed as package parameter."
         }
