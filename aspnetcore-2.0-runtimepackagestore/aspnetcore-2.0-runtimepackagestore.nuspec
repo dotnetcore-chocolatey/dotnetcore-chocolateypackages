@@ -5,7 +5,7 @@
     <version>2.0.9</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/aspnetcore-2.0-runtimepackagestore</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
-    <title>Microsoft ASP.NET Core Runtime Package Store</title>
+    <title>Microsoft ASP.NET Core 2.0 Runtime Package Store</title>
     <authors>Microsoft</authors>
     <projectUrl>https://dot.net/core</projectUrl>
     <iconUrl>https://cdn.rawgit.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
