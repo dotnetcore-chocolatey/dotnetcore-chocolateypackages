@@ -38,4 +38,6 @@ TBD
       <dependency id="dotnet-aspnetcoremodule-v2" version="[13.1.20268,13.1.20269)" />
     </dependencies>
   </metadata>
+  <files>
+  </files>
 </package>
