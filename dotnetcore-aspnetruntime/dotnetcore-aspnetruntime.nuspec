@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>dotnetcore-aspnetruntime</id>
+    <version>0.0.0</version>
+    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-aspnetruntime</packageSourceUrl>
+    <owners>riezebosch,jberezanski</owners>
+    <title>Microsoft ASP.NET Core Runtime and Shared Framework</title>
+    <authors>Microsoft</authors>
+    <projectUrl>https://dot.net/core</projectUrl>
+    <iconUrl>https://cdn.rawgit.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
+    <copyright>.NET Foundation and Contributors</copyright>
+    <licenseUrl>https://cdn.rawgit.com/dotnet/core/290743955c7dec3315e72da5dcd589b2bd177e71/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <docsUrl>https://docs.microsoft.com/dotnet</docsUrl>
+    <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
+    <tags>microsoft .net core runtime redistributable asp.net admin</tags>
+    <summary>The ASP.NET Core Runtime enables you to run existing web/server applications.</summary>
+    <description>
+.NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
+
+The ASP.NET Core Runtime enables you to run existing web/server applications.
+
+This is a *metapackage*, which installs the latest release of ASP.NET Core Runtime across all versions.
+    </description>
+    <releaseNotes>
+##### Software
+[.NET Core 0.0.0 Release Notes](tbd)
+    </releaseNotes>
+    <!--
+##### Package
+TBD
+    -->
+    <dependencies>
+      <dependency id="dotnet-0.0-aspnetruntime" version="[0.0.0,0.0.0)" />
+    </dependencies>
+  </metadata>
+  <files>
+  </files>
+</package>
