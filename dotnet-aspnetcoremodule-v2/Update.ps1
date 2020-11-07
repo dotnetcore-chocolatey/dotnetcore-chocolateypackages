@@ -30,7 +30,7 @@ function global:au_GetLatest {
         }
     }
 
-    foreach ($channel in (Get-DotNetReleasesIndex).ReleasesIndex.Keys)
+    foreach ($channel in (Get-DotNetChannels))
     {
         if ([version]$channel -lt [version]'2.2')
         {

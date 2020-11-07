@@ -22,7 +22,7 @@ function global:au_GetLatest {
         }
     }
 
-    foreach ($channel in (Get-DotNetReleasesIndex).ReleasesIndex.Keys)
+    foreach ($channel in (Get-DotNetChannels))
     {
         if (($chunks[0] -eq 'dotnet' -and [version]$channel -lt [version]'5.0') `
             -or ($chunks[0] -eq 'dotnetcore' -and [version]$channel -ge [version]'5.0') `

@@ -154,6 +154,26 @@ function Get-DotNetReleasesIndex
     return $info
 }
 
+function Get-DotNetChannels
+{
+    [CmdletBinding(PositionalBinding = $false)]
+    Param
+    (
+        [switch] $IgnoreCache
+    )
+
+    Get-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
+    $ErrorActionPreference = 'Stop'
+
+    $channels = (Get-DotNetReleasesIndex).ReleasesIndex.Keys
+
+    # Descending sort is chosen deliberately to help packages which generate AU streams by iterating over channel list.
+    # AU processes streams in reverse order, the last processed stream decides what remains in nuspec in repo,
+    # and we prefer the latest version info there.
+    $sortedChannels = $channels | Sort-Object -Property @{ Expression = { ConvertTo-DotNetSystemVersion -Version $_ }; Descending = $true }
+    $sortedChannels | Write-Output
+}
+
 function Get-DotNetChannelUpdateInfoContent
 {
     [CmdletBinding(PositionalBinding = $false)]
