@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnet-aspnetcoremodule-v1'
-    Url = 'https://download.visualstudio.microsoft.com/download/pr/ba001109-03c6-45ef-832c-c4dbfdb36e00/e3413f9e47e13f1e4b1b9cf2998bc613/dotnet-hosting-2.2.8-win.exe'
-    Checksum = '1b3177fc65ec343f641b8ffdc2a0e925e322e90ed44dcb5c6d3982a370dd7b56f7fcc362dad3a4b7e2db4f0fe6878b7e7448fc7f41dfe01302c7484434691f6b'
+    Url = 'https://download.visualstudio.microsoft.com/download/pr/f55c59eb-1488-4b29-bd3c-c07e0e1db3fc/5205b2f088e6af60bae5620b1a7ee112/dotnet-hosting-2.1.24-win.exe'
+    Checksum = '278b86d1e35780bbf52a09c783d28be9eaeea4a078a2767241e17c538e45373080b3a20e4b61d48febbb46705f75c568fde066f1f0cc60e1f3ef467174018f15'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/ba001109-03c6-45ef-832c-c4dbfdb36e00/e3413f9e47e13f1e4b1b9cf2998bc613/dotnet-hosting-2.2.8-win.exe'
-    Checksum64 = '1b3177fc65ec343f641b8ffdc2a0e925e322e90ed44dcb5c6d3982a370dd7b56f7fcc362dad3a4b7e2db4f0fe6878b7e7448fc7f41dfe01302c7484434691f6b'
+    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/f55c59eb-1488-4b29-bd3c-c07e0e1db3fc/5205b2f088e6af60bae5620b1a7ee112/dotnet-hosting-2.1.24-win.exe'
+    Checksum64 = '278b86d1e35780bbf52a09c783d28be9eaeea4a078a2767241e17c538e45373080b3a20e4b61d48febbb46705f75c568fde066f1f0cc60e1f3ef467174018f15'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = 'OPT_NO_RUNTIME=1 OPT_NO_SHAREDFX=1' # these arguments are valid for .NET Core 2.1+
 }

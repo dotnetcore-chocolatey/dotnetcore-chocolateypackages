@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnet-5.0-desktopruntime'
-    Url = 'https://download.visualstudio.microsoft.com/download/pr/55bb1094-db40-411d-8a37-21186e9495ef/1a045e29541b7516527728b973f0fdef/windowsdesktop-runtime-5.0.1-win-x86.exe'
-    Checksum = 'c2dd979418e353940598ca721ea7927052f043282a219ca26244c0811e2359057719115a5b251cde98fd3a9bca05bdba551a57bf42df035a66de44a69a6e6309'
+    Url = 'https://download.visualstudio.microsoft.com/download/pr/adeb8933-7480-4015-abf6-ca31137ad7cd/1123096ebfa5ee3f36d77500b622e4d8/windowsdesktop-runtime-5.0.2-win-x86.exe'
+    Checksum = '97f6313f40159086a544f3f52cc1f34a161bd988f12c4f31b2e86eb9ffec0a72d4c9690616d80739c9f8aa65476ab1c7c4a95e804e9333c810f9d2f6d6e7ad2e'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/c6a74d6b-576c-4ab0-bf55-d46d45610730/f70d2252c9f452c2eb679b8041846466/windowsdesktop-runtime-5.0.1-win-x64.exe'
-    Checksum64 = 'ac1be00ce52296148a84ddbcd92c7a78b1c6e09cf65d23fb2859ef050c3ad87eacf70745deb1cea0c64832486eb0b3470219dcb80ed034419bf6673487f2bac6'
+    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/deffc9d5-ef77-4697-ac6e-33a58ccdc409/8386e478b5823a765dc1361155360877/windowsdesktop-runtime-5.0.2-win-x64.exe'
+    Checksum64 = '6e48c1b6717040bbb431638d80cbf612c07316e9ca6bb23ee276e140d509236cdc1e8167b35148e1565a06d1f314bcdcf764597758ad3d9dbd589a6aa75d0dac'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }
