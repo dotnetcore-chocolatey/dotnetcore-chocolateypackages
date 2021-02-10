@@ -1,11 +1,11 @@
 ﻿@{
     PackageName = 'dotnetcore-2.1-sdk-8xx'
-    Url = 'https://download.visualstudio.microsoft.com/download/pr/24f78b74-d43d-4867-826a-55417fa342d8/35b9b8e4d748c1ae52282f31e87ece90/dotnet-sdk-2.1.812-win-x86.exe'
-    Checksum = 'b193d3b6576f8d3a5c3af31ba4ae2f977003748f2e2736f45639c808f1d7cb5c2fb1b3d3746be49fb08a612989d342fcc2ad596dfe40c191b0d5e1164cc589d9'
+    Url = 'https://download.visualstudio.microsoft.com/download/pr/887daf17-8196-4a10-b93e-f39042b226f5/a42b9df32df7c4c548871ab1aee64a5e/dotnet-sdk-2.1.813-win-x86.exe'
+    Checksum = 'b99e96b323e9d24ee2a33ffa66b77803e6babfbeec834dd65aa300ddc08a2dcbcdbdf549ac4828292d956509722da10f2b0739f79dd9247243e24fae11ad1438'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/59d4529c-a120-4297-b339-e2952efd2197/0aa589651378a440742d2765481ddd07/dotnet-sdk-2.1.812-win-x64.exe'
-    Checksum64 = '15be294a615a4c21df06fd52707c8c523a0626dbe3017d1437636aa1e4d1f167e36f45dfe74649c67e95cae3aa44172a3768a1d2c7094a89b23825aff825d5e0'
+    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/acdded59-c1e8-4a72-be90-5c44d934d3d3/168bb056bdb021182199bb6b5e16154f/dotnet-sdk-2.1.813-win-x64.exe'
+    Checksum64 = 'bda6668faea038aa8e3d11ea36ab8ccc4ad940b49a3c2faea453f26b7b8005d1b2f8227bba2b63b7b36c69b1983b9c431e30f315b2d3cd1fa2f04faab5d43df1'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
-    SoftwareVersion = '2.1.812'
+    SoftwareVersion = '2.1.813'
 }
