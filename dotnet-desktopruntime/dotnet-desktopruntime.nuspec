@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-desktopruntime</id>
-    <version>6.0.0-preview1211035</version>
+    <version>5.0.4</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-desktopruntime</packageSourceUrl>
     <owners>riezebosch,jberezanski</owners>
     <title>Microsoft .NET Desktop Runtime</title>
@@ -25,14 +25,14 @@ This is a *metapackage*, which installs the latest release of .NET Desktop Runti
     </description>
     <releaseNotes>
 ##### Software
-[.NET 6.0.0-preview.1 Release Notes](https://github.com/dotnet/core/blob/master/release-notes/6.0/preview/6.0.0-preview.1.md)
+[.NET 5.0.4 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/5.0/5.0.4/5.0.4.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-6.0-desktopruntime" version="[6.0.0-preview1211035,6.0.1)" />
+      <dependency id="dotnet-5.0-desktopruntime" version="[5.0.4,5.0.5)" />
     </dependencies>
   </metadata>
   <files>

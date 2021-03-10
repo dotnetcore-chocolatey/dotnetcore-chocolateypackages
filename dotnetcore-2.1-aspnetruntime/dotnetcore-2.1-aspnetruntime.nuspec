@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-2.1-aspnetruntime</id>
-    <version>2.1.25</version>
+    <version>2.1.26</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-2.1-aspnetruntime</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft ASP.NET Core 2.1 Runtime and Shared Framework</title>
@@ -32,7 +32,7 @@ Example: cinst -y --params="Passive Skip32Bit" dotnetcore-runtime.install
     </description>
     <releaseNotes>
 ##### Software
-[.NET Core 2.1.25 Release Notes](https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1.25/2.1.25.md)
+[.NET Core 2.1.26 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/2.1/2.1.26/2.1.26.md)
     </releaseNotes>
     <!--
 ##### Package
