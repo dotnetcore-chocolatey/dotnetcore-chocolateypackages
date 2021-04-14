@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-2.1-sdk-5xx</id>
-    <version>2.1.522</version>
+    <version>2.1.523</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-2.1-sdk-5xx</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET Core 2.1 SDK feature update 5</title>
@@ -23,7 +23,7 @@ The SDK includes the runtime and command line tools for creating .NET Core appli
     </description>
     <releaseNotes>
 ##### Software
-[.NET Core 2.1.26 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/2.1/2.1.26/2.1.26.md)
+[.NET Core 2.1.27 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/2.1/2.1.27/2.1.27.md)
     </releaseNotes>
     <!--
 ##### Package

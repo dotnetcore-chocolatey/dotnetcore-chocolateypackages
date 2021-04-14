@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnetcore-3.1-runtime'
-    Url = 'https://download.visualstudio.microsoft.com/download/pr/750f2e6f-8a3e-4309-9e43-dd2abf01f24d/4d46d984df3e52a48d191ce50b432ce9/dotnet-runtime-3.1.13-win-x86.exe'
-    Checksum = 'a5c7e158f48afb4d93fa22cd3146e3194a70913eab7aec5c7940584be787d1356b320c2755af42e49833703e262c0eba7569002c8c3f6d740698fa243b86dcbd'
+    Url = 'https://download.visualstudio.microsoft.com/download/pr/56faca83-d1b3-4e1e-b203-3799c9166e84/707d7503ef4e4254f83f4030c60e8501/dotnet-runtime-3.1.14-win-x86.exe'
+    Checksum = '2fb7b20e9139aac7e146568ef8be5cc11fee0fa4c60fadbc09e2a6482cfca773cfeecfd203d1b0c5873b3bfb134d6b1cdf9f0e53f57b8d9f063a1ff92692dd2b'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/3f8c0aae-01e2-4fc3-97a6-e9c1b0d48e95/b48a5c754811fb08d34c4acf67851429/dotnet-runtime-3.1.13-win-x64.exe'
-    Checksum64 = '72e3031f6902ccca44e8c950b96ffcc0e5c3815206a6ba5828087b7d9e3bb1d87c3882a0df5f051ba5fe726e5c885479c3eb01aef6d70ae292c3dd99524c24fa'
+    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/56c3a951-9e5c-437d-a8da-80d263a62cc0/9681c2ff2f0e98f93976289e5ee7f53f/dotnet-runtime-3.1.14-win-x64.exe'
+    Checksum64 = '8cc07f37eab2465dd8d39f3eadd6a225d169f157981f801ac5e49c5639436799c429e1b64e06643b094ce164005d9137680ecb23f09db53811f556edaa0cd7e0'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }
