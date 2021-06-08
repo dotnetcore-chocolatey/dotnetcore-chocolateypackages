@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-windowshosting</id>
-    <version>3.1.15</version>
+    <version>3.1.16</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-windowshosting</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET Core - Windows Server Hosting</title>
@@ -40,7 +40,7 @@ TBD
     -->
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.1.0" />
-      <dependency id="aspnetcore-runtimepackagestore" version="[3.1.15]" />
+      <dependency id="aspnetcore-runtimepackagestore" version="[3.1.16]" />
     </dependencies>
   </metadata>
   <files>

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-aspnetruntime</id>
-    <version>3.1.15</version>
+    <version>3.1.16</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-aspnetruntime</packageSourceUrl>
     <owners>riezebosch,jberezanski</owners>
     <title>Microsoft ASP.NET Core Runtime and Shared Framework</title>
@@ -25,14 +25,14 @@ This is a *metapackage*, which installs the latest release of ASP.NET Core Runti
     </description>
     <releaseNotes>
 ##### Software
-[.NET Core 3.1.15 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/3.1/3.1.15/3.1.15.md)
+[.NET Core 3.1.16 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/3.1/3.1.16/3.1.16.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnetcore-3.1-aspnetruntime" version="[3.1.15,3.1.16)" />
+      <dependency id="dotnetcore-3.1-aspnetruntime" version="[3.1.16,3.1.17)" />
     </dependencies>
   </metadata>
   <files>
