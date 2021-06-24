@@ -324,6 +324,7 @@ function Get-DotNetRuntimeComponentUpdateInfo
     {
         #$currentRelease | ConvertTo-Json -Depth 100 | Write-Debug
         $runtimeVersion = $currentRelease.runtime.version
+        $releaseVersion = $currentRelease.'release-version'
 
         $chocolateyCompatibleVersion = $null
         switch -Regex ($Component)
@@ -412,7 +413,22 @@ function Get-DotNetRuntimeComponentUpdateInfo
                 }
 
                 $componentInfo = $currentRelease.'aspnetcore-runtime'
-                if ($null -eq $componentInfo -or $null -eq $componentInfo.PSObject.Properties['version-aspnetcoremodule'])
+                Write-Debug "componentInfo: $($componentInfo | ConvertTo-Json -Depth 10)"
+
+                if ($null -eq $componentInfo)
+                {
+                    $ancmVersionStrings = $null
+                }
+                elseif ($null -eq $componentInfo.PSObject.Properties['version-aspnetcoremodule'] -or ($componentInfo.'version-aspnetcoremodule' | Measure-Object).Count -eq 0)
+                {
+                    $ancmVersionStrings = $null
+                }
+                else
+                {
+                    $ancmVersionStrings = $componentInfo.'version-aspnetcoremodule'
+                }
+
+                if ($null -eq $ancmVersionStrings)
                 {
                     Write-Warning "Release $releaseVersion does not contain $Component version info, skipping"
                     $exe64 = $exe32 = $null
@@ -420,10 +436,11 @@ function Get-DotNetRuntimeComponentUpdateInfo
                 }
 
                 # some releases (2.1.4-2.1.6) contained two version numbers; use the higher one
-                $auAncmVersion = $componentInfo.'version-aspnetcoremodule' `
+                $auAncmVersion = $ancmVersionStrings `
                     | ForEach-Object { AU\Get-Version -Version $_.Trim() } `
                     | Sort-Object `
                     | Select-Object -Last 1
+                Write-Debug "auAncmVersion: $($auAncmVersion | ConvertTo-Json -Depth 10)"
                 $componentVersion = $auAncmVersion
 
                 # To this day, version-aspnetcoremodule never had the prerelease suffix, even if the release was preview/rc,
@@ -437,6 +454,7 @@ function Get-DotNetRuntimeComponentUpdateInfo
                 }
 
                 $auAspDisplayVersion = AU\Get-Version -Version $aspDisplayVersion
+                Write-Debug "auAspDisplayVersion: $($auAspDisplayVersion | ConvertTo-Json -Depth 10)"
                 $ancmPrereleaseTag = $auAncmVersion.Prerelease
                 if (-not [string]::IsNullOrEmpty($auAspDisplayVersion.Prerelease) -and [string]::IsNullOrEmpty($ancmPrereleaseTag))
                 {
@@ -460,8 +478,6 @@ function Get-DotNetRuntimeComponentUpdateInfo
             }
             default { throw "Unknown component: $Component"}
         }
-
-        $releaseVersion = $currentRelease.'release-version'
 
         if ($null -eq $exe64)
         {
