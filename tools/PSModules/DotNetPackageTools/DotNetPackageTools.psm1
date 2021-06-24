@@ -421,7 +421,15 @@ function Get-DotNetRuntimeComponentUpdateInfo
                 }
                 elseif ($null -eq $componentInfo.PSObject.Properties['version-aspnetcoremodule'] -or ($componentInfo.'version-aspnetcoremodule' | Measure-Object).Count -eq 0)
                 {
-                    $ancmVersionStrings = $null
+                    if ($releaseVersion -eq '5.0.7')
+                    {
+                        # ugly, but necessary - this info is missing from releases.json and was obtained experimentally
+                        $ancmVersionStrings = @('15.0.21133.0')
+                    }
+                    else
+                    {
+                        $ancmVersionStrings = $null
+                    }
                 }
                 else
                 {
