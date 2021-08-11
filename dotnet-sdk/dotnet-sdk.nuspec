@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-sdk</id>
-    <version>6.0.100-preview6213552</version>
+    <version>6.0.100-preview72137914</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-sdk</packageSourceUrl>
     <owners>riezebosch,jberezanski</owners>
     <title>Microsoft .NET SDK</title>
@@ -25,14 +25,14 @@ This is a *metapackage*, which installs the latest release of .NET SDK across al
     </description>
     <releaseNotes>
 ##### Software
-[.NET 6.0.0-preview.6 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/6.0/preview/6.0.0-preview.6.md)
+[.NET 6.0.0-preview.7 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/6.0/preview/6.0.0-preview.7.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-6.0-sdk" version="[6.0.100-preview6213552,6.0.101)" />
+      <dependency id="dotnet-6.0-sdk" version="[6.0.100-preview72137914,6.0.101)" />
     </dependencies>
   </metadata>
   <files>
