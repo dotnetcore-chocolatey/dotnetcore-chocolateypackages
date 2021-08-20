@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnetcore-windowshosting'
-    Url = 'https://download.visualstudio.microsoft.com/download/pr/a363a491-56ab-4451-a901-e5886dea2fc6/40595416f34ad49d8a83c2bf83f03487/dotnet-hosting-3.1.18-win.exe'
-    Checksum = 'd0c3ea9603345a6e4dfdf0fa9d652b4fa7f5207b123aca24861f8744798f7597463f56ada63c6530dfec44e61de4d31efe4ac1aea3fd75c9fe0d446a2342d561'
+    Url = 'https://download.visualstudio.microsoft.com/download/pr/cf7b17e3-ed6d-4ded-8ae6-9f83ffaaca98/9d2ca844baa4a4a9ed83861ffc8e293e/dotnet-hosting-2.1.30-win.exe'
+    Checksum = '70c6b46b5df73ff493d087831b4254d4c3c5c1977a0325d90f6078c725129b71245bd8f886ab72c18113697c592b80714493f5693f2f4d6f5ccf4703bb58d336'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/a363a491-56ab-4451-a901-e5886dea2fc6/40595416f34ad49d8a83c2bf83f03487/dotnet-hosting-3.1.18-win.exe'
-    Checksum64 = 'd0c3ea9603345a6e4dfdf0fa9d652b4fa7f5207b123aca24861f8744798f7597463f56ada63c6530dfec44e61de4d31efe4ac1aea3fd75c9fe0d446a2342d561'
+    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/cf7b17e3-ed6d-4ded-8ae6-9f83ffaaca98/9d2ca844baa4a4a9ed83861ffc8e293e/dotnet-hosting-2.1.30-win.exe'
+    Checksum64 = '70c6b46b5df73ff493d087831b4254d4c3c5c1977a0325d90f6078c725129b71245bd8f886ab72c18113697c592b80714493f5693f2f4d6f5ccf4703bb58d336'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = 'OPT_INSTALL_LTS_REDIST=0 OPT_INSTALL_FTS_REDIST=0'
 }
