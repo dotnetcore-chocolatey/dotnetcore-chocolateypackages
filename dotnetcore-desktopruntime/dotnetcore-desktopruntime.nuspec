@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-desktopruntime</id>
-    <version>3.1.18</version>
+    <version>3.1.19</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-desktopruntime</packageSourceUrl>
     <owners>jberezanski,riezebosch,Jerome Bell</owners>
     <title>Microsoft .NET Core Desktop Runtime</title>
