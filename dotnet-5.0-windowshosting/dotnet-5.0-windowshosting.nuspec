@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-5.0-windowshosting</id>
-    <version>5.0.9</version>
+    <version>5.0.10</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-5.0-windowshosting</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 5.0 - Windows Server Hosting</title>
@@ -26,16 +26,16 @@ This metapackage installs all components needed for hosting .NET web/server appl
     </description>
     <releaseNotes>
 ##### Software
-[.NET 5.0.9 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/5.0/5.0.9/5.0.9.md)
+[.NET 5.0.10 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/5.0/5.0.10/5.0.10.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-5.0-runtime" version="[5.0.9,5.0.10)" />
-      <dependency id="dotnet-5.0-aspnetruntime" version="[5.0.9,5.0.10)" />
-      <dependency id="dotnet-aspnetcoremodule-v2" version="[15.0.21196,15.0.21197)" />
+      <dependency id="dotnet-5.0-runtime" version="[5.0.10,5.0.11)" />
+      <dependency id="dotnet-5.0-aspnetruntime" version="[5.0.10,5.0.11)" />
+      <dependency id="dotnet-aspnetcoremodule-v2" version="[15.0.21236,15.0.21237)" />
     </dependencies>
   </metadata>
   <files>
