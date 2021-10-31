@@ -1,49 +1,52 @@
+Param
+(
+    [switch] $AllVersionsAsStreams
+)
+
+Import-Module au
+Import-Module "$PSScriptRoot\..\tools\PSModules\DotNetPackageTools\DotNetPackageTools.psm1"
+
 function global:au_SearchReplace {
-    $replacements = @{
-        "$PSScriptRoot\tools\data.ps1" = @{
-            "(^\s*Url\s*=\s*)('.*')"      = "`$1'$($Latest.URL32)'"           #1
-            "(^\s*Checksum\s*=\s*)('.*')" = "`$1'$($Latest.Checksum32)'"      #2
-            "(^\s*Url64\s*=\s*)('.*')"      = "`$1'$($Latest.URL64)'"           #1
-            "(^\s*Checksum64\s*=\s*)('.*')" = "`$1'$($Latest.Checksum64)'"      #2
-
+    @{
+        "$PSScriptRoot\$($Latest.PackageName).nuspec" = @{
+            '\[.+Release\s+Notes\]\([^)]+\)' = '[{0} Release Notes]({1})' -f (Get-DotNetReleaseDescription -ReleaseVersion $Latest.ReleaseVersion), $Latest.ReleaseNotes
+            'id\=\"dotnet\w*-\d+\.\d+-windowshosting\"\s+version\=\"[^"]+\"' = 'id="{0}-windowshosting" version="{1}"' -f (Get-DotNetPackagePrefix -Version $Latest.ReleaseVersion -IncludeMajorMinor), (Get-DotNetDependencyVersionRange -BaseVersion $Latest.Version -Boundary 'Patch')
         }
-         "$PSScriptRoot\$($Latest.PackageName).nuspec" = @{
-             "(\<dependency .+?""aspnetcore-runtimepackagestore"" version=)""([^""]+)""" = "`$1""[$($Latest.Version)]"""
-         }
-    }
-
-    return $replacements
-}
-
-function EntryToData($channel) {
-    $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$channel/releases.json"
-    $result = (Invoke-WebRequest -Uri $url -UseBasicParsing | ConvertFrom-Json)
-
-    $latestRelease = $result."latest-release"
-    $latest = $result.releases | ?{ $_.'release-version' -eq $latestRelease } | select -First 1
-    $exe32 = $exe64 = $latest.'aspnetcore-runtime'.files | ?{ $_.name -like '*hosting*.exe' }
-    
-    @{ 
-        Version = Get-Version -Version $latest.'aspnetcore-runtime'.version;
-        URL32 = $exe32.url;
-        URL64 = $exe64.url;
-        ChecksumType32 = 'sha512';
-        ChecksumType64 = 'sha512'; 
-        Checksum32 = $exe32.hash;
-        Checksum64 = $exe64.hash;
     }
 }
 
 function global:au_GetLatest {
-    @{
-        Streams = [ordered] @{
-            '3.1' = EntryToData -channel '3.1'
-            '3.0' = EntryToData -channel '3.0'
-            '2.2' = EntryToData -channel '2.2'
-            '2.1' = EntryToData -channel '2.1'
-            '2.0' = EntryToData -channel '2.0'
+    $chunks = $Latest.PackageName -split '-'
+    $latestInfo = @{
+        Streams = [ordered]@{
         }
     }
+
+    foreach ($channel in (Get-DotNetChannels))
+    {
+        if (($chunks[0] -eq 'dotnet' -and [version]$channel -lt [version]'5.0') `
+            -or ($chunks[0] -eq 'dotnetcore' -and [version]$channel -ge [version]'5.0') `
+            -or [version]$channel -lt [version]'2.1')
+        {
+            continue
+        }
+
+        # we base the version of this package on the base runtime version, same as dotnet-X.Y-windowshosting
+        $infosForChannel = Get-DotNetRuntimeComponentUpdateInfo -Channel $channel -Component 'Runtime' -AllVersions:$AllVersionsAsStreams
+        if ($AllVersionsAsStreams)
+        {
+            foreach ($currentInfo in $infosForChannel)
+            {
+                $latestInfo.Streams.Add($currentInfo.ReleaseVersion, $currentInfo)
+            }
+        }
+        else
+        {
+            $latestInfo.Streams.Add($channel, $infosForChannel)
+        }
+    }
+
+    return $latestInfo
 }
 
-update -ChecksumFor none
+if ($MyInvocation.InvocationName -ne '.') { update -ChecksumFor none -NoCheckUrl }

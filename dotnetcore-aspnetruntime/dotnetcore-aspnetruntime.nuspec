@@ -21,7 +21,7 @@
 
 The ASP.NET Core Runtime enables you to run existing web/server applications.
 
-This is a *metapackage*, which installs the latest release of ASP.NET Core Runtime across all versions.
+This is a *metapackage*, which installs the latest release of ASP.NET Core Runtime across all versions (up to 3.1.x). .NET 5 and later are supported by the `dotnet-*` family of packages.
     </description>
     <releaseNotes>
 ##### Software

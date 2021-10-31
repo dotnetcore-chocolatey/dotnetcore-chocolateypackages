@@ -15,11 +15,11 @@
     <docsUrl>https://docs.microsoft.com/dotnet</docsUrl>
     <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
     <tags>microsoft .net core runtime redistributable asp.net module ancm iis hosting admin</tags>
-    <summary>The Windows Server Hosting coponents are needed for hosting .NET web/server applications on Windows.</summary>
+    <summary>The Windows Server Hosting components are needed for hosting .NET web/server applications on Windows.</summary>
     <description>
 .NET Core is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
 
-The Windows Server Hosting coponents are needed for hosting .NET web/server applications on Windows.
+The Windows Server Hosting components are needed for hosting .NET web/server applications on Windows.
 
 This is a *metapackage*, which installs the latest release of .NET Windows Server Hosting components across all versions.
     </description>

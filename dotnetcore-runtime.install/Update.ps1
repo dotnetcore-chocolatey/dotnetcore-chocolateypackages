@@ -1,49 +1,50 @@
+Param
+(
+    [switch] $AllVersionsAsStreams
+)
+
 Import-Module au
+Import-Module "$PSScriptRoot\..\tools\PSModules\DotNetPackageTools\DotNetPackageTools.psm1"
 
 function global:au_SearchReplace {
     @{
-        "$PSScriptRoot\tools\data.ps1" = @{
-            "(^\s*Url\s*=\s*)('.*')"      = "`$1'$($Latest.URL32)'"           #1
-            "(^\s*Checksum\s*=\s*)('.*')" = "`$1'$($Latest.Checksum32)'"      #2
-            "(^\s*Url64\s*=\s*)('.*')"      = "`$1'$($Latest.URL64)'"           #1
-            "(^\s*Checksum64\s*=\s*)('.*')" = "`$1'$($Latest.Checksum64)'"      #2
+        "$PSScriptRoot\$($Latest.PackageName).nuspec" = @{
+            '\[.+Release\s+Notes\]\([^)]+\)' = '[{0} Release Notes]({1})' -f (Get-DotNetReleaseDescription -ReleaseVersion $Latest.ReleaseVersion), $Latest.ReleaseNotes
+            'id\=\"dotnet\w*-\d+\.\d+-runtime\"\s+version\=\"[^"]+\"' = 'id="{0}-runtime" version="{1}"' -f (Get-DotNetPackagePrefix -Version $Latest.ReleaseVersion -IncludeMajorMinor), (Get-DotNetDependencyVersionRange -BaseVersion $Latest.Version -Boundary 'Patch')
         }
-    }
-}
-
-function EntryToData($channel) {
-    $url = "https://raw.githubusercontent.com/dotnet/core/master/release-notes/$channel/releases.json"
-    $result = (Invoke-WebRequest -Uri $url -UseBasicParsing | ConvertFrom-Json)
-
-    $version = $result."latest-runtime"
-    $latest = $result.releases | ?{ $_.runtime.version -eq $version } | select -First 1
-    
-    $exe64 = $latest.runtime.files | ?{ $_.name -like 'dotnet*win-x64.exe' }
-    $exe32 = $latest.runtime.files | ?{ $_.name -like 'dotnet*win-x86.exe' }
-
-    @{ 
-        Version = Get-Version -Version $version;
-        URL32 = $exe32.url;
-        URL64 = $exe64.url;
-        ChecksumType32 = 'sha512';
-        ChecksumType64 = 'sha512'; 
-        Checksum32 = $exe32.hash;
-        Checksum64 = $exe64.hash;
     }
 }
 
 function global:au_GetLatest {
-      @{
-         Streams = [ordered] @{
-             '3.1' = EntryToData -channel '3.1'
-             '3.0' = EntryToData -channel '3.0'
-             '2.2' = EntryToData -channel '2.2'
-             '2.1' = EntryToData -channel '2.1'
-             '2.0' = EntryToData -channel '2.0'
-             '1.1' = EntryToData -channel '1.1'
-             '1.0' = EntryToData -channel '1.0'
+    $chunks = $Latest.PackageName -split '-'
+    $latestInfo = @{
+        Streams = [ordered]@{
         }
     }
+
+    foreach ($channel in (Get-DotNetChannels))
+    {
+        if (($chunks[0] -eq 'dotnet' -and [version]$channel -lt [version]'5.0') `
+            -or ($chunks[0] -eq 'dotnetcore' -and [version]$channel -ge [version]'5.0'))
+        {
+            continue
+        }
+
+        $infosForChannel = Get-DotNetRuntimeComponentUpdateInfo -Channel $channel -Component 'Runtime' -AllVersions:$AllVersionsAsStreams
+        if ($AllVersionsAsStreams)
+        {
+            foreach ($currentInfo in $infosForChannel)
+            {
+                $latestInfo.Streams.Add($currentInfo.ReleaseVersion, $currentInfo)
+            }
+        }
+        else
+        {
+            $latestInfo.Streams.Add($channel, $infosForChannel)
+        }
+    }
+
+    return $latestInfo
 }
 
-if ($MyInvocation.InvocationName -ne '.') { update -ChecksumFor none }
+if ($MyInvocation.InvocationName -ne '.') { update -ChecksumFor none -NoCheckUrl }
