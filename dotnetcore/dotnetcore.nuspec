@@ -34,6 +34,5 @@ TBD
     </dependencies>
   </metadata>
   <files>
-    <file src="tools\*.ps1" target="tools" />
   </files>
 </package>
