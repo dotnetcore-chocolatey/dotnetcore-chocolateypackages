@@ -2,7 +2,7 @@
 
 version: '{build}'
 max_jobs: 1
-image: Visual Studio 2017
+image: Visual Studio 2022
 # History plugin requires complete log
 #clone_depth: 5
 branches:
@@ -19,9 +19,9 @@ environment:
   au_test_groups: 1
 
   # Github token to commit pushed packages to repository
-  # github_user_repo: jberezanski/dotnetcore-chocolateypackages
+  # github_user_repo: dotnetcore-chocolatey/dotnetcore-chocolateypackages
   github_api_key:
-    secure: jV9nImBrLpFCM/zb3CNpvNQe6BZDs7Llx8TRqq12AVcz1WP0outVsrjW8Kz8z78J #https://ci.appveyor.com/tools/encrypt
+    secure: PYan3Xhs2+zOLvzVesyf20kr06spmSruKbjbvsUAWY7PB8dTCUHz9mtsed5KCV3a #https://ci.appveyor.com/tools/encrypt
 
 
   # Mail credentials - for error notifications
