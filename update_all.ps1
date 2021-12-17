@@ -5,7 +5,8 @@ param
     [string[]] $Name,
     [string] $ForcedPackages,
     [string] $Root = $PSScriptRoot,
-    [switch] $NoCheckChocoVersion
+    [switch] $NoCheckChocoVersion,
+    [switch] $ForceGitCommit
 )
 
 if (Test-Path $PSScriptRoot/update_vars.ps1) { . $PSScriptRoot/update_vars.ps1 }
@@ -67,6 +68,7 @@ $Options = [ordered]@{
         User     = ''                                       #Git username, leave empty if github api key is used
         Password = $Env:github_api_key                      #Password if username is not empty, otherwise api key
         AddNew   = $true                                    #Add the package to the repository if it was created during the update process.
+        Force    = $ForceGitCommit.IsPresent                #Force git commit when package is updated but not pushed.
     }
 
     GitReleases  = @{

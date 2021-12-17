@@ -35,7 +35,7 @@ environment:
 
   # ID of the gist used to save run results - create a gist under the github_user (secret or not) and grab the id - https://gist.github.com/name/id
   # Optional, leave empty to create anonymous gist
-  gist_id: 5330bb96fd3bbe3c727d9f59e96c2f95
+  gist_id: 0b5fb8ff0bf938a89b7fb6d48f988ea3
 
   # Force test: gist id for test results
   gist_id_test:
@@ -96,7 +96,7 @@ build_script:
     }
 
     $Env:au_Push = 'false'
-    ./update_all.ps1 -ForcedPackages $forced -NoCheckChocoVersion
+    ./update_all.ps1 -ForcedPackages $forced -NoCheckChocoVersion -ForceGitCommit
     7z a au_temp.zip $Env:TEMP\chocolatey\au\*
 
 artifacts:
