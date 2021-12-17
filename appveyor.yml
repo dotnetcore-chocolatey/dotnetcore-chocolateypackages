@@ -95,7 +95,8 @@ build_script:
         }
     }
 
-    ./update_all.ps1 -ForcedPackages $forced
+    $Env:au_Push = 'false'
+    ./update_all.ps1 -ForcedPackages $forced -NoCheckChocoVersion
     7z a au_temp.zip $Env:TEMP\chocolatey\au\*
 
 artifacts:
