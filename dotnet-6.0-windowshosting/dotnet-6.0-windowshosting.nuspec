@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-6.0-windowshosting</id>
-    <version>6.0.0</version>
+    <version>6.0.1</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-6.0-windowshosting</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 6.0 - Windows Server Hosting</title>
@@ -26,16 +26,16 @@ This metapackage installs all components needed for hosting .NET web/server appl
     </description>
     <releaseNotes>
 ##### Software
-[.NET 6.0.0 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/6.0/6.0.0/6.0.0.md)
+[.NET 6.0.1 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/6.0/6.0.1/6.0.1.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-6.0-runtime" version="[6.0.0,6.0.1)" />
-      <dependency id="dotnet-6.0-aspnetruntime" version="[6.0.0,6.0.1)" />
-      <dependency id="dotnet-aspnetcoremodule-v2" version="[16.0.21299,16.0.21300)" />
+      <dependency id="dotnet-6.0-runtime" version="[6.0.1,6.0.2)" />
+      <dependency id="dotnet-6.0-aspnetruntime" version="[6.0.1,6.0.2)" />
+      <dependency id="dotnet-aspnetcoremodule-v2" version="[16.0.21322,16.0.21323)" />
     </dependencies>
   </metadata>
   <files>
