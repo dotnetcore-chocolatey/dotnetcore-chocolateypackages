@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-6.0-sdk</id>
-    <version>6.0.102</version>
+    <version>6.0.200</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-6.0-sdk</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 6.0 SDK</title>
@@ -32,7 +32,7 @@ This is a *metapackage*, which installs the latest release of .NET 6.0 SDK acros
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-6.0-sdk-1xx" version="[6.0.102,6.0.103)" />
+      <dependency id="dotnet-6.0-sdk-2xx" version="[6.0.200,6.0.201)" />
     </dependencies>
   </metadata>
   <files>
