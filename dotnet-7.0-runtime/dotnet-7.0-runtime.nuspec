@@ -39,8 +39,9 @@ Example: cinst -y --params="Passive Skip32Bit" dotnetcore-runtime.install
 TBD
     -->
     <dependencies>
-      <dependency id="chocolatey-core.extension" version="1.1.0" />
-      <dependency id="vcredist140" version="14.0.23026.0" />
+      <dependency id="chocolatey-core.extension" version="1.3.5.1" />
+      <dependency id="vcredist140" version="14.31.31103.0" />
+      <!-- Win7 -->
       <dependency id="KB3063858" version="1.0.0" />
     </dependencies>
   </metadata>
