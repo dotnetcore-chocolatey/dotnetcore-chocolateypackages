@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-3.1-runtime</id>
-    <version>3.1.22</version>
+    <version>3.1.23</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-3.1-runtime</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET Core 3.1 Runtime</title>
@@ -32,7 +32,7 @@ Example: cinst -y --params="Passive Skip32Bit" dotnetcore-runtime.install
     </description>
     <releaseNotes>
 ##### Software
-[.NET Core 3.1.22 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/3.1/3.1.22/3.1.22.md)
+[.NET Core 3.1.23 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/3.1/3.1.23/3.1.23.md)
     </releaseNotes>
     <!--
 ##### Package
