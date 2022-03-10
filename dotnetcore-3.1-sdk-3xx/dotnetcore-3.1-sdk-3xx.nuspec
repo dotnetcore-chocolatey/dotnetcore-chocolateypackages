@@ -8,9 +8,9 @@
     <title>Microsoft .NET Core 3.1 SDK feature update 3</title>
     <authors>Microsoft</authors>
     <projectUrl>https://dot.net/core</projectUrl>
-    <iconUrl>https://cdn.rawgit.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
+    <iconUrl>https://rawcdn.githack.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
     <copyright>.NET Foundation and Contributors</copyright>
-    <licenseUrl>https://cdn.rawgit.com/dotnet/core/290743955c7dec3315e72da5dcd589b2bd177e71/LICENSE</licenseUrl>
+    <licenseUrl>https://rawcdn.githack.com/dotnet/core/290743955c7dec3315e72da5dcd589b2bd177e71/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <docsUrl>https://docs.microsoft.com/dotnet</docsUrl>
     <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
