@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-7.0-sdk</id>
-    <version>7.0.100-preview1221104</version>
+    <version>7.0.100-preview22215317</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-7.0-sdk</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 7.0 SDK</title>
@@ -25,14 +25,14 @@ This is a *metapackage*, which installs the latest release of .NET 7.0 SDK acros
     </description>
     <releaseNotes>
 ##### Software
-[.NET 7.0.0-preview.1 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/preview/7.0.0-preview.1.md)
+[.NET 7.0.0-preview.2 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/preview/7.0.0-preview.2.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-7.0-sdk-1xx" version="[7.0.100-preview1221104,7.0.101)" />
+      <dependency id="dotnet-7.0-sdk-1xx" version="[7.0.100-preview22215317,7.0.101)" />
     </dependencies>
   </metadata>
   <files>
