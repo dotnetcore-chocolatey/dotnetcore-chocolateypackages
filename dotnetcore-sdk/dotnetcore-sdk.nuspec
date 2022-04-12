@@ -5,7 +5,7 @@
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>dotnetcore-sdk</id>
     <title>.NET Core SDK</title>
-    <version>3.1.417</version>
+    <version>3.1.418</version>
     <authors>Microsoft</authors>
     <owners>riezebosch,jberezanski</owners>
     <summary>The SDK includes the runtime and command line tools for creating .NET Core applications</summary>
@@ -26,11 +26,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>http://rawcdn.githack.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/master/dotnetcore-sdk/icon/dotnet_logo.png</iconUrl>
     <dependencies>
-      <dependency id="dotnetcore-3.1-sdk" version="[3.1.417,3.1.418)" />
+      <dependency id="dotnetcore-3.1-sdk" version="[3.1.418,3.1.419)" />
     </dependencies>
     <releaseNotes>
 ##### Software
-[.NET Core 3.1.23 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/3.1/3.1.23/3.1.23.md)
+[.NET Core 3.1.24 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/3.1/3.1.24/3.1.24.md)
     </releaseNotes>
     <!--
 ##### Package

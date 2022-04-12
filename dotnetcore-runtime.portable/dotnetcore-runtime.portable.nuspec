@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-runtime.portable</id>
-    <version>3.1.23</version>
+    <version>3.1.24</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-runtime.portable</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET Core Runtime (Portable)</title>
