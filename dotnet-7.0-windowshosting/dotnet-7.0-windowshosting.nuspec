@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-7.0-windowshosting</id>
-    <version>7.0.0-preview2221522</version>
+    <version>7.0.0-preview3221754</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-7.0-windowshosting</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 7.0 - Windows Server Hosting</title>
@@ -26,16 +26,16 @@ This metapackage installs all components needed for hosting .NET web/server appl
     </description>
     <releaseNotes>
 ##### Software
-[.NET 7.0.0-preview.2 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/preview/7.0.0-preview.2.md)
+[.NET 7.0.0-preview.3 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/preview/7.0.0-preview.3.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-7.0-runtime" version="[7.0.0-preview2221522,7.0.1)" />
-      <dependency id="dotnet-7.0-aspnetruntime" version="[7.0.0-preview2221532,7.0.1)" />
-      <dependency id="dotnet-aspnetcoremodule-v2" version="[17.0.22062-preview2,17.0.22063)" />
+      <dependency id="dotnet-7.0-runtime" version="[7.0.0-preview3221754,7.0.1)" />
+      <dependency id="dotnet-7.0-aspnetruntime" version="[7.0.0-preview3221784,7.0.1)" />
+      <dependency id="dotnet-aspnetcoremodule-v2" version="[17.0.22087-preview3,17.0.22088)" />
     </dependencies>
   </metadata>
   <files>
