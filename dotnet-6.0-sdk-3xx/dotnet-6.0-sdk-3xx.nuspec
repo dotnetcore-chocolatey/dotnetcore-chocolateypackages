@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>dotnet-6.0-sdk-1xx</id>
-    <version>6.0.105</version>
-    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-6.0-sdk-1xx</packageSourceUrl>
+    <id>dotnet-6.0-sdk-3xx</id>
+    <version>6.0.300</version>
+    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-6.0-sdk-3xx</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
-    <title>Microsoft .NET 6.0 SDK feature update 1</title>
+    <title>Microsoft .NET 6.0 SDK feature update 3</title>
     <authors>Microsoft</authors>
     <projectUrl>https://dot.net/core</projectUrl>
     <iconUrl>https://rawcdn.githack.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
@@ -30,8 +30,9 @@ The SDK includes the runtime and command line tools for creating .NET applicatio
 TBD
     -->
     <dependencies>
-      <dependency id="chocolatey-core.extension" version="1.1.0" />
-      <dependency id="vcredist140" version="14.0.23026.0" />
+      <dependency id="chocolatey-core.extension" version="1.3.5.1" />
+      <dependency id="vcredist140" version="14.31.31103.0" />
+      <!-- Win7 -->
       <dependency id="KB3063858" version="1.0.0" />
     </dependencies>
   </metadata>

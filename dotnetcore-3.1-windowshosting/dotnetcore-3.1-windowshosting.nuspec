@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-3.1-windowshosting</id>
-    <version>3.1.24</version>
+    <version>3.1.25</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-3.1-windowshosting</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET Core 3.1 - Windows Server Hosting</title>
@@ -26,16 +26,16 @@ This metapackage installs all components needed for hosting .NET Core web/server
     </description>
     <releaseNotes>
 ##### Software
-[.NET Core 3.1.24 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/3.1/3.1.24/3.1.24.md)
+[.NET Core 3.1.25 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/3.1/3.1.25/3.1.25.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnetcore-3.1-runtime" version="[3.1.24,3.1.25)" />
-      <dependency id="dotnetcore-3.1-aspnetruntime" version="[3.1.24,3.1.25)" />
-      <dependency id="dotnet-aspnetcoremodule-v2" version="[13.1.22089,13.1.22090)" />
+      <dependency id="dotnetcore-3.1-runtime" version="[3.1.25,3.1.26)" />
+      <dependency id="dotnetcore-3.1-aspnetruntime" version="[3.1.25,3.1.26)" />
+      <dependency id="dotnet-aspnetcoremodule-v2" version="[13.1.22110,13.1.22111)" />
     </dependencies>
   </metadata>
   <files>
