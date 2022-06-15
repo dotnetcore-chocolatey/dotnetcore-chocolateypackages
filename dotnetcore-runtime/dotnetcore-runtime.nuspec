@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-runtime</id>
-    <version>3.1.25</version>
+    <version>3.1.26</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-runtime</packageSourceUrl>
     <owners>riezebosch,jberezanski</owners>
     <title>Microsoft .NET Core Runtime</title>
@@ -25,14 +25,14 @@ This is a *metapackage*, which installs the latest release of .NET Core Runtime 
     </description>
     <releaseNotes>
 ##### Software
-[.NET Core 3.1.25 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/3.1/3.1.25/3.1.25.md)
+[.NET Core 3.1.26 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/3.1/3.1.26/3.1.26.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnetcore-3.1-runtime" version="[3.1.25,3.1.26)" />
+      <dependency id="dotnetcore-3.1-runtime" version="[3.1.26,3.1.27)" />
     </dependencies>
   </metadata>
   <files>
