@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-6.0-sdk-3xx</id>
-    <version>6.0.301</version>
+    <version>6.0.302</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-6.0-sdk-3xx</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 6.0 SDK feature update 3</title>
@@ -23,7 +23,7 @@ The SDK includes the runtime and command line tools for creating .NET applicatio
     </description>
     <releaseNotes>
 ##### Software
-[.NET 6.0.6 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/6.0/6.0.6/6.0.6.md)
+[.NET 6.0.7 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/6.0/6.0.7/6.0.7.md)
     </releaseNotes>
     <!--
 ##### Package
