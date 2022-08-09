@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'aspnetcore-runtimepackagestore'
-    Url = 'https://download.visualstudio.microsoft.com/download/pr/ac9a2c08-7104-4e28-b502-9847b3897f00/be15857aeee4e7e7e8b22ded4a468ec4/aspnetcore-runtime-3.1.27-win-x86.exe'
-    Checksum = 'd87703b48dc47ff9358242d5819176483dc27270dead0ba89f43299bded664441bb0bff0ea021121efcae4c1203ac14e581960eda5558e77ad434dde41565d26'
+    Url = 'https://download.visualstudio.microsoft.com/download/pr/b2e74c89-a241-4f3f-b908-f20a56dd79f2/5e97b30708c856f71ab763c159b671a4/aspnetcore-runtime-3.1.28-win-x86.exe'
+    Checksum = 'd9fa7af2bc220f898ec6fe42402a22f8eb3166c4acf2fbd9866964831b53132216d538ad686d05527cb657c8b23ccf15357ffa50a8482163e41379c5b5969b3b'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/1d80895b-b1d7-43d5-b863-f2a485455bb1/a5c91169e0672abf1af72cffd22016c3/aspnetcore-runtime-3.1.27-win-x64.exe'
-    Checksum64 = 'f5917c1e6fde13b4b55f2342cdacb7521c1cd4ed4b9b964427bec01f33a21da7ad7f66fb8a5bbdd32e97eec7452c0e59fc30510978b8b0b29caa9dc4ce3cf4b8'
+    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/85d0ae35-c88e-400d-94ce-d79398ae6193/a5a4a60340087f27a609f302218d144c/aspnetcore-runtime-3.1.28-win-x64.exe'
+    Checksum64 = '5cf11e19eb2484d967a2d5540e7e949b01e0b2ec2e07c38e274b5a640f2368e04e5e44563e2904506768a95abac41f286d88e2431a43d39a7207f06baaec0b83'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }
