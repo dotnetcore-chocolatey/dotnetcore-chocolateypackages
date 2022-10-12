@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnetcore-desktopruntime</id>
-    <version>3.1.29</version>
+    <version>3.1.30</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-desktopruntime</packageSourceUrl>
     <owners>jberezanski,riezebosch,Jerome Bell</owners>
     <title>Microsoft .NET Core Desktop Runtime</title>
@@ -25,14 +25,14 @@ This is a *metapackage*, which installs the latest release of .NET Core Desktop 
     </description>
     <releaseNotes>
 ##### Software
-[.NET Core 3.1.29 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/3.1/3.1.29/3.1.29.md)
+[.NET Core 3.1.30 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/3.1/3.1.30/3.1.30.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnetcore-3.1-desktopruntime" version="[3.1.29,3.1.30)" />
+      <dependency id="dotnetcore-3.1-desktopruntime" version="[3.1.30,3.1.31)" />
     </dependencies>
   </metadata>
   <files>
