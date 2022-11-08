@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-runtime</id>
-    <version>7.0.0-rc2224723</version>
+    <version>7.0.0</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-runtime</packageSourceUrl>
     <owners>riezebosch,jberezanski</owners>
     <title>Microsoft .NET Runtime</title>
@@ -25,14 +25,14 @@ This is a *metapackage*, which installs the latest release of .NET Runtime acros
     </description>
     <releaseNotes>
 ##### Software
-[.NET 7.0.0-rc.2 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/7.0.0-rc.2.22472.3/7.0.0-rc.2.md)
+[.NET 7.0.0 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/7.0.0/7.0.0.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-7.0-runtime" version="[7.0.0-rc2224723,7.0.1)" />
+      <dependency id="dotnet-7.0-runtime" version="[7.0.0,7.0.1)" />
     </dependencies>
   </metadata>
   <files>
