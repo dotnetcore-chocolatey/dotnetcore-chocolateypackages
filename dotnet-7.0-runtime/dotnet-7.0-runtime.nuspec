@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-7.0-runtime</id>
-    <version>7.0.0</version>
+    <version>7.0.1</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-7.0-runtime</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 7.0 Runtime</title>
@@ -32,7 +32,7 @@ Example: cinst -y --params="Passive Skip32Bit" dotnetcore-runtime.install
     </description>
     <releaseNotes>
 ##### Software
-[.NET 7.0.0 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/7.0.0/7.0.0.md)
+[.NET 7.0.1 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/7.0.1/7.0.1.md)
     </releaseNotes>
     <!--
 ##### Package
