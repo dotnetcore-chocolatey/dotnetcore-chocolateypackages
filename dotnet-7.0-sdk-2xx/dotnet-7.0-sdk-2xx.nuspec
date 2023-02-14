@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>dotnet-6.0-sdk-4xx</id>
-    <version>6.0.406</version>
-    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-6.0-sdk-4xx</packageSourceUrl>
+    <id>dotnet-7.0-sdk-2xx</id>
+    <version>7.0.200</version>
+    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-7.0-sdk-2xx</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
-    <title>Microsoft .NET 6.0 SDK feature update 4</title>
+    <title>Microsoft .NET 7.0 SDK feature update 2</title>
     <authors>Microsoft</authors>
     <projectUrl>https://dot.net/core</projectUrl>
     <iconUrl>https://rawcdn.githack.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
@@ -23,7 +23,7 @@ The SDK includes the runtime and command line tools for creating .NET applicatio
     </description>
     <releaseNotes>
 ##### Software
-[.NET 6.0.14 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/6.0/6.0.14/6.0.14.md)
+[.NET 7.0.3 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/7.0.3/7.0.3.md)
     </releaseNotes>
     <!--
 ##### Package
