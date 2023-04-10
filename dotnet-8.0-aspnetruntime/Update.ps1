@@ -18,16 +18,14 @@ function global:au_SearchReplace {
             "(^\s*ChecksumType64\s*=\s*)('.*')" = "`$1'$($Latest.ChecksumType64)'"
         }
         "$PSScriptRoot\$($Latest.PackageName).nuspec" = @{
-            '\[.+Release\s+Notes\]\([^)]+\)' = '[{0} Release Notes]({1})' -f (Get-DotNetReleaseDescription -ReleaseVersion $Latest.ReleaseVersion), $Latest.ReleaseNotes
-            '(?<=creating\s)\.NET(\sCore)?(?=\sapplications)' = (Get-DotNetProductTitle -Version $Latest.ReleaseVersion)
-            '\.NET(\sCore)?(?=\sis\sa\sblazing)' = (Get-DotNetProductTitle -Version $Latest.ReleaseVersion)
+            "[^\s]+\s+Release\s+Notes\]\([^)]+" = '{0} Release Notes]({1}' -f $Latest.ReleaseVersion, $Latest.ReleaseNotes
         }
     }
 }
 
 function global:au_GetLatest {
     $chunks = $Latest.PackageName -split '-'
-    $info = Get-DotNetSdkUpdateInfo -Channel $chunks[1] -SdkFeatureNumber $chunks[3].TrimEnd('x') -AllVersions:$AllVersionsAsStreams
+    $info = Get-DotNetRuntimeComponentUpdateInfo -Channel $chunks[1] -Component $chunks[2] -AllVersions:$AllVersionsAsStreams
     if ($AllVersionsAsStreams)
     {
         Convert-DotNetUpdateInfoListToStreamInfo -UpdateInfo $info
