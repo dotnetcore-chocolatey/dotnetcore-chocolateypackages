@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-8.0-sdk</id>
-    <version>0.0.0</version>
+    <version>8.0.100-preview22315725</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-8.0-sdk</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 8.0 SDK</title>
@@ -25,14 +25,14 @@ This is a *metapackage*, which installs the latest release of .NET 8.0 SDK acros
     </description>
     <releaseNotes>
 ##### Software
-[.NET 0.0.0 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/8.0/0.0.0/0.0.0.md)
+[.NET 8.0.0-preview.2 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/8.0/preview/8.0.0-preview.2.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-8.0-sdk-1xx" version="[0.0.0,0.0.0)" />
+      <dependency id="dotnet-8.0-sdk-1xx" version="[8.0.100-preview22315725,8.0.101)" />
     </dependencies>
   </metadata>
   <files>
