@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnet-6.0-sdk-1xx'
-    Url = 'https://download.visualstudio.microsoft.com/download/pr/38967177-5af4-4a4e-abc1-260cf333c297/2e9153efe6d568580bb39beb2ac40600/dotnet-sdk-6.0.115-win-x86.exe'
-    Checksum = 'd46aa97c376867174e87d80010315d348ebcd5e9e061ac2bc31a1351d28555ed5c3ebcceead32aedddc61871040b54780c02f94ee6019d7634d605c1c07a80b3'
+    Url = 'https://download.visualstudio.microsoft.com/download/pr/4b302519-26cb-4d31-abdb-f2a0b1d103d9/923bde1bc4a6401493b5028e6b4d52e9/dotnet-sdk-6.0.116-win-x86.exe'
+    Checksum = 'a723069fd979c4ac1891c7c0cf324c6db5dd2be8251ea9313edcc9485b9274116b7b19653ac1b6dc9d70f55160bb9210b9da818024b65213a06c5bc2284a5975'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/61ee63df-d33b-4601-932d-72a34740b0c1/e2d943bf1e380a99a2718a127fb146ef/dotnet-sdk-6.0.115-win-x64.exe'
-    Checksum64 = 'a25dda8e69bca2bdc8ed08f2b32bfb8d952b09ac83ef4ef6bb4a65cd4fd9c0a869bdea19377470e27d12d9e95c325a5c008001166f6f2b8a18d8c3e131efe70e'
+    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/df8b7c46-ab23-4d82-a002-501e059b7ba9/f45acb099c7c32301aff97dae53e1b4a/dotnet-sdk-6.0.116-win-x64.exe'
+    Checksum64 = 'edce85e711ba96d5f4b580b0ccda67bf750f8a5453c255f9fd62b7c98e1c50cb8694fd22ecdd4b592ee88154d3c00e225bc3555f66d4859caed34082111e424d'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }
