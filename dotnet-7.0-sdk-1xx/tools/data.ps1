@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnet-7.0-sdk-1xx'
-    Url = 'https://download.visualstudio.microsoft.com/download/pr/aaa87fef-1f8b-45da-b27c-97b0da365f83/a4b55e9f6624b3e1974d6b663224b27f/dotnet-sdk-7.0.105-win-x86.exe'
-    Checksum = 'ca95eb8ddf5e1e71ef5719af11e5935aa8df60a0ed4c1b9bbc63fc4b7ecca56bab2cd0adc081bb7b60032303becd4c464208f55a4b1740fc53982e280106784a'
+    Url = 'https://download.visualstudio.microsoft.com/download/pr/2c1f625b-5a72-4b89-b4fd-431c7ec06f08/3926fd9930d31f72fbcfd00c1cb55bd9/dotnet-sdk-7.0.107-win-x86.exe'
+    Checksum = 'cfac95de6113e5cc787726484655dc8d45aa5453c60077ef93b5c707ca49f2a43f4cf7e13e5fc0821462e7ff6a675d4cbd536527b4a584a99a38557d4c7ad5d8'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/f4928dfa-cf76-458f-8c83-eb493496fbfb/6596406cd727ff680fe22fe6b0a2776b/dotnet-sdk-7.0.105-win-x64.exe'
-    Checksum64 = 'f3a26982239f5d65d3214814618fc374a4aa6edf178b01da351c82317442cb5e0616730836edaf5a3c0c258233c8bfd100092318bb38624bb507d02c5006430a'
+    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/571d553a-88aa-4401-bcae-3c6694546074/00126e3775d25a3e55d02c45f8ff0732/dotnet-sdk-7.0.107-win-x64.exe'
+    Checksum64 = '61f840c968f039f21a1d95b61990b2af1f42ce79f3b6403507431e06a387d76f01370db58fed7dfe4affebcea82c716a9f5d87012773c7404dbc587f88a095ea'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }
