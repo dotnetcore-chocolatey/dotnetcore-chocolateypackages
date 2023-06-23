@@ -33,9 +33,9 @@ This metapackage installs all components needed for hosting .NET web/server appl
 TBD
     -->
     <dependencies>
+      <dependency id="dotnet-aspnetcoremodule-v2" version="[18.0.23154-preview5,18.0.23155)" />
       <dependency id="dotnet-8.0-runtime" version="[8.0.0-preview5232808,8.0.1)" />
       <dependency id="dotnet-8.0-aspnetruntime" version="[8.0.0-preview5233022,8.0.1)" />
-      <dependency id="dotnet-aspnetcoremodule-v2" version="[18.0.23154-preview5,18.0.23155)" />
     </dependencies>
   </metadata>
   <files>
