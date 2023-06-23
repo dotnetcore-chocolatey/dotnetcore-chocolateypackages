@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>dotnetcore-X.Y-sdk-Nxx</id>
+    <id>dotnet-7.Y-sdk-Nxx</id>
     <version>0.0.0</version>
-    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnetcore-X.Y-sdk-Nxx</packageSourceUrl>
+    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-7.Y-sdk-Nxx</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
-    <title>Microsoft .NET Core X.Y SDK feature update N</title>
+    <title>Microsoft .NET X.Y SDK feature update N</title>
     <authors>Microsoft</authors>
     <projectUrl>https://dot.net/core</projectUrl>
     <iconUrl>https://rawcdn.githack.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
@@ -17,13 +17,13 @@
     <tags>microsoft .net core runtime redistributable sdk cli admin</tags>
     <summary>The SDK includes the runtime and command line tools for creating .NET Core applications.</summary>
     <description>
-.NET Core is a blazing fast, lightweight and modular platform for creating web applications and services that run on Windows, Linux and Mac.
+.NET is a blazing fast, lightweight and modular platform for creating web applications and services that run on Windows, Linux and Mac.
 
 The SDK includes the runtime and command line tools for creating .NET Core applications.
     </description>
     <releaseNotes>
 ##### Software
-[.NET Core 0.0 Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
+[.NET 0.0 Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
     </releaseNotes>
     <!--
 ##### Package

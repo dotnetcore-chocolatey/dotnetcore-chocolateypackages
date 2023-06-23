@@ -941,10 +941,13 @@ function Resolve-DotNetSdkFeaturePackageTemplate
 
     $channelSystemVersion = [version]$Channel
     $candidates = @(
+        'dotnet-{0}.{1}-sdk-{2}xx'
         'dotnetcore-{0}.{1}-sdk-{2}xx'
+        'dotnet-{0}.{1}-sdk-Nxx'
         'dotnetcore-{0}.{1}-sdk-Nxx'
+        'dotnet-{0}.Y-sdk-Nxx'
         'dotnetcore-{0}.Y-sdk-Nxx'
-        'dotnetcore-X.Y-sdk-Nxx'
+        'dotnet-X.Y-sdk-Nxx'
     )
 
     $template = $null
