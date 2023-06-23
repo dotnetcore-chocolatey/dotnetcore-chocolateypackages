@@ -27,8 +27,6 @@ This metapackage installs all components needed for hosting .NET web/server appl
     <releaseNotes>
 ##### Software
 [.NET 7.0.8 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/7.0.8/7.0.8.md)
-##### Package
-7.0.8.20230623: Reordered dependencies as a workaround for https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/issues/63
     </releaseNotes>
     <!--
 ##### Package
