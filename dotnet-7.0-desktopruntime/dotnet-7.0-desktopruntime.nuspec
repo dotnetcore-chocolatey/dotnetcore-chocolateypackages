@@ -21,7 +21,7 @@
 
 The .NET Desktop Runtime (Microsoft.WindowsDesktop.App) enables you to run existing Windows desktop applications.
 
-.NET Core supports Windows 7 SP1 / Server 2008 R2 or later. On Windows 7 / Server 2008 R2, [security update KB2533623](https://support.microsoft.com/en-us/kb/2533623) must be installed, according to [documented system requirements](https://github.com/dotnet/core/blob/master/Documentation/prereqs.md).
+.NET 7.0 supports Windows 10 1607 / Server 2012 or later, according to [documented system requirements](https://github.com/dotnet/core/blob/main/release-notes/7.0/supported-os.md).
 
 The package supports the following parameters (--package-parameters, --params):
 

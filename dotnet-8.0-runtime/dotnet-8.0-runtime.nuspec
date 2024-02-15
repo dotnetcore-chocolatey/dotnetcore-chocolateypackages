@@ -21,7 +21,7 @@
 
 This package is required to run console applications with the .NET Runtime (Microsoft.NETCore.App).
 
-.NET 8.0 supports Windows 10 1607 / Server 2012 or later, according to [documented system requirements](https://github.com/dotnet/core/blob/master/Documentation/prereqs.md).
+.NET 8.0 supports Windows 10 1607 / Server 2012 or later, according to [documented system requirements](https://github.com/dotnet/core/blob/main/release-notes/8.0/supported-os.md).
 
 The package supports the following parameters (--package-parameters, --params):
 
