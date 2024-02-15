@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>dotnet-X.Y-sdk-Nxx</id>
+    <version>0.0.0</version>
+    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-X.Y-sdk-Nxx</packageSourceUrl>
+    <owners>jberezanski,riezebosch</owners>
+    <title>Microsoft .NET X.Y SDK feature update N</title>
+    <authors>Microsoft</authors>
+    <projectUrl>https://dot.net/core</projectUrl>
+    <iconUrl>https://rawcdn.githack.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
+    <copyright>.NET Foundation and Contributors</copyright>
+    <licenseUrl>https://rawcdn.githack.com/dotnet/core/290743955c7dec3315e72da5dcd589b2bd177e71/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <docsUrl>https://docs.microsoft.com/dotnet</docsUrl>
+    <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
+    <tags>microsoft .net core runtime redistributable sdk cli admin</tags>
+    <summary>The SDK includes the runtime and command line tools for creating .NET applications.</summary>
+    <description>
+.NET is a blazing fast, lightweight and modular platform for creating web applications and services that run on Windows, Linux and Mac.
+
+The SDK includes the runtime and command line tools for creating .NET applications.
+    </description>
+    <releaseNotes>
+##### Software
+[.NET 0.0 Release Notes](https://github.com/dotnet/core/tree/master/release-notes)
+    </releaseNotes>
+    <!--
+##### Package
+TBD
+    -->
+    <dependencies>
+      <dependency id="chocolatey-core.extension" version="1.4.0" />
+      <!-- Server 2012/2012 R2 or earlier -->
+      <dependency id="vcredist140" version="14.34.31938.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\*.ps1" target="tools" />
+    <file src="..\tools\Shared\ChocolateyInstall-sdk.ps1" target="tools\ChocolateyInstall.ps1" />
+  </files>
+</package>
