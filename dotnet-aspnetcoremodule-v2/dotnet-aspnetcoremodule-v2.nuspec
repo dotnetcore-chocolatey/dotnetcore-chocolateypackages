@@ -34,7 +34,8 @@ Example: cinst -y --params="Quiet IgnoreMissingIIS" dotnet-aspnetcoremodule-v2
 ##### Software
 [.NET 9.0.0-preview.1 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/9.0/preview/preview1/9.0.0-preview.1.md)
 ##### Package
-This package version installs ASP.NET Core Module version 19.0.24031.0.
+This package version installs ASP.NET Core Module version 0.0.
+As a workaround for [a bug in the installer](https://github.com/dotnet/aspnetcore/issues/45395), the ASP.NET Runtime is also installed by this package.
     </releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.4.0" />
