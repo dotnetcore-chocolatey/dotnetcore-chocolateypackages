@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-sdk</id>
-    <version>8.0.201</version>
+    <version>9.0.100-preview22415714</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-sdk</packageSourceUrl>
     <owners>riezebosch,jberezanski</owners>
     <title>Microsoft .NET SDK</title>
@@ -25,14 +25,14 @@ This is a *metapackage*, which installs the latest release of .NET SDK across al
     </description>
     <releaseNotes>
 ##### Software
-[.NET 8.0.2 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/8.0/8.0.2/8.0.2.md)
+[.NET 9.0.0-preview.2 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/9.0/preview/preview2/9.0.0-preview.2.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-8.0-sdk" version="[8.0.201,8.0.202)" />
+      <dependency id="dotnet-9.0-sdk" version="[9.0.100-preview22415714,9.0.101)" />
     </dependencies>
   </metadata>
   <files>
