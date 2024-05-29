@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnet-8.0-runtime'
-    Url = 'https://download.visualstudio.microsoft.com/download/pr/6baea142-1c35-44d9-a753-d2ff252b2f05/c8d7547c2dba48eb8a196f9210ad417a/dotnet-runtime-8.0.5-win-x86.exe'
-    Checksum = 'ff727bdb5e8eeb97ff2c20c6b45cfc297b4938937fdca5d0ce783f07e4a389000de86601d7faae1a1443cfdfd3754444c684fb804b526ea8bf6a5a2468224c3f'
+    Url = 'https://download.visualstudio.microsoft.com/download/pr/5e43df68-58d8-4b50-b334-4ebd6cd017ea/4043450c7ccb64a6ce80780cc0659841/dotnet-runtime-8.0.6-win-x86.exe'
+    Checksum = 'ab9bad248e97dbe87581dd8ecb0db22b3972de60fbde596f36ce6ffc7d5270457f9b7f6b7328ade901fd7234482c6d5907f2450a30699fef2cfae8d9ccfe1a9e'
     ChecksumType = 'sha512'
-    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/77284554-b8df-4697-9a9e-4c70a8b35f29/6763c16069d1ab8fa2bc506ef0767366/dotnet-runtime-8.0.5-win-x64.exe'
-    Checksum64 = '7bc6e21e4e07fb1b679f38538c28b4c5783570b00ac5f47e162c26abe2fb51193551acbc4f0c44de91359368931a04b7b18c4522a822ed0d3bcfca8b6ae376bb'
+    Url64 = 'https://download.visualstudio.microsoft.com/download/pr/e4d4b66c-0581-41a1-b7ee-f23ccc79e4ec/1b56841378536d2795faaa214b2872e7/dotnet-runtime-8.0.6-win-x64.exe'
+    Checksum64 = 'b3456b1d2b8b9b4269234c0fcd9d154109ec4cae623149f6d3d104ae43d08ef247c1c6a7e0117c0c7dd3db8ae17c999c637edaa99156d99c270b1b41782b4273'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }

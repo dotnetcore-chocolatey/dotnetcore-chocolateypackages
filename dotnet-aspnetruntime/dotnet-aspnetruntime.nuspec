@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-aspnetruntime</id>
-    <version>9.0.0-preview4242676</version>
+    <version>8.0.6</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-aspnetruntime</packageSourceUrl>
     <owners>riezebosch,jberezanski</owners>
     <title>Microsoft ASP.NET Core Runtime and Shared Framework</title>
@@ -25,14 +25,14 @@ This is a *metapackage*, which installs the latest release of ASP.NET Core Runti
     </description>
     <releaseNotes>
 ##### Software
-[.NET 9.0.0-preview.4 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/9.0/preview/preview4/9.0.0-preview.4.md)
+[.NET 8.0.6 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/8.0/8.0.6/8.0.6.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-9.0-aspnetruntime" version="[9.0.0-preview4242676,9.0.1)" />
+      <dependency id="dotnet-8.0-aspnetruntime" version="[8.0.6,8.0.7)" />
     </dependencies>
   </metadata>
   <files>

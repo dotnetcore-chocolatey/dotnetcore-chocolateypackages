@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-7.0-sdk-1xx</id>
-    <version>7.0.119</version>
+    <version>7.0.120</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-7.0-sdk-1xx</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 7.0 SDK feature update 1</title>
@@ -23,7 +23,7 @@ The SDK includes the runtime and command line tools for creating .NET applicatio
     </description>
     <releaseNotes>
 ##### Software
-[.NET 7.0.19 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/7.0.19/7.0.19.md)
+[.NET 7.0.20 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/7.0.20/7.0.20.md)
     </releaseNotes>
     <!--
 ##### Package
