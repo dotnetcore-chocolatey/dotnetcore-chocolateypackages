@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-9.0-sdk-1xx</id>
-    <version>9.0.100-preview42426766</version>
+    <version>9.0.100-preview5243073</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-9.0-sdk-1xx</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 9.0 SDK feature update 1</title>
@@ -23,7 +23,7 @@ The SDK includes the runtime and command line tools for creating .NET applicatio
     </description>
     <releaseNotes>
 ##### Software
-[.NET 9.0.0-preview.4 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/9.0/preview/preview4/9.0.0-preview.4.md)
+[.NET 9.0.0-preview.5 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/9.0/preview/preview5/9.0.0-preview.5.md)
     </releaseNotes>
     <!--
 ##### Package
