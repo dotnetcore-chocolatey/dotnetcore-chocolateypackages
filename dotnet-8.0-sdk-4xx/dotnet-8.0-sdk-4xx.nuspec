@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>dotnet-6.0-sdk</id>
-    <version>6.0.425</version>
-    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-6.0-sdk</packageSourceUrl>
+    <id>dotnet-8.0-sdk-4xx</id>
+    <version>8.0.400</version>
+    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-X.Y-sdk-Nxx</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
-    <title>Microsoft .NET 6.0 SDK</title>
+    <title>Microsoft .NET 8.0 SDK feature update 4</title>
     <authors>Microsoft</authors>
     <projectUrl>https://dot.net/core</projectUrl>
     <iconUrl>https://rawcdn.githack.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
@@ -17,24 +17,26 @@
     <tags>microsoft .net core runtime redistributable sdk cli admin</tags>
     <summary>The SDK includes the runtime and command line tools for creating .NET applications.</summary>
     <description>
-.NET Core is a blazing fast, lightweight and modular platform for creating web applications and services that run on Windows, Linux and Mac.
+.NET is a blazing fast, lightweight and modular platform for creating web applications and services that run on Windows, Linux and Mac.
 
 The SDK includes the runtime and command line tools for creating .NET applications.
-
-This is a *metapackage*, which installs the latest release of .NET 6.0 SDK across all feature updates.
     </description>
     <releaseNotes>
 ##### Software
-[.NET 6.0.33 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/6.0/6.0.33/6.0.33.md)
+[.NET 8.0.8 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/8.0/8.0.8/8.0.8.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-6.0-sdk-4xx" version="[6.0.425,6.0.426)" />
+      <dependency id="chocolatey-core.extension" version="1.4.0" />
+      <!-- Server 2012/2012 R2 or earlier -->
+      <dependency id="vcredist140" version="14.34.31938.0" />
     </dependencies>
   </metadata>
   <files>
+    <file src="tools\*.ps1" target="tools" />
+    <file src="..\tools\Shared\ChocolateyInstall-sdk.ps1" target="tools\ChocolateyInstall.ps1" />
   </files>
 </package>
