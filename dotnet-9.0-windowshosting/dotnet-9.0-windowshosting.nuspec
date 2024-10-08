@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-9.0-windowshosting</id>
-    <version>9.0.0-rc1244317</version>
+    <version>9.0.0-rc2244735</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-9.0-windowshosting</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 9.0 - Windows Server Hosting</title>
@@ -26,16 +26,16 @@ This metapackage installs all components needed for hosting .NET web/server appl
     </description>
     <releaseNotes>
 ##### Software
-[.NET 9.0.0-rc.1 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/9.0/preview/rc1/9.0.0-rc.1.md)
+[.NET 9.0.0-rc.2 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/9.0/preview/rc1/9.0.0-rc.1.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-aspnetcoremodule-v2" version="[19.0.24246-rc1,19.0.24247)" />
-      <dependency id="dotnet-9.0-runtime" version="[9.0.0-rc1244317,9.0.1)" />
-      <dependency id="dotnet-9.0-aspnetruntime" version="[9.0.0-rc1244521,9.0.1)" />
+      <dependency id="dotnet-aspnetcoremodule-v2" version="[19.0.24268-rc2,19.0.24269)" />
+      <dependency id="dotnet-9.0-runtime" version="[9.0.0-rc2244735,9.0.1)" />
+      <dependency id="dotnet-9.0-aspnetruntime" version="[9.0.0-rc2244743,9.0.1)" />
     </dependencies>
   </metadata>
   <files>
