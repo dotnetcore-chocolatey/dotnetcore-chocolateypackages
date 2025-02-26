@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-10.0-windowshosting</id>
-    <version>0.0.0</version>
+    <version>10.0.0-preview1250805</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-10.0-windowshosting</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 10.0 - Windows Server Hosting</title>
@@ -26,16 +26,16 @@ This metapackage installs all components needed for hosting .NET web/server appl
     </description>
     <releaseNotes>
 ##### Software
-[.NET 10.0.0 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/10.0/10.0.0/10.0.0.md)
+[.NET 10.0.0-preview.1 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/10.0/preview/preview1/10.0.0-preview.1.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-aspnetcoremodule-v2" version="[110.0.05017,110.0.05018)" />
-      <dependency id="dotnet-10.0-runtime" version="[10.0.0,10.0.1)" />
-      <dependency id="dotnet-10.0-aspnetruntime" version="[10.0.0,10.0.1)" />
+      <dependency id="dotnet-aspnetcoremodule-v2" version="[20.0.25051-preview1,20.0.25052)" />
+      <dependency id="dotnet-10.0-runtime" version="[10.0.0-preview1250805,10.0.1)" />
+      <dependency id="dotnet-10.0-aspnetruntime" version="[10.0.0-preview1251203,10.0.1)" />
     </dependencies>
   </metadata>
   <files>
