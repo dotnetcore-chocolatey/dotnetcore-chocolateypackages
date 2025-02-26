@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>dotnet-10.0-sdk</id>
+    <version>0.0.0</version>
+    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-10.0-sdk</packageSourceUrl>
+    <owners>jberezanski,riezebosch</owners>
+    <title>Microsoft .NET 10.0 SDK</title>
+    <authors>Microsoft</authors>
+    <projectUrl>https://dot.net/core</projectUrl>
+    <iconUrl>https://rawcdn.githack.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
+    <copyright>.NET Foundation and Contributors</copyright>
+    <licenseUrl>https://rawcdn.githack.com/dotnet/core/290743955c7dec3315e72da5dcd589b2bd177e71/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <docsUrl>https://docs.microsoft.com/dotnet</docsUrl>
+    <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
+    <tags>microsoft .net core runtime redistributable sdk cli admin</tags>
+    <summary>The SDK includes the runtime and command line tools for creating .NET applications.</summary>
+    <description>
+.NET is a blazing fast, lightweight and modular platform for creating web applications and services that run on Windows, Linux and Mac.
+
+The SDK includes the runtime and command line tools for creating .NET applications.
+
+This is a *metapackage*, which installs the latest release of .NET 10.0 SDK across all feature updates.
+    </description>
+    <releaseNotes>
+##### Software
+[.NET 10.0.0 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/10.0/10.0.0/10.0.0.md)
+    </releaseNotes>
+    <!--
+##### Package
+TBD
+    -->
+    <dependencies>
+      <dependency id="dotnet-10.0-sdk-1xx" version="[10.0.000,10.0.001)" />
+    </dependencies>
+  </metadata>
+  <files>
+  </files>
+</package>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>dotnet-10.0-aspnetruntime</id>
+    <version>0.0.0</version>
+    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-10.0-aspnetruntime</packageSourceUrl>
+    <owners>jberezanski,riezebosch</owners>
+    <title>Microsoft ASP.NET Core 10.0 Runtime and Shared Framework</title>
+    <authors>Microsoft</authors>
+    <projectUrl>https://dot.net/core</projectUrl>
+    <iconUrl>https://rawcdn.githack.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
+    <copyright>.NET Foundation and Contributors</copyright>
+    <licenseUrl>https://rawcdn.githack.com/dotnet/core/290743955c7dec3315e72da5dcd589b2bd177e71/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <docsUrl>https://docs.microsoft.com/dotnet</docsUrl>
+    <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
+    <tags>microsoft .net core runtime redistributable asp.net admin</tags>
+    <summary>The ASP.NET Core Runtime enables you to run existing web/server applications.</summary>
+    <description>
+.NET is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
+
+The ASP.NET Core Runtime (Microsoft.AspNetCore.App) enables you to run existing web/server applications.
+
+.NET 10.0 supports Windows 10 1607 / Server 2012 or later, according to [documented system requirements](https://github.com/dotnet/core/blob/main/release-notes/10.0/supported-os.md).
+
+The package supports the following parameters (--package-parameters, --params):
+
+- `Passive` - display native installer progress window (may not work on Server Core)
+- `Skip32Bit` - do not install the 32-bit runtime on a 64-bit system
+
+Example: cinst -y --params="Passive Skip32Bit" dotnet-10.0-aspnetruntime
+    </description>
+    <releaseNotes>
+##### Software
+[.NET 10.0.0 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/10.0/10.0.0/10.0.0.md)
+    </releaseNotes>
+    <!--
+##### Package
+TBD
+    -->
+    <dependencies>
+      <dependency id="chocolatey-core.extension" version="1.4.0" />
+      <!-- Server 2012/2012 R2 or earlier -->
+      <dependency id="vcredist140" version="14.34.31938.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\*.ps1" target="tools" />
+    <file src="..\tools\Shared\ChocolateyInstall-runtime.ps1" target="tools\ChocolateyInstall.ps1" />
+  </files>
+</package>
