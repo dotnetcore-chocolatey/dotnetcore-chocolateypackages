@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-windowshosting</id>
-    <version>9.0.4</version>
+    <version>10.0.0-preview3251715</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-windowshosting</packageSourceUrl>
     <owners>riezebosch,jberezanski</owners>
     <title>Microsoft .NET - Windows Server Hosting</title>
@@ -25,14 +25,14 @@ This is a *metapackage*, which installs the latest release of .NET Windows Serve
     </description>
     <releaseNotes>
 ##### Software
-[.NET 9.0.4 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/9.0/9.0.4/9.0.4.md)
+[.NET 10.0.0-preview.3 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/10.0/preview/preview3/10.0.0-preview.3.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-9.0-windowshosting" version="[9.0.4,9.0.5)" />
+      <dependency id="dotnet-10.0-windowshosting" version="[10.0.0-preview3251715,10.0.1)" />
     </dependencies>
   </metadata>
   <files>

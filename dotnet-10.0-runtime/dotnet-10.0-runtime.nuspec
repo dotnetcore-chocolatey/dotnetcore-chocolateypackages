@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-10.0-runtime</id>
-    <version>10.0.0-preview2251632</version>
+    <version>10.0.0-preview3251715</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-10.0-runtime</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 10.0 Runtime</title>
@@ -32,7 +32,7 @@ Example: cinst -y --params="Passive Skip32Bit" dotnet-10.0-runtime
     </description>
     <releaseNotes>
 ##### Software
-[.NET 10.0.0-preview.2 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/10.0/preview/preview2/10.0.0-preview.2.md)
+[.NET 10.0.0-preview.3 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/10.0/preview/preview3/10.0.0-preview.3.md)
     </releaseNotes>
     <!--
 ##### Package
