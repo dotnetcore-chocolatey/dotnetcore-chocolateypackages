@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-runtime</id>
-    <version>10.0.0-preview3251715</version>
+    <version>10.0.0-preview425258110</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-runtime</packageSourceUrl>
     <owners>riezebosch,jberezanski</owners>
     <title>Microsoft .NET Runtime</title>
@@ -25,14 +25,14 @@ This is a *metapackage*, which installs the latest release of .NET Runtime acros
     </description>
     <releaseNotes>
 ##### Software
-[.NET 10.0.0-preview.3 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/10.0/preview/preview3/10.0.0-preview.3.md)
+[.NET 10.0.0-preview.4 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/10.0/preview/preview4/10.0.0-preview.4.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-10.0-runtime" version="[10.0.0-preview3251715,10.0.1)" />
+      <dependency id="dotnet-10.0-runtime" version="[10.0.0-preview425258110,10.0.1)" />
     </dependencies>
   </metadata>
   <files>
