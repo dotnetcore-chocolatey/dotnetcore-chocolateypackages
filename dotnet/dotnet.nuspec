@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet</id>
-    <version>9.0.8</version>
+    <version>10.0.0-preview725380108</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet</packageSourceUrl>
     <owners>riezebosch,jberezanski</owners>
     <title>Microsoft .NET</title>
@@ -25,14 +25,14 @@ The .NET Runtime is required to run .NET console applications. For running .NET 
     </description>
     <releaseNotes>
 ##### Software
-[.NET 9.0.8 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/9.0/9.0.8/9.0.8.md)
+[.NET 10.0.0-preview.7 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/10.0/preview/preview7/10.0.0-preview.7.md)
     </releaseNotes>
     <!--
 ##### Package
 TBD
     -->
     <dependencies>
-      <dependency id="dotnet-runtime" version="[9.0.8,9.0.9)" />
+      <dependency id="dotnet-runtime" version="[10.0.0-preview725380108,10.0.1)" />
     </dependencies>
   </metadata>
   <files>
