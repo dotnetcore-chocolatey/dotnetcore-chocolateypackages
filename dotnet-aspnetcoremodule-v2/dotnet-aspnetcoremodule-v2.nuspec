@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-aspnetcoremodule-v2</id>
-    <version>18.0.25232</version>
+    <version>20.0.25244-rc1</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-aspnetcoremodule-v2</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft ASP.NET Core Module V2</title>
@@ -32,9 +32,9 @@ Example: cinst -y --params="Quiet IgnoreMissingIIS" dotnet-aspnetcoremodule-v2
 </description>
     <releaseNotes>
 ##### Software
-[.NET 8.0.20 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/8.0/8.0.20/8.0.20.md)
+[.NET 10.0.0-rc.1 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/10.0/10.0.0-rc.1/10.0.0-rc.1.md)
 ##### Package
-This package version installs ASP.NET Core Module version 18.0.25232.20.
+This package version installs ASP.NET Core Module version 20.0.25244.0.
     </releaseNotes>
     <dependencies>
       <dependency id="chocolatey-core.extension" version="1.4.0" />
