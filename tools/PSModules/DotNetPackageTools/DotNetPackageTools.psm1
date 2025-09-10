@@ -424,6 +424,7 @@ function Get-DotNetRuntimeComponentUpdateInfo
                     # In those releases, ANCM version is missing from releases.json and was obtained experimentally.
                     $ancmVersionStrings = switch ($releaseVersion)
                     {
+                        '10.0.0-rc.1' { @('20.0.25244.0') }
                         '10.0.0-preview.7' { @('20.0.25212.0') }
                         '10.0.0-preview.6' { @('20.0.25189.0') }
                         '10.0.0-preview.5' { @('20.0.25148.0') }
