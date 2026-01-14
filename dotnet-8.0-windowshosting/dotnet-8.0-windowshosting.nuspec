@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-8.0-windowshosting</id>
-    <version>8.0.22</version>
+    <version>8.0.23</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-8.0-windowshosting</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft .NET 8.0 - Windows Server Hosting</title>
@@ -26,7 +26,7 @@ This metapackage installs all components needed for hosting .NET web/server appl
     </description>
     <releaseNotes>
 ##### Software
-[.NET 8.0.22 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/8.0/8.0.22/8.0.22.md)
+[.NET 8.0.23 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/8.0/8.0.23/8.0.23.md)
     </releaseNotes>
     <!--
 ##### Package
@@ -34,8 +34,8 @@ TBD
     -->
     <dependencies>
       <dependency id="dotnet-aspnetcoremodule-v2" version="[18.0.25301,18.0.25302)" />
-      <dependency id="dotnet-8.0-runtime" version="[8.0.22,8.0.23)" />
-      <dependency id="dotnet-8.0-aspnetruntime" version="[8.0.22,8.0.23)" />
+      <dependency id="dotnet-8.0-runtime" version="[8.0.23,8.0.24)" />
+      <dependency id="dotnet-8.0-aspnetruntime" version="[8.0.23,8.0.24)" />
     </dependencies>
   </metadata>
   <files>

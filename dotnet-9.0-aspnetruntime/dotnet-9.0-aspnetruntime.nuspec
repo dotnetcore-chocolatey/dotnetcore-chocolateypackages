@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>dotnet-9.0-aspnetruntime</id>
-    <version>9.0.11</version>
+    <version>9.0.12</version>
     <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-9.0-aspnetruntime</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
     <title>Microsoft ASP.NET Core 9.0 Runtime and Shared Framework</title>
@@ -32,7 +32,7 @@ Example: cinst -y --params="Passive Skip32Bit" dotnet-9.0-aspnetruntime
     </description>
     <releaseNotes>
 ##### Software
-[.NET 9.0.11 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/9.0/9.0.11/9.0.11.md)
+[.NET 9.0.12 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/9.0/9.0.12/9.0.12.md)
     </releaseNotes>
     <!--
 ##### Package
