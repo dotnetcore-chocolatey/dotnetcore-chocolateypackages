@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnet-10.0-aspnetruntime'
     Url = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/10.0.2/aspnetcore-runtime-10.0.2-win-x86.exe'
-    Checksum = '13e9e0f8b08b60dcdf422675ef6e024e69fafea106cb05fb9f34d65cdf8e11ae8a872174f00314f410cc0746c87d4b6176486d51f565582a1e5a1e491c16a804'
+    Checksum = 'f3ba47e629e3e955950cd8f91049dec9302cb0d2b2fdfcf22a220314b4f8e8812db6eaae9e5ae80098f95e04fe16fc83694180fa304ee951beef23b1f6e1f681'
     ChecksumType = 'sha512'
     Url64 = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/10.0.2/aspnetcore-runtime-10.0.2-win-x64.exe'
-    Checksum64 = '0e75be1df8a4d2598fd94875c21699d6fa8930ff476e55942c51144ad6c29c2c8e04d5f9e5219d0e6c31861e913dee32e8e0b0e46c71627c42a416bc1289f0ad'
+    Checksum64 = '59caee3172da845b91dc5b3b776049ac7c54cc2a4792f530f686bbe09cd3495f806949c826aec535f0ac4c40641ae2fc3b48a093b8018a65b3f10dc67e197bec'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }
