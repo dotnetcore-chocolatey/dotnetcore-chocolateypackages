@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnet-8.0-desktopruntime'
-    Url = 'https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.23/windowsdesktop-runtime-8.0.23-win-x86.exe'
-    Checksum = '6997be20ee7a516cc3f8e33b5fef3cc8ef38d2cbfd1f2886fe78cc6a42613b17d717337b10f19a28832e65de745f1d3e14a670a59f048e8869a335167773aafa'
+    Url = 'https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.24/windowsdesktop-runtime-8.0.24-win-x86.exe'
+    Checksum = '3b5873cb103a742ca288e8eb8c9867593ed1cc1cc6bca17542cbcfd2bb4467e78c6ec21e64f34314f99a5665d89629760344b78abcd5767dcefa352a195c1ce2'
     ChecksumType = 'sha512'
-    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.23/windowsdesktop-runtime-8.0.23-win-x64.exe'
-    Checksum64 = '0f5490558e5370c70c854bbc2217a0600fc8bb9abe839571d0b663e08b2e39f3aca00993c5315492f231d04e865b1037deb4eb570c39565a1250aa0efe843f78'
+    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.24/windowsdesktop-runtime-8.0.24-win-x64.exe'
+    Checksum64 = '59c71fda396da28963aba76262914a0256ccba744962b4654587eb9d3e740e04577b3c9e39bb75cb1cbc7bee7a4b1ef398627b970ba3e40d4824af28c823a710'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }
