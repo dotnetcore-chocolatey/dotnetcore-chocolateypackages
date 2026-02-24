@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>dotnet-10.0-runtime</id>
-    <version>10.0.3</version>
-    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-10.0-runtime</packageSourceUrl>
+    <id>dotnet-11.0-aspnetruntime</id>
+    <version>0.0.0</version>
+    <packageSourceUrl>https://github.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/tree/master/dotnet-11.0-aspnetruntime</packageSourceUrl>
     <owners>jberezanski,riezebosch</owners>
-    <title>Microsoft .NET 10.0 Runtime</title>
+    <title>Microsoft ASP.NET Core 11.0 Runtime and Shared Framework</title>
     <authors>Microsoft</authors>
     <projectUrl>https://dot.net/core</projectUrl>
     <iconUrl>https://rawcdn.githack.com/dotnetcore-chocolatey/dotnetcore-chocolateypackages/5a90ffc61572e8403cb88c325f88cf6989de8c79/icons/dotnetcore.png</iconUrl>
@@ -14,25 +14,25 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <docsUrl>https://docs.microsoft.com/dotnet</docsUrl>
     <bugTrackerUrl>https://www.microsoft.com/net/support</bugTrackerUrl>
-    <tags>microsoft .net core runtime redistributable admin</tags>
-    <summary>This package is required to run console applications with the .NET Runtime.</summary>
+    <tags>microsoft .net core runtime redistributable asp.net admin</tags>
+    <summary>The ASP.NET Core Runtime enables you to run existing web/server applications.</summary>
     <description>
 .NET is a general purpose development platform maintained by Microsoft and the .NET community on GitHub. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.
 
-This package is required to run console applications with the .NET Runtime (Microsoft.NETCore.App).
+The ASP.NET Core Runtime (Microsoft.AspNetCore.App) enables you to run existing web/server applications.
 
-.NET 10.0 supports Windows 10 1607 / Server 2012 or later, according to [documented system requirements](https://github.com/dotnet/core/blob/main/release-notes/10.0/supported-os.md).
+.NET 11.0 supports Windows 10 1607 / Server 2012 or later, according to [documented system requirements](https://github.com/dotnet/core/blob/main/release-notes/11.0/supported-os.md).
 
 The package supports the following parameters (--package-parameters, --params):
 
 - `Passive` - display native installer progress window (may not work on Server Core)
 - `Skip32Bit` - do not install the 32-bit runtime on a 64-bit system
 
-Example: cinst -y --params="Passive Skip32Bit" dotnet-10.0-runtime
+Example: cinst -y --params="Passive Skip32Bit" dotnet-10.0-aspnetruntime
     </description>
     <releaseNotes>
 ##### Software
-[.NET 10.0.3 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/10.0/10.0.3/10.0.3.md)
+[.NET 0.0.0 Release Notes](TBD)
     </releaseNotes>
     <!--
 ##### Package
