@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnet-10.0-desktopruntime'
-    Url = 'https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/10.0.3/windowsdesktop-runtime-10.0.3-win-x86.exe'
-    Checksum = '0d61feb27e2081cd00be137a0816ca429eaa6ecaaa16b19bd49f4ae5533adeaa40427f51ae8834bebdf5b8781cb33e7ef88e31d54f3150874aaeb0a77bee8432'
+    Url = 'https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/10.0.4/windowsdesktop-runtime-10.0.4-win-x86.exe'
+    Checksum = '8d67c9d7210555c25d1a893a4b5ca5a2afc79f411bdd6d03b38f5e6ef8188c347de7990c3b60354854e1f7101ec46b9653f2012dc18eef08cb0e780c1fed0a24'
     ChecksumType = 'sha512'
-    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/10.0.3/windowsdesktop-runtime-10.0.3-win-x64.exe'
-    Checksum64 = '7ce6f187618a550594bb5e979f3aba46e7a1ceed712b404b43160ea5ca6e60f681833ce03475054ce31485498e709cdb884b70c5b4b70ba4a496a595b0c77a0e'
+    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/10.0.4/windowsdesktop-runtime-10.0.4-win-x64.exe'
+    Checksum64 = 'f5c90b28c69981558d49b0dc762fd9c2f50f15c9d9ca1d8d6acfb70fe11d28de53a740c28b189cfdc17c2c8414cb95c948f2a6fd63e808eab9fd74cbfcacac13'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }
