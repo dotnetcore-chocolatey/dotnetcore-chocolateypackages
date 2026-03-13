@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnet-aspnetcoremodule-v2'
-    Url = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-preview.2.26159.112/dotnet-hosting-11.0.0-preview.2.26159.112-win.exe'
-    Checksum = '59c621449fd1714098b6f0b21c7ad3b8c941e73fd07852d73178ab411810530b3af802d0a6db1be0eaaf96df11304de03f9d44042f0ffd4de66a7c0e9935cbb1'
+    Url = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/10.0.5/dotnet-hosting-10.0.5-win.exe'
+    Checksum = '9241927873a3de071b01e5848601250483400a07de1adca01c58c6ee94eaead9d3f681af15364235f0afa7164858c409e1b1fb11871b4498860ab176e998bb7e'
     ChecksumType = 'sha512'
-    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-preview.2.26159.112/dotnet-hosting-11.0.0-preview.2.26159.112-win.exe'
-    Checksum64 = '59c621449fd1714098b6f0b21c7ad3b8c941e73fd07852d73178ab411810530b3af802d0a6db1be0eaaf96df11304de03f9d44042f0ffd4de66a7c0e9935cbb1'
+    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/10.0.5/dotnet-hosting-10.0.5-win.exe'
+    Checksum64 = '9241927873a3de071b01e5848601250483400a07de1adca01c58c6ee94eaead9d3f681af15364235f0afa7164858c409e1b1fb11871b4498860ab176e998bb7e'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = 'OPT_NO_RUNTIME=1 OPT_NO_SHAREDFX=1'
 }
