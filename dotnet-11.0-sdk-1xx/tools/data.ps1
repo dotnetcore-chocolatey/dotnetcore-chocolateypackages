@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnet-11.0-sdk-1xx'
-    Url = 'https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-preview.3.26207.106/dotnet-sdk-11.0.100-preview.3.26207.106-win-x86.exe'
-    Checksum = '35447d959a492b2d54b5868e6020dc72841eaef61a61a0e000dc51b3253b9893b86cad8e730921f4e204e2cc5adb83ac2f206110988b6ed3671d31b26bdf6e73'
+    Url = 'https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-preview.4.26230.115/dotnet-sdk-11.0.100-preview.4.26230.115-win-x86.exe'
+    Checksum = '8d5dd178ced2d35ae8abe9ecc791dff11b85c60d9fb34ab5883bdf437eb353d884e1052e02e52d97410b4199e80f1543ae0a69c965c1c6c253845a2f212c5811'
     ChecksumType = 'sha512'
-    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-preview.3.26207.106/dotnet-sdk-11.0.100-preview.3.26207.106-win-x64.exe'
-    Checksum64 = '3e839e2d28797bb77e0e8a5859b03441c87d578efe5ec3d713aa58d1f6dbfcd22e8393cb1c0ba6417a0397c09d68a299a8afe5ef1f545e1d57c21e4ae1dc7ca3'
+    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/Sdk/11.0.100-preview.4.26230.115/dotnet-sdk-11.0.100-preview.4.26230.115-win-x64.exe'
+    Checksum64 = '932c9663118237e402ea56d9550052d873f75fbd7f830479fc545e85ad3890bca6b31c4d97a81b508da55fe8d69207c258f5617b4f3bef7608ab4aa1c71f0530'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }

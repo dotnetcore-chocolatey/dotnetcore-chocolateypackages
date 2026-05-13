@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnet-8.0-sdk-1xx'
-    Url = 'https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.126/dotnet-sdk-8.0.126-win-x86.exe'
-    Checksum = '059ef57fc7f64c40bb8c31923bb8370457d2e9d3d58f656540bd78b0dd0fe65a0fd3040d80248da8134e8e21ab4bf8a22c4b24f1bf8737cee170b46e050f2fa3'
+    Url = 'https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.127/dotnet-sdk-8.0.127-win-x86.exe'
+    Checksum = '5991d9085395e7b7bd88d394ef1c2b0c6ad1c15fc2c6bd778a7913bf7aa3af28c28d0c8c2d7d4f75bb2d56e1380180b9b3a2f2cf57c6382246275ae9a24fa415'
     ChecksumType = 'sha512'
-    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.126/dotnet-sdk-8.0.126-win-x64.exe'
-    Checksum64 = '52ddb9eced78424815fd913fbd9709a85a034a01f648b975ae7869bd3918792b3c05aba74f3a884cccb3197126cb5c1042cba41652611d9425fd36a4c0d73155'
+    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/Sdk/8.0.127/dotnet-sdk-8.0.127-win-x64.exe'
+    Checksum64 = '564b87b0af6e1aefed3877b123b2f6aa0e3b090eceb78d738e0ac24022d2ec286f2f9c15c603e0fcf7f9da379b3466e64c2b648d0b4a641d6214efef9523d5a9'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }
