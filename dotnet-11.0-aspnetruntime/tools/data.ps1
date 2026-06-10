@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnet-11.0-aspnetruntime'
-    Url = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-preview.4.26230.115/aspnetcore-runtime-11.0.0-preview.4.26230.115-win-x86.exe'
-    Checksum = '5010cf4239336047990115542ee38ade161abd97b3b32a360de39f16a8a1fe730aca1d6a5bcc5fb90f45bad9223a79701091e93046bc73eeabe8181cbeebb2f2'
+    Url = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-preview.5.26302.115/aspnetcore-runtime-11.0.0-preview.5.26302.115-win-x86.exe'
+    Checksum = '12b0161fe38facb160d4050a46bdfa038bb26ef7fc0eb1da78989b18682b10b15648a3130271afa8722b2251ebf07b9e4ab00de5f91d70bf3c768b59dcf09469'
     ChecksumType = 'sha512'
-    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-preview.4.26230.115/aspnetcore-runtime-11.0.0-preview.4.26230.115-win-x64.exe'
-    Checksum64 = 'd6cb17605480e96779045e7946e138b13f9d17a7be44d25718b9b51dad98d3ee1534cf70e5a3a04a4213a4dc813dcfb02c1164ffe6abf83a13a88253b7e069ab'
+    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/11.0.0-preview.5.26302.115/aspnetcore-runtime-11.0.0-preview.5.26302.115-win-x64.exe'
+    Checksum64 = 'da39185423f927a570e5d4a1e840bd8536d250cbb3007de62a2b6b9f74137289fd8d5792c93bd9f686c48ab3c3de0ec45d8478ac038e4ecdac2f44b60ebcba22'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }
