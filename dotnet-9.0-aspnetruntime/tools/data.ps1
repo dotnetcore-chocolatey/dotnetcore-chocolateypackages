@@ -1,10 +1,10 @@
 ﻿@{
     PackageName = 'dotnet-9.0-aspnetruntime'
-    Url = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.20/aspnetcore-runtime-9.0.20-win-x86.exe'
-    Checksum = '97ad7b5817a7bb2aa1a79ddb4231e6285284e2aaa1b644d2d525c79e8a79f064caa61e080bbe0ff15f5d97fd0da7818601dc6fb084cc30001eca148c4e490014'
+    Url = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.21/aspnetcore-runtime-9.0.21-win-x86.exe'
+    Checksum = '6a57f405f1fdfb275062cd3d3f3c1dcd6aa1f5c380c00decc9d00aba09186ac1c438d134b765047c35d79cb13d81e624c2f55d72f123a46b3c595dfb0c671c26'
     ChecksumType = 'sha512'
-    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.20/aspnetcore-runtime-9.0.20-win-x64.exe'
-    Checksum64 = 'a19cd68d645cbc6c0b4942ead6eb9a7b98b247de977ad887f37da1d73f094a6d1d314f6fa5e00142c9a3fac64626471b288c01873162b8530694fb44ceb75fd1'
+    Url64 = 'https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.21/aspnetcore-runtime-9.0.21-win-x64.exe'
+    Checksum64 = 'cfd2b18485b922fc3d18b1d7d59503c53e056099a3841daf6eac8bdbcfe8574eee7a60f4cdb3c6d06a552cf1d33ac55b38f4fb34c491fe710a85caaaa46817fa'
     ChecksumType64 = 'sha512'
     AdditionalArgumentsToInstaller = $null
 }
